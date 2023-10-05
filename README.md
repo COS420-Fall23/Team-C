@@ -1,9 +1,9 @@
-# Team-C.R.E.A.M
-Team-C Repository. This tackles imposter syndrome issues, focusing on the difficulties of getting and receiving help while learning.
+# Team C.R.E.A.M
+Team C.R.E.A.M Repository. This tackles imposter syndrome issues, focusing on the difficulties of getting and receiving help while learning.
 
 
 ## Role And Team Members
-Team C: Roles First & Last Name
+Team C.R.E.A.M: Roles First & Last Name
 
 
 __PM__: Alexa Guerrero
