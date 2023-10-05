@@ -6,19 +6,19 @@ Team-C Repository. This tackles imposter syndrome issues, focusing on the diffic
 Team C: Roles First & Last Name
 
 
-PM: __Alexa Guerrero__
+__PM__: Alexa Guerrero
 
-DEV1: __Isaiah Grace__
+__DEV1__: Isaiah Grace
 
-DEV2: __Chimezie Ugbuaja__
+__DEV2__: Chimezie Ugbuaja
 
-DEV3: __Jonathan Malcom__
+__DEV3__: Jonathan Malcom
 
-DESIGN: __Eliza Nika__
+__DESIGN__: Eliza Nika
 
-DESIGN: (from NMD442) __Mckenzie Evans__
+__DESIGN__: (from NMD442) Mckenzie Evans
 
-DESIGN: (from NMD442) __David Jakacky__
+__DESIGN__: (from NMD442) David Jakacky
 
 
 ## About Roles
@@ -49,6 +49,7 @@ Statement 2:
 Impostor syndrome is a pervasive issue that seriously undermines individuals' self-esteem and self-worth. This often involves constant self-comparisons, leading to overwhelming feelings of inadequacy and a profound sense of personal diminishment. Specifically, when students grapple with challenging academic subjects, they often find themselves overwhelmed by complex concepts, discouraging them and making them feel like outsiders among their peers. To address this pressing concern, past attempts to handle the situation have been to create a platform with expert mentors who can offer tailored guidance, answer questions, and provide support through various communication channels, such as chat or video calls; seems like a promising solution. However, it's important to note that the wrong approach by these experts can actually worsen self-doubt and further intensify imposter syndrome, highlighting the need for a thoughtful and nuanced approach. How can we implement strategies that offer users helpful information and mental health support resources while ensuring that experts actively contribute positively instead of making matters worse?
 
 ## Links
-* Google Drive: *(https://drive.google.com/drive/u/0/folders/0ACeqdmZ1_nN4Uk9PVA)*
-* Miro Board: *(https://miro.com/app/board/uXjVNfcEPWo=/?share_link_id=184606767617)*
-* Google Calendar: *(https://calendar.google.com/calendar/embed?src=c_7bba563e82818d1173a24e233d69a664315f7c7cfdb4a2a2fc73d89ff0305eff%40group.calendar.google.com&ctz=America%2FNew_York)*
+* [Google Drive](https://drive.google.com/drive/u/0/folders/0ACeqdmZ1_nN4Uk9PVA)
+* [Miro Board](https://miro.com/app/board/uXjVNfcEPWo=/?share_link_id=184606767617)
+* [Google Calendar](https://calendar.google.com/calendar/embed?src=c_7bba563e82818d1173a24e233d69a664315f7c7cfdb4a2a2fc73d89ff0305eff%40group.calendar.google.com&ctz=America%2FNew_York)
+* [KanBan](nmd442.atlassian.net)
