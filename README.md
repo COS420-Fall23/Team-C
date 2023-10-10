@@ -53,5 +53,6 @@ Impostor syndrome is a pervasive issue that seriously undermines individuals' se
 * [Miro Board](https://miro.com/app/board/uXjVNfcEPWo=/?share_link_id=184606767617)
 * [Google Calendar](https://calendar.google.com/calendar/embed?src=c_7bba563e82818d1173a24e233d69a664315f7c7cfdb4a2a2fc73d89ff0305eff%40group.calendar.google.com&ctz=America%2FNew_York)
 * [KanBan](nmd442.atlassian.net)
-
+* [Project Description](https://docs.google.com/document/d/1pYaFWD5ZjIMYsY10G6Tj2zTQovdf3BRFGm2aURBWf1c/edit?usp=sharing)
+* [User Stories](https://docs.google.com/document/d/1yl5TXeCvfRcu4HLLEaKomIPF_wTQ4EDAqwn78GlSDbM/edit?usp=sharing)
 * [Poll for logo](https://forms.gle/RVAcgvDBEfiSFBfB6)
