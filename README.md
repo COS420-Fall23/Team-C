@@ -16,9 +16,9 @@ __DEV3__: Jonathan Malcom
 
 __DESIGN__: Eliza Nika
 
-__DESIGN__: (from NMD442) Mckenzie Evans
+__DESIGN 1__: (from NMD442) Mckenzie Evans
 
-__DESIGN__: (from NMD442) David Jakacky
+__DESIGN 2__: (from NMD442) David Jakacky
 
 
 ## About Roles
