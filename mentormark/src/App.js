@@ -9,6 +9,14 @@ function App() {
         <p>
           Mentor Mark
         </p>
+        <div>
+                <button onClick={() => console.log("Refer to Sign up page.")}>
+                    Sign Up
+                </button>
+                <button onClick={() => console.log("Refer to Log In page.")}>
+                    Log In
+                </button>
+            </div>{" "}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
