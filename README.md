@@ -16,9 +16,9 @@ __DEV3__: Jonathan Malcom
 
 __DESIGN__: Eliza Nika
 
-__DESIGN__: (from NMD442) Mckenzie Evans
+__DESIGN 1__: (from NMD442) Mckenzie Evans
 
-__DESIGN__: (from NMD442) David Jakacky
+__DESIGN 2__: (from NMD442) David Jakacky
 
 
 ## About Roles
@@ -42,11 +42,11 @@ __DESIGN__: (from NMD442) David Jakacky
 ## Problem Statment
 Statement 1:
 
-Those who struggle with imposter syndrome often avoid asking questions or getting  feedback and criticism because they fear that this might confirm their insecurities. This prevents them from learning and growing. For example, In a coding class, a student who enters with no prior coding background is surrounded by peers who are already well-versed in coding. This situation can be quite overwhelming for our students, leading to self-doubt before they even begin their learning journey. Prior solutions have been to encourage professors and TAs to help  motivate and reassure the students that they are on the right path, as well as to build further connections with their students in hopes that they will feel more comfortable with reaching out. However, this solution doesn't consider how hard it may be for some students to ask for help and how being vulnerable to their peers can feel as if they are exposing themselves as a fraud within their field. How do we build an environment that promotes self-respect, self-encouragement, and a sense of confidence enough for the student to continue pursuing help where they are struggling and prepare professors to be able to prevent, identify, and resolve future occurrences? 
+Those who suffer from imposter syndrome may avoid asking questions or receiving comments and criticism out of concern that it would confirm their fears, which inhibits their ability to learn and grow. In a coding class, for example, a student with no prior coding experience is surrounded by peers already proficient in code. This circumstance can be intimidating for many students, leading to self-doubt before they begin their learning journey. Prior remedies included encouraging professors and teaching assistants to help motivate and reassure students that they are on the right track and to create deeper connections with their students in the hopes that they will feel more comfortable reaching out. What makes this strategy ineffective is that a student who feels insecure about their work is significantly less likely to build a connection with their professors. It also doesn't consider professors' difficulty in fully supporting students with different levels of expertise.  How do we create a climate that encourages vulnerability and builds a sense of confidence in students so that they’ll continue to seek help where they are struggling, while also preparing instructors to prevent, diagnose, and resolve future cases of impostor syndrome? 
 
 Statement 2:
 
-Impostor syndrome is a pervasive issue that seriously undermines individuals' self-esteem and self-worth. This often involves constant self-comparisons, leading to overwhelming feelings of inadequacy and a profound sense of personal diminishment. Specifically, when students grapple with challenging academic subjects, they often find themselves overwhelmed by complex concepts, discouraging them and making them feel like outsiders among their peers. To address this pressing concern, past attempts to handle the situation have been to create a platform with expert mentors who can offer tailored guidance, answer questions, and provide support through various communication channels, such as chat or video calls; seems like a promising solution. However, it's important to note that the wrong approach by these experts can actually worsen self-doubt and further intensify imposter syndrome, highlighting the need for a thoughtful and nuanced approach. How can we implement strategies that offer users helpful information and mental health support resources while ensuring that experts actively contribute positively instead of making matters worse?
+Imposter Syndrome can come in many different forms and can be influenced by many different aspects within a person's life, including their culture, environment, mental health and physical ability. The leading cause of imposter syndrome is heightened anxiety and a lack of confidence within themselves and their work. Most solutions in the past have simply ever focused on the effects of Imposter Syndrome, rather than focusing on remedying  the causes of it. For example, by simply getting teachers to help motivate the students and reassure them that they belong amongst their peers, this only focuses on trying to make the student feel better about themselves momentarily. This completely disregards the fact that it's the way the environment and support system is designed around them that makes them feel this way. Our hope with MentorMark is to build a platform that focuses on the systemic causes of Imposter Syndrome to build a world where students feel academically worthy amongst their peers.
 
 ## Links
 * [Google Drive](https://drive.google.com/drive/u/0/folders/0ACeqdmZ1_nN4Uk9PVA)
