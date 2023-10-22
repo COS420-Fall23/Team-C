@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './Home.css';
-//import SignUpForm  from "./SignUpForm";
-import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -14,6 +13,9 @@ function Home() {
             </p>
             <button>
                 <Link to="/signup"><h3>Sign Up</h3></Link>
+            </button>
+            <button>
+                <Link to="/login"><h3>Log In</h3></Link>
             </button>
           </header>
         </div>

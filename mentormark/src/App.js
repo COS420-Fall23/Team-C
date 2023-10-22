@@ -1,8 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
 import SignUpForm  from "./SignUpForm";
 import Home from "./Home"
-import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -12,6 +10,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route exact path="/signup" element={<SignUpForm />}></Route >
+            <Route exact path="/login" element={"Log In Page"}></Route>
           </Routes>
           <header>
             
