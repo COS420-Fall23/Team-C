@@ -4,10 +4,10 @@ export function Login() {
     const [logged, setLogged] = useState(false);
     const [text, setText] = useState("");
     const [password, setPassword] = useState("");
+    const [attempt, setAttempt] = useState(false);
 
-    function logIn() {
-        setLogged(!logged);
-    }
+    //Placeholder for database
+    const information = [["Test1", "Test2"]];
 
     const emailSet = e => {
         setText(e.target.value);
@@ -21,16 +21,21 @@ export function Login() {
         e.preventDefault();
         setText("");
         setPassword("");
-        
+        if(information.includes([text, password])){
+            //Can be changed to redirect to main page
+            setLogged(!logged);
+        } else {
+            setAttempt(true);
+        }
     }
 
     return (<div>
-        <button onClick={logIn}>Log In</button>
-        {!logged && <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <input type="text" name="email" value={text} onChange={emailSet} placeholder="Email"/>
             <input type="text" name="password" value={password} onChange={passwordSet} placeholder="Password"/>
-            <input type="submit" value="Enter"/>
-        </form>}
+            <input type="submit" value="Log In"/>
+        </form>
+        {attempt && <span>Invalid Username or Password</span>}
     </div>
     );
 }
