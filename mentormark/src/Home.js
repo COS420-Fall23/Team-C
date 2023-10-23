@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './Home.css';
 import { Link } from "react-router-dom";
 
@@ -6,18 +5,27 @@ import { Link } from "react-router-dom";
 function Home() {
     return (
         <div className="Home">
-          <header className="Home-header">
-            <img src={logo} className="Home-logo" alt="logo" />
-            <p>
-              Mentor Mark
-            </p>
-            <button>
-                <Link to="/signup"><h3>Sign Up</h3></Link>
-            </button>
-            <button>
-                <Link to="/login"><h3>Log In</h3></Link>
-            </button>
-          </header>
+            <header className="Home-header">
+                <div className="top-bar">
+                <div className="buttons">
+                    <button
+                    className="sign-up-button"
+                    onClick={() => console.log("Refer to Sign up page.")}
+                    >
+                    <Link to="/signup"><h3>Sign Up</h3></Link>
+                    </button>
+                    <div className="log-in-button-frame">
+                    <button
+                        className="log-in-button"
+                        onClick={() => console.log("Refer to Log In page.")}
+                    >
+                        <Link to="/login"><h3>Log In</h3></Link>
+                    </button>
+                    </div>
+                </div>
+                <p className="app-name">Mentor Mark</p>
+                </div>
+            </header>
         </div>
     );
   }
