@@ -26,7 +26,6 @@ export default function Login() {
         //Placeholder for checking against the database
         if(email && password === "Test1"){
             setError(false)
-
             //redirects back to homepage, can be changed
             window.location.href = '/';
         } else {
