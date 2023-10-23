@@ -1,0 +1,11 @@
+{
+  "name": "team-c",
+  "version": "1.0.0",
+  "description": "Team C.R.E.A.M Repository. This tackles imposter syndrome issues, focusing on the difficulties of getting and receiving help while learning.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
