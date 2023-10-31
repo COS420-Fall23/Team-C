@@ -38,7 +38,6 @@ export default function Login() {
         <button>
             <Link to="/"><h3>Back</h3></Link>
         </button>
-
         <form>
             <input onChange={handleEmail} type="text" placeholder="email"/>
             <input onChange={handlePassword} type="text" placeholder="password"/>
