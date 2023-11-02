@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
-import { findUser, users } from "./PseudoDatabase";
+import { Link, useLocation } from 'react-router-dom';
+import { findUser } from "./PseudoDatabase";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -27,6 +27,7 @@ export default function Login() {
         //Checks against database, assumes no duplicate users
         const x = findUser(email, password);
         if(x !== undefined){
+
             setError(false);
             //redirects back to homepage, can be changed
             window.location.href = '/';
@@ -36,7 +37,8 @@ export default function Login() {
 
     }
 
-    return (<div className="form">
+    return (
+    <div className="form">
         <button>
             <Link to="/"><h3>Back</h3></Link>
         </button>
