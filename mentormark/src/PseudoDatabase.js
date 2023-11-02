@@ -27,3 +27,7 @@ export function displayIcon(user) {
         </span>
     );
 }
+
+export function findUser(email, password){
+    return users.find((user) => user.email === email && user.password === password);
+}

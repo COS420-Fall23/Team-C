@@ -8,6 +8,7 @@ function Home() {
     <div className="Home">
       <header className="Home-header">
         <div className="top-bar">
+
           <div className="buttons">
             <button className="sign-up-button">
               <Link to="/signup"><h3>Sign Up</h3></Link>
@@ -20,6 +21,7 @@ function Home() {
           </div>
           <p className="app-name">Mentor Mark</p>
         </div>
+        
       </header>
     </div>
   );

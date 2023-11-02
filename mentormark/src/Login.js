@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { findUser, users } from "./PseudoDatabase";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -23,9 +24,10 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        //Placeholder for checking against the database
-        if(email && password === "Test1"){
-            setError(false)
+        //Checks against database, assumes no duplicate users
+        const x = findUser(email, password);
+        if(x !== undefined){
+            setError(false);
             //redirects back to homepage, can be changed
             window.location.href = '/';
         } else {
