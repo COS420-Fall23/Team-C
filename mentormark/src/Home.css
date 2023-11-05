@@ -64,13 +64,31 @@
 }
 
 .app-name {
+  background-color: inherit;
+  font-size: 30px;
+  padding: 14px 28px;
+  text-align: center;
+  font-family: "Times New Roman", serif;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  right: 40%;
+  left: 40%;
+}
+
+/* .app-name-button {
+  background-color: #eb86eb;
   font-size: 30px;
   text-align: center;
   flex: 1;
   font-family: "Times New Roman", serif;
   color: white;
   font-weight: bold;
-}
+
+} */
 
 .sign-up-button:hover,
 .log-in-button:hover {

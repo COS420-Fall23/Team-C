@@ -23,7 +23,9 @@ function Home() {
                     </button>
                     </div>
                 </div>
-                <p className="app-name">Mentor Mark</p>
+                <button className="app-name">
+                    <a href="/azure.jpg">Mentor Mark</a>
+                </button>
                 </div>
             </header>
         </div>
