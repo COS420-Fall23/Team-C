@@ -1,16 +1,6 @@
-export let AuthContext = "NOT LOGGED";
+import { Dispatch, SetStateAction } from "react";
 
-export function isLoggedIn() {
-    if(AuthContext === "LOGGED"){
-        return true;
-    } else return false;
+export interface MyContext {
+    logged: boolean;
+    setLogged: Dispatch<SetStateAction<boolean>>;
 }
-
-export function logIn (){
-    if(!isLoggedIn()){
-        AuthContext = "LOGGED";
-    } else {
-        AuthContext = "NOT LOGGED";
-    }
-}
-
