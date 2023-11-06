@@ -4,11 +4,11 @@ import "./PseudoDatabase.js";
 import { displayIcon, users } from './PseudoDatabase.js';
 
 function Home() {
+
   return (
     <div className="Home">
       <header className="Home-header">
         <div className="top-bar">
-          
             <div className="buttons">
               <button className="sign-up-button">
                 <Link to="/signup"><h3>Sign Up</h3></Link>
@@ -19,7 +19,6 @@ function Home() {
               </button>
               </div>
             </div>
-          
           <p className="app-name">Mentor Mark</p>
         </div>
       </header>

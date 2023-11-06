@@ -7,34 +7,32 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
-    const errorMessage = (e) => {
+    const errorMessage = e => {
         return <div style= {{display: error ? '' : "none"}}>
             Invalid Username or Password
         </div>
     }
 
-    const handleEmail = (e) => {
+    const handleEmail = e => {
         setEmail(e.target.value);
     }
 
-    const handlePassword = (e) => {
+    const handlePassword = e => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         //Checks against database, assumes no duplicate users
-        const x = findUser(email, password);
-        if(x !== undefined){
-
+        const user = findUser(email, password);
+        if(user !== undefined){
             setError(false);
             //redirects back to homepage, can be changed
             window.location.href = '/';
         } else {
             setError(true);
         }
-
     }
 
     return (
