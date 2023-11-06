@@ -1,6 +1,7 @@
 import './Home.css';
-import { Link } from "react-router-dom";
-
+import { Link, useOutletContext } from "react-router-dom";
+import "./PseudoDatabase.js";
+import { displayIcon, users } from './PseudoDatabase.js';
 
 function Home() {
     return (
@@ -29,7 +30,9 @@ function Home() {
                 </div>
             </header>
         </div>
-    );
-  }
+      </header>
+    </div>
+  );
+}
 
 export default Home;

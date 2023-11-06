@@ -56,3 +56,4 @@ Imposter Syndrome can come in many different forms and can be influenced by many
 * [Project Description](https://docs.google.com/document/d/1pYaFWD5ZjIMYsY10G6Tj2zTQovdf3BRFGm2aURBWf1c/edit?usp=sharing)
 * [User Stories](https://docs.google.com/document/d/1yl5TXeCvfRcu4HLLEaKomIPF_wTQ4EDAqwn78GlSDbM/edit?usp=sharing)
 * [Poll for logo](https://forms.gle/RVAcgvDBEfiSFBfB6)
+* [David's Logo Concepts](https://drive.google.com/file/d/1i6xQqPnGXr6O4zTBSE-dzAMBrYRJE3pF/view?usp=sharing)
