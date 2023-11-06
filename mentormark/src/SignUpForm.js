@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './SignUp.css';
 import { Link } from 'react-router-dom';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
+//import createFile from './serverAccess';
+import serverAccess from './serverAccess';
 
 /*
 Planned changes:
@@ -85,8 +87,12 @@ export default function SignUpForm() {
 
 	// Handling Save
 	const handleDownload = () => {
-		const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
-		saveAs(file, 'accounts.txt');
+		const temp_Server = new serverAccess();
+		temp_Server.createFile(data);
+		// const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+		// fs.writeFileSync('./accounts', data)
+		
+		//saveAs(file, 'accounts.txt');
 	}
 
 	// Handling the form submission
@@ -98,6 +104,9 @@ export default function SignUpForm() {
 			handleDownload(name, email, password, gStatus, major);
 			setSubmitted(true);
 			setError(false);
+			return(
+			<Link to="/"></Link>
+			);
 		}
 	};
 
