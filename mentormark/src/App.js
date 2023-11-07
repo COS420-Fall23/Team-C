@@ -1,8 +1,13 @@
-import SignUpForm  from "./SignUpForm";
-import Home from "./Home"
+import SignUpForm from "./SignUpForm";
+import Login from "./Login";
+import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 
 function App() {
+  const [logged, setLogged] = useState(false);
+
   return (
     <Router>
       <div className="App">
@@ -13,13 +18,12 @@ function App() {
             <Route exact path="/login" element={"Log In Page"}></Route>
             <Route exact path="/homepage" element={"Homepage"}></Route>
           </Routes>
-          <header>
-            
-          </header>
+          <header></header>
         </div>
       </div>
     </Router>
   );
 }
+
 
 export default App;
