@@ -1,0 +1,31 @@
+
+ Name: john 
+ Email: John@gmaill.com 
+ Password: John12345@ 
+ GradStatus: option1
+ Major: option1
+ Name: Caleb 
+ Email: Leb@gmaill.com 
+ Password: CornHusk123@ 
+ GradStatus: option2
+ Major: option2
+ Name: Travis 
+ Email: Scott@gmaill.com 
+ Password: Rapper4Lyfe# 
+ GradStatus: option1
+ Major: option1
+ Name: Travis 
+ Email: Scott@gmaill.com 
+ Password: Rapper4Lyfe# 
+ GradStatus: option1
+ Major: option1
+ Name: Traviss 
+ Email: Scott@gmaill.com 
+ Password: Rapper4Lyfe# 
+ GradStatus: option1
+ Major: option1
+ Name: Traviss 
+ Email: Scott@gmaill.com 
+ Password: Rapper4Lyfe# 
+ GradStatus: Grad
+ Major: NMD
