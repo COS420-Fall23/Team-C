@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './SignUp.css';
 import { Link } from 'react-router-dom';
-//import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
+//import createFile from './serverAccess';
+import serverAccess from './serverAccess';
 
 /*
 Planned changes:
@@ -32,7 +34,7 @@ export default function SignUpForm() {
           'Email: ' + email + ' \r\n ' + 
           'Password: ' + password + ' \r\n ' + 
           'GradStatus: ' + gStatus + '\r\n ' +
-		  'Major: ' + major;
+		  'Major: ' + major + '\r\n';
 
 	// Handling the name change
 	const handleName = (e) => {
@@ -84,9 +86,9 @@ export default function SignUpForm() {
 	}
 
 	// Handling Save
-	const handleDownload = () => {
-		//const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
-		//saveAs(file, 'accounts.txt');
+	const handleDownload = (e) => {
+		const temp_Server = new serverAccess();
+		temp_Server.createFile(e);
 	}
 
 	// Handling the form submission
@@ -95,7 +97,7 @@ export default function SignUpForm() {
 		if (validateName(name) === true || validateEmail(email) === false || isStrongPassword(password) === false ) {
 			setError(true);
 		} else {
-			handleDownload(name, email, password, gStatus, major);
+			handleDownload(data);
 			setSubmitted(true);
 			setError(false);
 		}
@@ -159,15 +161,15 @@ export default function SignUpForm() {
 				<label className="label">Graduate Status</label>
 				<select onChange={handleGStatus} id="GradStatus">
 					<option value="null">--</option>
-					<option value="option1">Undergraduate</option>
-					<option value="option2">Graduate</option>
+					<option value="Undergrad">Undergraduate</option>
+					<option value="Grad">Graduate</option>
 				</select>
 				
 				<label className="label">Major</label>
 				<select onChange={handleMajor} id="Major">
 					<option value="null">--</option>
-					<option value="option1">Computer Science</option>
-					<option value="option2">New Media Design</option>
+					<option value="CompSci">Computer Science</option>
+					<option value="NMD">New Media Design</option>
 				</select>
 
 				<button onClick={handleSubmit} className="btn"
