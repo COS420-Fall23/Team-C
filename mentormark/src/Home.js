@@ -1,10 +1,10 @@
 import './Home.css';
-import { Link, useOutletContext } from "react-router-dom";
-import "./PseudoDatabase.js";
+import { Link } from "react-router-dom";
 import { displayIcon, users } from './PseudoDatabase.js';
 
 function Home() {
-    return (
+
+  return (
         <div className="Home">
             <header className="Home-header">
                 <div className="top-bar">
@@ -30,8 +30,6 @@ function Home() {
                 </div>
             </header>
         </div>
-      </header>
-    </div>
   );
 }
 

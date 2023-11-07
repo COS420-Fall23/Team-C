@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SignUp.css';
 import { Link } from 'react-router-dom';
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 
 /*
 Planned changes:
@@ -85,8 +85,8 @@ export default function SignUpForm() {
 
 	// Handling Save
 	const handleDownload = () => {
-		const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
-		saveAs(file, 'accounts.txt');
+		//const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+		//saveAs(file, 'accounts.txt');
 	}
 
 	// Handling the form submission
