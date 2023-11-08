@@ -1,3 +1,4 @@
+import './Login.css'
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { findUser } from "./PseudoDatabase";
@@ -29,25 +30,42 @@ export default function Login() {
         if(user !== undefined){
             setError(false);
             //redirects back to homepage, can be changed
-            window.location.href = '/';
         } else {
             setError(true);
         }
     }
 
     return (
-    <div className="form">
-        <button>
-            <Link to="/"><h3>Back</h3></Link>
-        </button>
-        <form>
-            <input onChange={handleEmail} type="text" placeholder="email"/>
-            <input onChange={handlePassword} type="text" placeholder="password"/>
-            <button onClick={handleSubmit} type="submit">Log In</button>
-        </form>
-        <div>
-            {errorMessage()}
-        </div>
-    </div>
+        <>
+            <div className="form">
+                <form className='input-container'>
+                    <label className="label" htmlFor="email">
+                        Email:
+                    </label>
+                    <input
+                        className='email-input'
+                        onChange={handleEmail}
+                        id="email"
+                        type="email" 
+                        placeholder="Enter your email">
+                    </input>
+                    <label className="label" htmlFor="password">
+                        Password:
+                    </label>
+                    <input
+                        className='password-input'
+                        onChange={handlePassword}
+                        id="password"
+                        type="password"
+                        placeholder="password">
+                    </input>
+
+                    <button onClick={handleSubmit} className="log-in-button" type="submit">Log In</button>
+                </form>
+                <div>
+                    {errorMessage()}
+                </div>
+            </div>
+        </>
     );
 }
