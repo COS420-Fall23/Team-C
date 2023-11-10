@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import './SignUp.css';
 import { Link } from 'react-router-dom';
-// import { saveAs } from 'file-saver';
-//import createFile from './serverAccess';
-import serverAccess from './serverAccess';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from './firebase-config';
 
 /*
 Planned changes:
@@ -86,9 +85,15 @@ export default function SignUpForm() {
 	}
 
 	// Handling Save
-	const handleDownload = (e) => {
-		const temp_Server = new serverAccess();
-		temp_Server.createFile(e);
+	const handleDownload = async (e) => {
+		await createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				console.log(error.code, error.message);
+			})
 	}
 
 	// Handling the form submission

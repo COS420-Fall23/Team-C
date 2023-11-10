@@ -29,9 +29,11 @@ export default function Login() {
         .then((userCredential) => {
             setError(false);
             const user = userCredential.user;
+            console.log(user);
         })
         .catch((logError) => {
             setError(true);
+            console.log(logError.code, logError.message);
         })
     }
 
