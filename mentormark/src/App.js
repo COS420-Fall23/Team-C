@@ -2,11 +2,8 @@ import SignUpForm from "./SignUpForm";
 import Login from "./Login";
 import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-
 
 function App() {
-  const [logged, setLogged] = useState(false);
 
   return (
     <Router>
@@ -15,7 +12,6 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/signup" element={<SignUpForm />}></Route >
-            <Route exact path="/login" element={"Log In Page"}></Route>
             <Route exact path="/homepage" element={"Homepage"}></Route>
           </Routes>
           <header></header>
@@ -24,6 +20,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;

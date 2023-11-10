@@ -1,10 +1,11 @@
 import './Home.css';
 import { Link } from "react-router-dom";
+import Login from './Login.js';
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
-import { displayIcon, users } from './PseudoDatabase.js';
 
 function Home() {
-    return (
+
+  return (
         <div className="Home">
             <header className="Home-header">
                <div className="left-section">
@@ -13,35 +14,9 @@ function Home() {
                     <div className="big-text">entorMark</div>
                     <div className="small-text">Imposter no more!</div>
                 </div>
+
                 <div className="signup-login-section">
-                    <div className="input-container">
-                    <label className="label" htmlFor="email">
-                        Email:
-                    </label>
-                    <input
-                        className="input"
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                    />
-                    </div>
-                    <div className="input-container">
-                    <label className="label" htmlFor="password">
-                        Password:
-                    </label>
-                    <input
-                        className="input"
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                    />
-                    </div>
-                    <button
-                    className="log-in-button"
-                    onClick={() => console.log("Refer to Log In page.")}
-                    >
-                    <Link to="/login"><h3>Log In</h3></Link>
-                    </button>
+                    <Login/>
                     <button
                     className="sign-up-button"
                     onClick={() => console.log("Refer to Sign up page.")}
@@ -52,8 +27,6 @@ function Home() {
             </div>
             </header>
         </div>
-      </header>
-    </div>
   );
 }
 

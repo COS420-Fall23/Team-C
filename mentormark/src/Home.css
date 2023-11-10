@@ -23,34 +23,8 @@
   border: 2px solid #c6c6f4;
 }
 
-/* Styles for input containers */
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-/* Label styles for form inputs */
-.label {
-  font-size: larger;
-  color: rgb(91, 91, 231);
-  margin-bottom: 10px;
-}
-
-/* Input field styles */
-.input {
-  font-size: larger;
-  padding: 15px;
-  width: 160%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
 /* Styles for Sign Up and Log In buttons */
-.sign-up-button,
-.log-in-button {
+.sign-up-button {
   background-color: #eb86eb;
   color: white;
   font-size: 25px;
@@ -61,14 +35,6 @@
   text-align: center;
   margin: 10px;
   font-weight: bold;
-}
-
-/* Style specific to the Log In button */
-.log-in-button {
-  background-color: rgb(77, 109, 238);
-  width: 100%;
-  margin-top: 20px;
-
 }
 
 /* Style specific to the Sign Up button */
