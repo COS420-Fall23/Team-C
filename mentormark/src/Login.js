@@ -1,6 +1,8 @@
 import './Login.css'
 import { useState } from "react";
-import { findUser } from "./PseudoDatabase";
+
+import {auth} from './firebase-config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -23,14 +25,14 @@ export default function Login() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-
-        //Checks against database, assumes no duplicate users
-        const user = findUser(email, password);
-        if(user !== undefined){
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
             setError(false);
-        } else {
+            const user = userCredential.user;
+        })
+        .catch((logError) => {
             setError(true);
-        }
+        })
     }
 
     return (
@@ -57,7 +59,6 @@ export default function Login() {
                         type="password"
                         placeholder="Enter your password">
                     </input>
-
                     <button onClick={handleSubmit} className="log-in-button" type="submit">Log In</button>
                 </form>
                 <div>
