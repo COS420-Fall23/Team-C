@@ -1,6 +1,5 @@
 import './Login.css'
 import { useState } from "react";
-import { Link } from 'react-router-dom';
 import { findUser } from "./PseudoDatabase";
 
 export default function Login() {
@@ -29,7 +28,6 @@ export default function Login() {
         const user = findUser(email, password);
         if(user !== undefined){
             setError(false);
-            //redirects back to homepage, can be changed
         } else {
             setError(true);
         }
@@ -57,7 +55,7 @@ export default function Login() {
                         onChange={handlePassword}
                         id="password"
                         type="password"
-                        placeholder="password">
+                        placeholder="Enter your password">
                     </input>
 
                     <button onClick={handleSubmit} className="log-in-button" type="submit">Log In</button>

@@ -2,7 +2,6 @@ import './Home.css';
 import { Link } from "react-router-dom";
 import Login from './Login.js';
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
-import { displayIcon, users } from './PseudoDatabase.js';
 
 function Home() {
 
