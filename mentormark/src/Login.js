@@ -1,53 +1,72 @@
+import './Login.css'
 import { useState } from "react";
-import { Link } from 'react-router-dom';
-import { findUser, users } from "./PseudoDatabase";
+
+import {auth} from './firebase-config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
-    const errorMessage = (e) => {
+    const errorMessage = e => {
         return <div style= {{display: error ? '' : "none"}}>
             Invalid Username or Password
         </div>
     }
 
-    const handleEmail = (e) => {
+    const handleEmail = e => {
         setEmail(e.target.value);
     }
 
-    const handlePassword = (e) => {
+    const handlePassword = e => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        //Checks against database, assumes no duplicate users
-        const x = findUser(email, password);
-        if(x !== undefined){
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
             setError(false);
-            //redirects back to homepage, can be changed
-            window.location.href = '/';
-        } else {
+            const user = userCredential.user;
+            console.log(user);
+        })
+        .catch((logError) => {
             setError(true);
-        }
-
+            console.log(logError.code, logError.message);
+        })
     }
 
-    return (<div className="form">
-        <button>
-            <Link to="/"><h3>Back</h3></Link>
-        </button>
-        <form>
-            <input onChange={handleEmail} type="text" placeholder="email"/>
-            <input onChange={handlePassword} type="text" placeholder="password"/>
-            <button onClick={handleSubmit} type="submit">Log In</button>
-        </form>
-        <div>
-            {errorMessage()}
-        </div>
-    </div>
+    return (
+        <>
+            <div className="form">
+                <form className='input-container'>
+                    <label className="label" htmlFor="email">
+                        Email:
+                    </label>
+                    <input
+                        className='email-input'
+                        onChange={handleEmail}
+                        id="email"
+                        type="email" 
+                        placeholder="Enter your email">
+                    </input>
+                    <label className="label" htmlFor="password">
+                        Password:
+                    </label>
+                    <input
+                        className='password-input'
+                        onChange={handlePassword}
+                        id="password"
+                        type="password"
+                        placeholder="Enter your password">
+                    </input>
+                    <button onClick={handleSubmit} className="log-in-button" type="submit">Log In</button>
+                </form>
+                <div>
+                    {errorMessage()}
+                </div>
+            </div>
+        </>
     );
 }

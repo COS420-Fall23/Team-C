@@ -4,14 +4,15 @@ import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+
   return (
     <Router>
       <div className="App">
         <div className="Content">
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route exact path="/signup" element={<SignUpForm />}></Route>
-            <Route exact path="/login" element={<Login />}></Route>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/signup" element={<SignUpForm />}></Route >
+            <Route exact path="/homepage" element={"Homepage"}></Route>
           </Routes>
           <header></header>
         </div>
@@ -19,6 +20,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;
