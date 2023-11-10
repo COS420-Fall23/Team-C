@@ -1,85 +1,128 @@
-.Home {
+/* General styles for the entire page */
+.App {
   text-align: center;
-}
-
-.Home-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .Home-logo {
-    animation: Home-logo-spin infinite 20s linear;
-  }
-}
-
-.Home-header {
-  background-color: #282c34;
+  background-color: #edede8;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.Home-link {
-  color: #61dafb;
+/* Styles for the sign-up and login section */
+.signup-login-section {
+  width: 90%;
+  margin: 0 auto;
+  margin-left: 50%; /* Center the section horizontally */
+  background-color: white;
+  padding: 100px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  border: 2px solid #c6c6f4;
 }
 
-@keyframes Home-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Styles for input containers */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: bold;
+  font-size: 20px;
 }
 
+/* Label styles for form inputs */
 .label {
-  display: block;
   font-size: larger;
-  color: white;
-  padding: 5px;
+  color: rgb(91, 91, 231);
+  margin-bottom: 10px;
 }
 
+/* Input field styles */
 .input {
   font-size: larger;
-  padding: 5px;
-  margin: 2px;
-
+  padding: 15px;
+  width: 160%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-.btn {
+/* Styles for Sign Up and Log In buttons */
+.sign-up-button,
+.log-in-button {
+  background-color: #eb86eb;
   color: white;
-  background-color: red;
-  border-radius: 5px;
-  font-size: larger;
-  display: block;
-  padding: 5px;
-  margin: 10px auto;
+  font-size: 25px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px;
+  font-weight: bold;
 }
 
-.messages {
+/* Style specific to the Log In button */
+.log-in-button {
+  background-color: rgb(77, 109, 238);
+  width: 100%;
+  margin-top: 20px;
+
+}
+
+/* Style specific to the Sign Up button */
+.sign-up-button {
+  background-color: rgb(229, 137, 246);
+  width: 70%;
+  align-self: center; /* Center the "Sign Up" button vertically */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 10px;
+}
+.left-section {
+  width: 90%;
+  text-align: left;
+  padding: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.error {
-  display: block;
-  background-color: red;
-  color: white;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
+.logo {
+  width: 450px; /* Adjust the width as needed */
+  position: absolute;
+  top: 110px; /* Adjust the top position as needed */
+  left: 12%; /* Center the image horizontally */
+  transform: translateX(-50%);
 }
 
-.success {
-  display: block;
-  background-color: lightblue;
-  color: black;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
+.big-text {
+  font-size: 75px;
+  color: rgb(97, 97, 220);
+  font-weight: bold;
+  position: absolute;
+  left: 320px; /* Adjust the left position as needed */
+  bottom: 430px;
+  font-family: "Tahoma", sans-serif;
+}
+
+.small-text {
+  font-size: 50px;
+  color: rgb(193, 90, 179);
+  font-weight: normal;
+  margin-top: 10px;
+  position: absolute;
+  left: 230px; /* Adjust the left position to match the "big-text" */
+  bottom: 310px;
+  font-family: "Lobster", cursive;
+}
+
+/* Hover effect for both buttons */
+.sign-up-button:hover,
+.log-in-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }
