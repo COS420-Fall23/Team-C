@@ -1,123 +1,94 @@
-.Home {
+/* General styles for the entire page */
+.App {
   text-align: center;
-}
-
-.Home-header {
-  background-color: white;
+  background-color: #edede8;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.top-bar {
+/* Styles for the sign-up and login section */
+.signup-login-section {
+  width: 90%;
+  margin: 0 auto;
+  margin-left: 50%; /* Center the section horizontally */
+  background-color: white;
+  padding: 100px;
+  border-radius: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 1px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #eb86eb;
-  height: 70px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  border: 2px solid #c6c6f4;
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
+/* Styles for Sign Up and Log In buttons */
 .sign-up-button {
-  background-color: rgb(244, 246, 248);
-  color: rgb(228, 57, 208);
-  font-size: 20px;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.log-in-button {
-  background-color: rgb(47, 34, 233);
+  background-color: #eb86eb;
   color: white;
-  font-size: 20px;
-  padding: 10px 20px;
+  font-size: 25px;
+  padding: 15px 30px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 120px;
-}
-
-.app-name {
-  font-size: 30px;
   text-align: center;
-  flex: 1;
-  font-family: "Pacifico", cursive;
-  color: white;
+  margin: 10px;
   font-weight: bold;
 }
 
+/* Style specific to the Sign Up button */
+.sign-up-button {
+  background-color: rgb(229, 137, 246);
+  width: 70%;
+  align-self: center; /* Center the "Sign Up" button vertically */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 10px;
+}
+.left-section {
+  width: 90%;
+  text-align: left;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  width: 450px; /* Adjust the width as needed */
+  position: absolute;
+  top: 110px; /* Adjust the top position as needed */
+  left: 12%; /* Center the image horizontally */
+  transform: translateX(-50%);
+}
+
+.big-text {
+  font-size: 75px;
+  color: rgb(97, 97, 220);
+  font-weight: bold;
+  position: absolute;
+  left: 320px; /* Adjust the left position as needed */
+  bottom: 430px;
+  font-family: "Tahoma", sans-serif;
+}
+
+.small-text {
+  font-size: 50px;
+  color: rgb(193, 90, 179);
+  font-weight: normal;
+  margin-top: 10px;
+  position: absolute;
+  left: 230px; /* Adjust the left position to match the "big-text" */
+  bottom: 310px;
+  font-family: "Lobster", cursive;
+}
+
+/* Hover effect for both buttons */
 .sign-up-button:hover,
 .log-in-button:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.label {
-  display: block;
-  font-size: larger;
-  color: white;
-  padding: 5px;
-}
-
-.input {
-  font-size: larger;
-  padding: 5px;
-  margin: 2px;
-
-}
-
-.btn {
-  color: white;
-  background-color: red;
-  border-radius: 5px;
-  font-size: larger;
-  display: block;
-  padding: 5px;
-  margin: 10px auto;
-}
-
-.messages {
-  display: flex;
-  justify-content: center;
-}
-
-.error {
-  display: block;
-  background-color: red;
-  color: white;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
-}
-
-.success {
-  display: block;
-  background-color: lightblue;
-  color: black;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
 }
