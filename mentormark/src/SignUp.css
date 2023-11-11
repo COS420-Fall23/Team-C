@@ -1,8 +1,13 @@
-.App {
-    text-align: center;
+.Signup {
+  text-align: center;
+  background-color: #edede8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-header {
+.Signup-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -13,48 +18,48 @@
   color: white;
 }
 
-.label {
+.SignUplabel {
     display: block;
     font-size: larger;
     color: black;
     padding: 5px;
   }
   
-  .input {
-    font-size: larger;
-    padding: 5px;
-    margin: 2px;
-  }
+.SignUpinput {
+  font-size: larger;
+  padding: 5px;
+  margin: 2px;
+}
   
-  .btn {
-    color: white;
-    background-color: red;
-    border-radius: 5px;
-    font-size: larger;
-    display: block;
-    padding: 5px;
-    margin: 10px auto;
-  }
-  
-  .messages {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .error {
-    display: block;
-    background-color: red;
-    color: white;
-    width: fit-content;
-    height: 50px;
-    padding: 5px;
-  }
-  
-  .success {
-    display: block;
-    background-color: lightblue;
-    color: black;
-    width: fit-content;
-    height: 50px;
-    padding: 5px;
-  }
+.SignUpbtn {
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  font-size: larger;
+  display: block;
+  padding: 5px;
+  margin: 10px auto;
+}
+
+.SignUpmessages {
+  display: flex;
+  justify-content: center;
+}
+
+.SignUperror {
+  display: block;
+  background-color: red;
+  color: white;
+  width: fit-content;
+  height: 50px;
+  padding: 5px;
+}
+
+.SignUpsuccess {
+  display: block;
+  background-color: lightblue;
+  color: black;
+  width: fit-content;
+  height: 50px;
+  padding: 5px;
+}

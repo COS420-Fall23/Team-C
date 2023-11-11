@@ -29,3 +29,38 @@
  Password: Rapper4Lyfe# 
  GradStatus: Grad
  Major: NMD
+ Name: John 
+ Email: John@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: John@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: John@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: John@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: j@gmail.com 
+ Password: Jonny123@@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: J@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
+ Name: John 
+ Email: J@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Undergrad
+ Major: CompSci
