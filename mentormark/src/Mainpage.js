@@ -2,20 +2,23 @@ import React, { useState } from 'react';
 import PostCreation from './PostCreation';
 import { useNavigate } from 'react-router-dom';
 import './Mainpage.css'
+import { storage } from "./firebase-config.js";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-const Mainpage = () => {
+function Mainpage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  
 
   const handleCreatePost = (newPost) => {
     setPosts([...posts, newPost]);
     navigate('/mainpage'); 
   };
-
+      
   return (
     <div className="container">
       <header className="top-bar">
-        <h1 className="title">Homepage</h1>
+        <h1 className="title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
       </header>
       <div className="sidebar">
         <header>Communities</header>
@@ -44,9 +47,10 @@ const Mainpage = () => {
           </div>
         </div>
       </div>
-      <PostCreation handleCreatePost={handleCreatePost} />
     </div>
   );
+
 };
+
 
 export default Mainpage;

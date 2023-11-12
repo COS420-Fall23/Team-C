@@ -64,3 +64,13 @@
  Password: Johnny123@ 
  GradStatus: Undergrad
  Major: CompSci
+ Name: John 
+ Email: John@gmail.com 
+ Password: Johnny123@ 
+ GradStatus: Grad
+ Major: NMD
+ Name: Joe 
+ Email: Joe@gmail.com 
+ Password: JoeJoe123@ 
+ GradStatus: Grad
+ Major: NMD
