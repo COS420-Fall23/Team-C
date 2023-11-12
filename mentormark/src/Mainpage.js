@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import PostCreation from './PostCreation';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebaseConfig'; 
 import './Mainpage.css'
-import { storage } from "./firebase-config.js";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
-  
 
-  const handleCreatePost = (newPost) => {
-    setPosts([...posts, newPost]);
-    navigate('/mainpage'); 
+  const fetchPosts = async () => {
+    const postsCollection = collection(db, 'posts');
+    const snapshot = await getDocs(postsCollection);
+    const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setPosts(postsData);
   };
-      
+
+  useEffect(() => {
+    fetchPosts();
+  }, []); // Runs only once when the component mounts
+
   return (
     <div className="container">
       <header className="top-bar">
@@ -25,21 +29,22 @@ function Mainpage() {
       </div>
       <div className="main-body">
         <div className="postList">
-            {posts.map((post, index) => (
-                    <div key={index} className="post">
-                    <h3>{post.title}</h3>
-                    <p>{post.content}</p>
-                    {post.file && (
-                        <div>
-                        <p>File attached: {post.file.name}</p>
-                        <a href={URL.createObjectURL(post.file)} download={post.file.name}>
-                            Download File
-                        </a>
-                        </div>
-                    )}
-                    <small>{post.timestamp}</small>
-                    </div>
-                ))}
+          {posts.map((post, index) => (
+            <div key={post.id} className="post">
+              <h3>{post.title}</h3>
+              <p>{post.content}</p>
+              {post.file && (
+                <div>
+                  <p>File attached: {post.file}</p>
+                  {/* Link to download file */}
+                  <a href={post.file} download>
+                    Download File
+                  </a>
+                </div>
+              )}
+              <small>{post.timestamp}</small>
+            </div>
+          ))}
         </div>
         <div className="add-button-container">
           <div className="addButton" onClick={() => navigate('/create-post')}>
@@ -49,8 +54,6 @@ function Mainpage() {
       </div>
     </div>
   );
-
-};
-
+}
 
 export default Mainpage;

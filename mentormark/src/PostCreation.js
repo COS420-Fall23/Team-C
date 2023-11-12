@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { storage } from "./firebase-config.js";
+import { storage } from "./firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "./firebase-config.js"; // Assuming db points to your Firebase Firestore database
+import { db } from "./firebaseConfig.js";
 
 
 

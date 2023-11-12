@@ -1,9 +1,32 @@
 import './Home.css';
-import { Link } from "react-router-dom";
-import Login from './Login.js';
+import { Link, useNavigate } from "react-router-dom";
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+import { auth } from './firebaseConfig';
 
 function Home() {
+
+    const history = useNavigate();
+
+    const handleLogin = async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+      
+        auth().signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log("User logged in:", user);
+            history("/mainpage")
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error("Error:", errorCode, errorMessage);
+            // Handle errors - show message or perform actions based on the error
+            alert("Incorrect email or password. Please try again.");
+        });
+      };
+
     return (
             <div className="Home">
                 <header className="Home-header">
@@ -38,9 +61,9 @@ function Home() {
                             </div>
                             <button
                             className="Homelog-in-button"
-                            onClick={() => console.log("Refer to Log In page.")}
+                            onClick={handleLogin}
                             >
-                            <Link to="/login"><h3>Log In</h3></Link>
+                            <h3>Log In</h3>
                             </button>
                             <button
                             className="Homesign-up-button"
