@@ -122,7 +122,7 @@ export default function SignUpForm() {
 	};
 
 	const goToMainpage = () => {
-		// Navigate to a different route
+		// Navigate to mainpage
 		history('/mainpage');
 	};
 
