@@ -2,6 +2,7 @@ import './Home.css';
 import { Link } from "react-router-dom";
 import Login from './Login.js';
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+import PostListView from './PostList.js';
 
 function Home() {
     return (
@@ -52,7 +53,11 @@ function Home() {
                     </div>
                 </header>
             </div>
-    );
-  }
+            <PostListView/>
+            </header>
+        </div>
+  );
+}
+
 
 export default Home;

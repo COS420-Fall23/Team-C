@@ -1,20 +1,15 @@
 .log-in-button {
-    background-color: #eb86eb;
-    color: white;
-    font-size: 25px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    margin: 10px;
-    font-weight: bold;
-  }
-
-.log-in-button {
-    background-color: rgb(77, 109, 238);
-    width: 150%;
-    margin-top: 20px;
+  background-color: rgb(77, 109, 238);
+  width: 150%;
+  margin-top: 20px;    color: white;
+  font-size: 25px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px;
+  font-weight: bold;
 }
 
 .email-input,
