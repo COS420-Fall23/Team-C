@@ -8,7 +8,7 @@ class serverAccess extends React.Component {
             fileName: 'accounts.txt',
             fileContent: data
         };
-        fetch('/createFile', {
+        fetch('http://localhost:3001/createFile', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Set the content type to JSON
