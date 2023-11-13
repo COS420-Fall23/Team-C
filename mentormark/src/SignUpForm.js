@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './SignUp.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from './firebase-config';
+import { auth, db } from './firebaseConfig';
 
 
 
@@ -130,7 +130,7 @@ export default function SignUpForm() {
 	};
 
 	const goToMainpage = () => {
-		// Navigate to a different route
+		// Navigate to mainpage
 		history('/mainpage');
 	};
 

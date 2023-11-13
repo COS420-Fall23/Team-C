@@ -1,10 +1,13 @@
 import './Home.css';
-import { Link } from "react-router-dom";
-import Login from './Login.js';
+import { Link, useNavigate } from "react-router-dom";
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
-import PostListView from './PostList.js';
+import { auth } from './firebaseConfig';
+import Login from './Login';
 
 function Home() {
+
+    const history = useNavigate();
+
     return (
             <div className="Home">
                 <header className="Home-header">
@@ -15,34 +18,7 @@ function Home() {
                             <div className="Homesmall-text">Imposter no more!</div>
                         </div>
                         <div className="Homesignup-login-section">
-                            <div className="Homeinput-container">
-                            <label className="Homelabel" htmlFor="email">
-                                Email:
-                            </label>
-                            <input
-                                className="Homeinput"
-                                type="email"
-                                id="email"
-                                placeholder="Enter your email"
-                            />
-                            </div>
-                            <div className="Homeinput-container">
-                            <label className="Homelabel" htmlFor="password">
-                                Password:
-                            </label>
-                            <input
-                                className="Homeinput"
-                                type="password"
-                                id="password"
-                                placeholder="Enter your password"
-                            />
-                            </div>
-                            <button
-                            className="Homelog-in-button"
-                            onClick={() => console.log("Refer to Log In page.")}
-                            >
-                            <Link to="/login"><h3>Log In</h3></Link>
-                            </button>
+                            <Login/>
                             <button
                             className="Homesign-up-button"
                             onClick={() => console.log("Refer to Sign up page.")}
@@ -53,11 +29,7 @@ function Home() {
                     </div>
                 </header>
             </div>
-            <PostListView/>
-            </header>
-        </div>
-  );
-}
-
+    );
+  }
 
 export default Home;

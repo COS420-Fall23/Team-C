@@ -1,7 +1,6 @@
 import './Login.css'
 import { useState } from "react";
-
-import {auth} from './firebase-config';
+import { auth } from './firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
@@ -30,6 +29,7 @@ export default function Login() {
             setError(false);
             const user = userCredential.user;
             console.log(user);
+            window.location.href = '/mainpage';
         })
         .catch((logError) => {
             setError(true);
