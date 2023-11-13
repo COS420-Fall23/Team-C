@@ -8,13 +8,15 @@ import { db } from "./firebase-config";
 export default function PostListView() {
     const [value, loading, error] = useCollection(collection(db, 'posts'));
 
-    return <div>
-    {(value)? <div>
+    return (
+        <div>
+            {(value)? <div>
       {value.docs.map((obj) => (
         <div>
-          <div>Title: {obj.data().Title}</div>
+          <Link>Title: {obj.data().title}</Link>
         </div>
       ))}
     </div> : <div>Loading Posts</div>}
-  </div>
+        </div>
+    )
 }
