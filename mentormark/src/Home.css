@@ -12,9 +12,9 @@
 .signup-login-section {
   width: 90%;
   margin: 0 auto;
-  margin-left: 50%; /* Center the section horizontally */
+  margin-left: 60%; /* Center the section horizontally */
   background-color: white;
-  padding: 100px;
+  padding: 80px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -42,8 +42,8 @@
 /* Input field styles */
 .input {
   font-size: larger;
-  padding: 15px;
-  width: 160%;
+  padding: 10px;
+  width: 150%;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
@@ -53,7 +53,7 @@
 .log-in-button {
   background-color: #eb86eb;
   color: white;
-  font-size: 25px;
+  font-size: 100px;
   padding: 15px 30px;
   border: none;
   border-radius: 10px;
@@ -67,20 +67,31 @@
 .log-in-button {
   background-color: rgb(77, 109, 238);
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
+}
+
+.log-in-button h3 {
+  font-size: 25px;
+  margin: 0;
 }
 
 /* Style specific to the Sign Up button */
 .sign-up-button {
   background-color: rgb(229, 137, 246);
-  width: 70%;
-  align-self: center; /* Center the "Sign Up" button vertically */
+  width: 50%;
+  align-self: center;
   margin-top: 20px;
   margin-bottom: 20px;
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 10px;
 }
+
+.sign-up-button h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
 .left-section {
   width: 90%;
   text-align: left;
@@ -91,10 +102,10 @@
 }
 
 .logo {
-  width: 450px; /* Adjust the width as needed */
+  width: 450px;
   position: absolute;
-  top: 110px; /* Adjust the top position as needed */
-  left: 12%; /* Center the image horizontally */
+  top: 110px;
+  left: 12%;
   transform: translateX(-50%);
 }
 
@@ -103,7 +114,7 @@
   color: rgb(97, 97, 220);
   font-weight: bold;
   position: absolute;
-  left: 320px; /* Adjust the left position as needed */
+  left: 320px;
   bottom: 430px;
   font-family: "Tahoma", sans-serif;
 }
@@ -114,7 +125,7 @@
   font-weight: normal;
   margin-top: 10px;
   position: absolute;
-  left: 230px; /* Adjust the left position to match the "big-text" */
+  left: 230px;
   bottom: 310px;
   font-family: "Lobster", cursive;
 }

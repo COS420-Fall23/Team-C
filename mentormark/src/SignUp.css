@@ -1,60 +1,139 @@
-.App {
-    text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* General form styling */
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background-color: #edede8;
 }
 
+/* Styles for the form container */
+.form-container {
+  width: 30%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 10px rgba(178, 110, 218, 0.1);
+  border: 2px solid #c6c6f4;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles for the MentorMark heading */
+.form-container h1 {
+  font-size: 50px;
+  color: rgb(97, 97, 220);
+  margin-top: -70px;
+  text-align: center;
+  margin-left: 50px;
+}
+
+/* Styles for sign-up logo */
+.sign-up-logo {
+  width: 100px;
+  margin-left: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 20px;
+}
+
+/* Style for home button */
+.back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #9fadeb;
+  padding: 10px 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* Styles for error and success messages */
+.messages {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.success,
+.error {
+  font-size: 10px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.success {
+  background-color: #4caf50;
+}
+
+.error {
+  background-color: #f4363f;
+}
+
+.success h1,
+.error h1 {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Styles for labels and inputs */
 .label {
-    display: block;
-    font-size: larger;
-    color: black;
-    padding: 5px;
-  }
-  
-  .input {
-    font-size: larger;
-    padding: 5px;
-    margin: 2px;
-  }
-  
-  .btn {
-    color: white;
-    background-color: red;
-    border-radius: 5px;
-    font-size: larger;
-    display: block;
-    padding: 5px;
-    margin: 10px auto;
-  }
-  
-  .messages {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .error {
-    display: block;
-    background-color: red;
-    color: white;
-    width: fit-content;
-    height: 50px;
-    padding: 5px;
-  }
-  
-  .success {
-    display: block;
-    background-color: lightblue;
-    color: black;
-    width: fit-content;
-    height: 50px;
-    padding: 5px;
-  }
+  font-size: 100px;
+  color: rgb(91, 91, 231);
+  margin-top: 10px;
+  float: left;
+}
+
+.input {
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Styles for select dropdowns */
+select {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Styles for the submit button */
+.btn {
+  background-color: rgb(202, 131, 238);
+  color: white;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Hover effect for the submit button */
+.btn:hover {
+  background-color: #3558f4;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Styles for button text */
+.button h3 {
+  font-size: 18px;
+  margin: 0;
+  text-decoration: none;
+  color: #000;
+}
+
+.button:hover h3 {
+  text-decoration: underline;
+}
