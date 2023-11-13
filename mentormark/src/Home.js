@@ -52,8 +52,6 @@ function Home() {
             </div>
             </header>
         </div>
-      </header>
-    </div>
   );
 }
 

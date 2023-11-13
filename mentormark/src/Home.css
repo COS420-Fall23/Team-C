@@ -67,17 +67,8 @@
 .log-in-button {
   background-color: rgb(77, 109, 238);
   width: 100%;
-<<<<<<< HEAD
-  margin-top: 40px;
-}
-
-.log-in-button h3 {
-  font-size: 25px;
-  margin: 0;
-=======
   margin-top: 20px;
 
->>>>>>> c6b149a7ae9b1793e2ae25fd913445a54e8f5a74
 }
 
 /* Style specific to the Sign Up button */
