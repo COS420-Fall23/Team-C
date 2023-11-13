@@ -27,30 +27,6 @@ export default function SignUpForm() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  // Data variable
-  let data =
-    "\r Name: " +
-    name +
-    " \r\n " +
-    "Email: " +
-    email +
-    " \r\n " +
-    "Password: " +
-    password +
-    " \r\n " +
-    "GradStatus: " +
-    gStatus +
-    "\r\n " +
-    "Major: " +
-    major;
-
-<<<<<<< HEAD
-  // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
-    setSubmitted(false);
-  };
-=======
 	// Data variable
 	let data = 
           '\r Name: ' + name + ' \r\n ' + 
@@ -58,7 +34,6 @@ export default function SignUpForm() {
           'Password: ' + password + ' \r\n ' + 
           'GradStatus: ' + gStatus + '\r\n ' +
 		  'Major: ' + major + '\r\n';
->>>>>>> c6b149a7ae9b1793e2ae25fd913445a54e8f5a74
 
   // Handling the email change
   const handleEmail = (e) => {
@@ -111,27 +86,6 @@ export default function SignUpForm() {
     // const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
     // fs.writeFileSync('./accounts', data)
 
-<<<<<<< HEAD
-    //saveAs(file, 'accounts.txt');
-  };
-
-  // Handling the form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      validateName(name) === true ||
-      validateEmail(email) === false ||
-      isStrongPassword(password) === false
-    ) {
-      setError(true);
-    } else {
-      handleDownload(name, email, password, gStatus, major);
-      setSubmitted(true);
-      setError(false);
-      return <Link to="/"></Link>;
-    }
-  };
-=======
 	// Handling Save
 	const handleDownload = (e) => {
 		const temp_Server = new serverAccess();
@@ -149,7 +103,6 @@ export default function SignUpForm() {
 			setError(false);
 		}
 	};
->>>>>>> c6b149a7ae9b1793e2ae25fd913445a54e8f5a74
 
   // Showing success message
   const successMessage = () => {
@@ -238,15 +191,6 @@ export default function SignUpForm() {
             <option value="option2">New Media Design</option>
           </select>
 
-<<<<<<< HEAD
-          <button onClick={handleSubmit} className="btn" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-=======
 				<label className="label">Password</label>
 				<input onChange={handlePassword} className="input"
 					value={password} type="password" />
@@ -271,7 +215,7 @@ export default function SignUpForm() {
 				</button>
 
 			</form>
-		</div>
+    </div>
+  </div>
 	);
->>>>>>> c6b149a7ae9b1793e2ae25fd913445a54e8f5a74
 }
