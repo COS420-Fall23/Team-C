@@ -2,6 +2,7 @@ import './Home.css';
 import { Link } from "react-router-dom";
 import Login from './Login.js';
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+import PostListView from './PostList.js';
 
 function Home() {
 
@@ -25,6 +26,7 @@ function Home() {
                     </button>
                 </div>
             </div>
+            <PostListView/>
             </header>
         </div>
   );
