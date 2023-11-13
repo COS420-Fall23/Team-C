@@ -1,0 +1,85 @@
+/* styles.css */
+.container {
+text-align: center;
+}
+
+.title {
+font-size: 2em;
+}
+
+.addButton {
+background-color: blue;
+border: none;
+border-radius: 50%;
+width: 60px;
+height: 60px;
+color: white;
+font-size: 2em;
+cursor: pointer;
+position: relative;
+}
+
+.addButton::before,
+.addButton::after {
+content: '';
+position: absolute;
+background-color: white;
+}
+
+.addButton::before {
+width: 2px;
+height: 30px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.addButton::after {
+height: 2px;
+width: 30px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.postList {
+margin-top: 20px;
+}
+
+.post {
+border: 1px solid #ccc;
+padding: 10px;
+margin-bottom: 10px;
+}
+
+.container {
+display: grid;
+grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
+grid-template-columns: 200px 1fr; /* Sidebar and main body */
+height: 100vh;
+}
+
+.top-bar {
+background-color: #333;
+color: white;
+padding: 10px;
+grid-column: 1 / -1; /* Spans the whole width */
+}
+
+.sidebar {
+background-color: #f4f4f4; /* Change to suit your design */
+border-right: 1px solid #ccc;
+}
+
+.main-body {
+position: relative;
+display: flex;
+flex-direction: column;
+overflow: auto;
+}
+
+.add-button-container {
+position: absolute;
+bottom: 20px;
+right: 20px;
+}

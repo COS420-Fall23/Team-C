@@ -1,20 +1,14 @@
 import { useState } from 'react';
 import './SignUp.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from './firebase-config';
+import { auth, db } from './firebaseConfig';
 
-/*
-Planned changes:
--Have submit button send inputs to validation function
-	-If valid, user inputs are saved, user account is created and success message displayed
-	-If invalid, user directed back to signup page to fill out form again
-		-Maybe save user inputs for editing
-
-*/
 
 
 export default function SignUpForm() {
+
+	const history = useNavigate();
 
 	// States for registration
 	const [name, setName] = useState('');
@@ -105,6 +99,7 @@ export default function SignUpForm() {
 			handleDownload(data);
 			setSubmitted(true);
 			setError(false);
+			goToMainpage();
 		}
 	};
 
@@ -112,7 +107,7 @@ export default function SignUpForm() {
 	const successMessage = () => {
 		return (
 			<div
-				className="success"
+				className="SignUpsuccess"
 				style={{
 					display: submitted ? '' : 'none',
 				}}>
@@ -125,7 +120,7 @@ export default function SignUpForm() {
 	const errorMessage = () => {
 		return (
 			<div
-				className="error"
+				className="SignUperror"
 				style={{
 					display: error ? '' : 'none',
 				}}>
@@ -134,8 +129,14 @@ export default function SignUpForm() {
 		);
 	};
 
+	const goToMainpage = () => {
+		// Navigate to mainpage
+		history('/mainpage');
+	};
+
 	return (
-		<div className="form">
+		<div className='Signup'>
+			<div className="Form">
 			<button>
                 <Link to="/"><h3>Home</h3></Link>
             </button>
@@ -144,45 +145,46 @@ export default function SignUpForm() {
 			</div>
 
 			{/* Calling to the methods */}
-			<div className="messages">
+			<div className="SignUpmessages">
 				{errorMessage()}
 				{successMessage()}
 			</div>
 
 			<form>
 				{/* Labels and inputs for form data */}
-				<label className="label">Name</label>
-				<input onChange={handleName} className="input"
+				<label className="SignUplabel">Name</label>
+				<input onChange={handleName} className="SignUpinput"
 					value={name} type="text" />
 
-				<label className="label">Email</label>
-				<input onChange={handleEmail} className="input"
+				<label className="SignUplabel">Email</label>
+				<input onChange={handleEmail} className="SignUpinput"
 					value={email} type="email" />
 
-				<label className="label">Password</label>
-				<input onChange={handlePassword} className="input"
+				<label className="SignUplabel">Password</label>
+				<input onChange={handlePassword} className="SignUpinput"
 					value={password} type="password" />
 
-				<label className="label">Graduate Status</label>
+				<label className="SignUplabel">Graduate Status</label>
 				<select onChange={handleGStatus} id="GradStatus">
 					<option value="null">--</option>
 					<option value="Undergrad">Undergraduate</option>
 					<option value="Grad">Graduate</option>
 				</select>
 				
-				<label className="label">Major</label>
+				<label className="SignUplabel">Major</label>
 				<select onChange={handleMajor} id="Major">
 					<option value="null">--</option>
 					<option value="CompSci">Computer Science</option>
 					<option value="NMD">New Media Design</option>
 				</select>
 
-				<button onClick={handleSubmit} className="btn"
+				<button onClick={handleSubmit} className="SignUpbtn"
 						type="submit">
 					Submit
 				</button>
 
 			</form>
 		</div>
+	</div>
 	);
 }

@@ -1,5 +1,5 @@
 /* General styles for the entire page */
-.App {
+.Home {
   text-align: center;
   background-color: #edede8;
   min-height: 100vh;
@@ -9,7 +9,7 @@
 }
 
 /* Styles for the sign-up and login section */
-.signup-login-section {
+.Homesignup-login-section {
   width: 90%;
   margin: 0 auto;
   margin-left: 50%; /* Center the section horizontally */
@@ -23,8 +23,34 @@
   border: 2px solid #c6c6f4;
 }
 
+/* Styles for input containers */
+.Homeinput-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Label styles for form inputs */
+.Homelabel {
+  font-size: larger;
+  color: rgb(91, 91, 231);
+  margin-bottom: 10px;
+}
+
+/* Input field styles */
+.Homeinput {
+  font-size: larger;
+  padding: 15px;
+  width: 160%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 /* Styles for Sign Up and Log In buttons */
-.sign-up-button {
+.Homesign-up-button,
+.Homelog-in-button {
   background-color: #eb86eb;
   color: white;
   font-size: 25px;
@@ -37,8 +63,15 @@
   font-weight: bold;
 }
 
+/* Style specific to the Log In button */
+.Homelog-in-button {
+  background-color: rgb(77, 109, 238);
+  width: 100%;
+  margin-top: 20px;
+}
+
 /* Style specific to the Sign Up button */
-.sign-up-button {
+.Homesign-up-button {
   background-color: rgb(229, 137, 246);
   width: 70%;
   align-self: center; /* Center the "Sign Up" button vertically */
@@ -48,7 +81,7 @@
   text-decoration-thickness: 3px;
   text-underline-offset: 10px;
 }
-.left-section {
+.Homeleft-section {
   width: 90%;
   text-align: left;
   padding: 40px;
@@ -57,25 +90,25 @@
   align-items: flex-start;
 }
 
-.logo {
+.Homelogo {
   width: 450px; /* Adjust the width as needed */
   position: absolute;
-  top: 110px; /* Adjust the top position as needed */
-  left: 12%; /* Center the image horizontally */
+  top: 19%; /* Adjust the top position as needed */
+  left: 9%; /* Center the image horizontally */
   transform: translateX(-50%);
 }
 
-.big-text {
+.Homebig-text {
   font-size: 75px;
   color: rgb(97, 97, 220);
   font-weight: bold;
   position: absolute;
-  left: 320px; /* Adjust the left position as needed */
-  bottom: 430px;
+  left: 16.5%; /* Adjust the left position as needed */
+  bottom: 46.5%;
   font-family: "Tahoma", sans-serif;
 }
 
-.small-text {
+.Homesmall-text {
   font-size: 50px;
   color: rgb(193, 90, 179);
   font-weight: normal;
@@ -87,8 +120,8 @@
 }
 
 /* Hover effect for both buttons */
-.sign-up-button:hover,
-.log-in-button:hover {
+.Homesign-up-button:hover,
+.Homelog-in-button:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
 }
