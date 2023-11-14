@@ -19,7 +19,9 @@ export default function SignUpForm() {
 
 	// States for checking the errors
 	const [submitted, setSubmitted] = useState(false);
-	const [error, setError] = useState(false);
+	const [Nerror, setNError] = useState(false);
+	const [Merror, setMError] = useState(false);
+	const [Perror, setPError] = useState(false);
 
 	// Data variable
 	let data = 
@@ -93,12 +95,16 @@ export default function SignUpForm() {
 	// Handling the form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (validateName(name) === true || validateEmail(email) === false || isStrongPassword(password) === false ) {
-			setError(true);
-		} else {
+		if (validateName(name) === true ) {
+			setNError(true);
+		} else if(validateEmail(email) === false){
+			setMError(true);
+		} else if(isStrongPassword(password) === false){
+			setPError(true);
+		}
+		else {
 			handleDownload(data);
 			setSubmitted(true);
-			setError(false);
 			goToMainpage();
 		}
 	};
@@ -117,14 +123,37 @@ export default function SignUpForm() {
 	};
 
 	// Showing error message if error is true
-	const errorMessage = () => {
+	const NameErrorMessage = () => {
 		return (
 			<div
 				className="SignUperror"
 				style={{
-					display: error ? '' : 'none',
+					display: Nerror ? '' : 'none',
 				}}>
-				<h1>Please enter all the fields</h1>
+				<h1>Name can not contain numbers or special characters</h1>
+			</div>
+		);
+	};
+	const EmailErrorMessage = () => {
+		return (
+			<div
+				className="SignUperror"
+				style={{
+					display: Merror ? '' : 'none',
+				}}>
+				<h1>Email Invalid</h1>
+			</div>
+		);
+	};
+	const PasswordErrorMessage = () => {
+		return (
+			<div
+				className="SignUperror"
+				style={{
+					display: Perror ? '' : 'none',
+				}}>
+				<h1>Password Invalid</h1>
+				<h1>Password must have at least 8 characters, an uppercase, one number, and a special character</h1>
 			</div>
 		);
 	};
@@ -146,7 +175,9 @@ export default function SignUpForm() {
 
 			{/* Calling to the methods */}
 			<div className="SignUpmessages">
-				{errorMessage()}
+				{NameErrorMessage()}
+				{PasswordErrorMessage()}
+				{EmailErrorMessage()}
 				{successMessage()}
 			</div>
 

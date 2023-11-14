@@ -18,34 +18,43 @@ function Mainpage() {
   };
 
   useEffect(() => {
-    // Fetch posts and their associated image URLs
     const fetchPosts = async () => {
-      const postsCollection = collection(db, 'posts');
-      const snapshot = await getDocs(postsCollection);
-      const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setPosts(postsData);
-
-      const urls = {}; // Object to hold image URLs associated with post IDs
-
-      postsData.forEach((post) => {
-        if (post.file) {
-          const imageRef = ref(storage, post.file); // Assuming post.file contains the path to the image in Firebase Storage
-          getDownloadURL(imageRef)
-            .then((url) => {
-              urls[post.id] = url; // Assign the URL to the corresponding post ID
-              setImageURLs(urls); // Update the state with the new URLs
-            })
-            .catch((error) => {
-              // Handle any potential errors in fetching the image URL
-              console.error("Error fetching image URL:", error);
-            });
-        }
-      });
+      try {
+        const postsCollection = collection(db, 'posts');
+        const snapshot = await getDocs(postsCollection);
+        const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  
+        const imageURLPromises = postsData.map((post) => {
+          if (post.file) {
+            const imageRef = ref(storage, post.file);
+            return getDownloadURL(imageRef)
+              .then((url) => ({ id: post.id, url })) // Return an object with post ID and image URL
+              .catch((error) => {
+                console.error("Error fetching image URL:", error);
+                return { id: post.id, url: null }; // Return null URL in case of an error
+              });
+          }
+          return Promise.resolve({ id: post.id, url: null }); // If there's no file, resolve the promise immediately with null URL
+        });
+  
+        // Wait for all promises to resolve
+        const resolvedImageURLs = await Promise.all(imageURLPromises);
+  
+        const urls = {};
+        resolvedImageURLs.forEach(({ id, url }) => {
+          urls[id] = url; // Assign the URL to the corresponding post ID
+        });
+  
+        setImageURLs(urls); // Update the state with the new URLs
+        setPosts(postsData); // Update the state with the posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
     };
-
+  
     fetchPosts();
   }, []);
-
+  
   const formatTimestamp = (timestamp) => {
     // Assuming timestamp is a Firebase timestamp object
     return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
@@ -66,7 +75,7 @@ function Mainpage() {
             <h3>{post.title}</h3>
             <p>{post.content}</p>
             {post.file && imageURLs[post.id] ? (
-                <img src={imageURLs[post.id]} alt="Attached Image" style={{ maxWidth: '100px' }} />
+                <img src={imageURLs[post.id]} alt='' style={{ maxWidth: '100px' }} />
               ) : post.file ? (
                 <p>Error loading image</p>
               ) : (
