@@ -1,10 +1,17 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import PostCreation from './PostCreation';
 
 describe('PostCreation component', () => {
   it('creates a post', async () => {
-    render(<PostCreation />);
+    render(
+    <Router>
+      <PostCreation />
+    </Router>
+    );
+
     const titleInput = screen.getByLabelText('Title:');
     const contentInput = screen.getByLabelText('Content:');
     const fileInput = screen.getByLabelText('Upload File:');
@@ -25,7 +32,7 @@ describe('PostCreation component', () => {
     PostCreation.prototype.createPost = createPostMock;
 
     // Trigger the button click to create the post
-    fireEvent.click(screen.getByText('Create Post'));
+    fireEvent.click(screen.getByRole('button', { name: 'Create Post' }));
 
     // Ensure the function is called
     expect(createPostMock).toHaveBeenCalled();
