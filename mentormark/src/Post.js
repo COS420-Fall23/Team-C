@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { collection, getDoc, doc } from 'firebase/firestore';
-import { db, storage } from './firebaseConfig'; 
-import {useCollection} from 'react-firebase-hooks/firestore';
+import { Link } from 'react-router-dom';
 
-
-export default async function Post() {
-    const postRef = doc(db, 'posts', 'test');
-    const postSnap = await getDoc(postRef);
+export default function Post(props) {
+    const post = props.toChild;
 
     return (
-        <div>
-            : Post here
+        <div className='post'>
+            <div>
+                <header className='post-title'>
+                    {post.title}
+                </header>
+                <div className='post-body'>
+                    {post.content}
+                </div>
+            </div>
+            <Link onClick={() => {props.sendToParent(null)}}>Back to Post List</Link>
         </div>
     )
 }
