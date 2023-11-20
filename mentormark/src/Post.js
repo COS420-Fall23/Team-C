@@ -5,6 +5,7 @@ export default function Post(props) {
 
     return (
         <div className='post'>
+            {(post) ? 
             <div>
                 <header className='post-title'>
                     {post.title}
@@ -13,6 +14,9 @@ export default function Post(props) {
                     {post.content}
                 </div>
             </div>
+            :
+            <span>Error loading post</span>
+            }
             <Link onClick={() => {props.sendToParent(null)}}>Back to Post List</Link>
         </div>
     )

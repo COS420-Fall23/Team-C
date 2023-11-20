@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db, storage } from './firebaseConfig'; 
 import { getDownloadURL, ref } from 'firebase/storage';
-import './Mainpage.css'
+import './CSS/Mainpage.css'
 import Post from './Post';
 import { Link } from 'react-router-dom';
 
@@ -58,10 +58,9 @@ function Mainpage() {
         console.error("Error fetching posts:", error);
       }
     };
-  
     fetchPosts();
   }, []);
-  
+
   const formatTimestamp = (timestamp) => {
     // Assuming timestamp is a Firebase timestamp object
     return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
