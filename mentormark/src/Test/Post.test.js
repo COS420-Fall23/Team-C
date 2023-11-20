@@ -4,7 +4,6 @@ import Post from '../Post';
 import { MemoryRouter } from 'react-router-dom';
 
 const testPost = {title: "Test 1", content: "This is the first test post"}
-const errorPost = {};
 
 describe("Post", () => {
     test("Post renders", async () => {
