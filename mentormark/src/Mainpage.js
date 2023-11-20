@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db, storage } from './firebaseConfig'; 
 import { getDownloadURL, ref } from 'firebase/storage';
-import './Mainpage.css'
+import './CSS/Mainpage.css'
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);

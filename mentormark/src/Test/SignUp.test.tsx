@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import SignUpForm from './SignUpForm';
+import SignUpForm from '../SignUpForm';
 
 describe('SignUpForm component', () => {
   it('submits the form with valid input', () => {

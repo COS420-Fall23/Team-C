@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import PostCreation from './PostCreation';
+import PostCreation from '../PostCreation';
 
 describe('PostCreation component', () => {
   it('creates a post', async () => {

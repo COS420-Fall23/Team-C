@@ -1,4 +1,4 @@
-import './Login.css'
+import './CSS/Login.css'
 import { useState } from "react";
 import { auth } from './firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
