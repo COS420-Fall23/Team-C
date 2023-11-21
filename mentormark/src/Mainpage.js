@@ -13,12 +13,12 @@ function Mainpage() {
   const [imageURLs, setImageURLs] = useState({});
   const [postId, setPostId] = useState(null);
 
-  const fetchPosts = async () => {
-    const postsCollection = collection(db, 'posts');
-    const snapshot = await getDocs(postsCollection);
-    const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    setPosts(postsData);
-  };
+  // const fetchPosts = async () => {
+  //   const postsCollection = collection(db, 'posts');
+  //   const snapshot = await getDocs(postsCollection);
+  //   const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  //   setPosts(postsData);
+  // };
 
   const setViewedPost = async (id) => {
     setPostId(id);
@@ -61,10 +61,10 @@ function Mainpage() {
     fetchPosts();
   }, []);
 
-  const formatTimestamp = (timestamp) => {
-    // Assuming timestamp is a Firebase timestamp object
-    return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
-  };
+  // const formatTimestamp = (timestamp) => {
+  //   // Assuming timestamp is a Firebase timestamp object
+  //   return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
+  // };
 
   return (
     <div className="container">
