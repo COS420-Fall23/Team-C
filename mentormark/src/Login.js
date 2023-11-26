@@ -8,7 +8,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
-    //const history = useNavigate();
+    const history = useNavigate();
 
     const errorMessage = e => {
         return <div style= {{display: error ? '' : "none"}}>
@@ -31,7 +31,7 @@ export default function Login() {
             setError(false);
             const user = userCredential.user;
             console.log(user);
-            window.location.href('/mainpage')
+            history("/mainpage")
         })
         .catch((logError) => {
             setError(true);
