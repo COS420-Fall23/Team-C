@@ -74,10 +74,10 @@
 .Homesign-up-button {
   background-color: rgb(229, 137, 246);
   width: 70%;
-  align-self: center; /* Center the "Sign Up" button vertically */
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-decoration: underline;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
   text-decoration-thickness: 3px;
   text-underline-offset: 10px;
 }
