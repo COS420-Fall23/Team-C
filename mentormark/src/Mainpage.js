@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
-import { db, storage, auth } from './firebaseConfig'; 
-import { getDownloadURL, ref } from 'firebase/storage';
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db, storage, auth } from "./firebaseConfig";
+import { getDownloadURL, ref } from "firebase/storage";
+import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+// import { AiOutlineSearch } from "react-icons/ai";
 import './CSS/Mainpage.css'
 import Post from './Post';
-import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import pImage from './logo/pImage.png'
 
@@ -136,8 +137,8 @@ function Mainpage() {
             </div>
         </>
         : <Post toChild={postId} sendToParent={setPostId}></Post>}
+        </div>
       </div>
-    </div>
   );
 }
 
