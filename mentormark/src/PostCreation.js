@@ -4,6 +4,7 @@ import { storage } from "./firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./firebaseConfig.js";
+import "./components/Comment.js"
 
 
 

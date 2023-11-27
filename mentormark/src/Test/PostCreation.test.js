@@ -1,40 +1,98 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
+import { storage, db } from '../firebaseConfig.js';
 import PostCreation from '../PostCreation';
 
-describe('PostCreation component', () => {
-  it('creates a post', async () => {
-    render(
-    <Router>
-      <PostCreation />
-    </Router>
-    );
+jest.mock('react-router-dom', () => ({
+  useNavigate: jest.fn(),
+}));
 
-    const titleInput = screen.getByLabelText('Title:');
-    const contentInput = screen.getByLabelText('Content:');
-    const fileInput = screen.getByLabelText('Upload File:');
+jest.mock('../firebaseConfig.js', () => ({
+  storage: {
+    ref: jest.fn((storage, path) => ({
+      uploadBytesResumable: jest.fn().mockReturnValue({
+        on: jest.fn((event, progress, error, success) => {
+          if (event === 'state_changed') {
+            progress({ bytesTransferred: 100, totalBytes: 200 });
+            success();
+          }
+        }),
+        snapshot: {
+          ref: {
+            getDownloadURL: jest.fn().mockResolvedValue('mock-url'),
+          },
+        },
+      }),
+    })),
+  },
+  db: {
+    collection: jest.fn(() => ({
+      addDoc: jest.fn().mockResolvedValue({ id: 'mock-id' }),
+    })),
+  },
+}));
 
-    // Mocking user input
-    fireEvent.change(titleInput, { target: { value: 'Test Post Title' } });
-    fireEvent.change(contentInput, { target: { value: 'Test Post Content' } });
+describe('<PostCreation />', () => {
+  test('renders without crashing', () => {
+    render(<PostCreation />);
+  });
 
-    // Mock a file to upload
-    const file = new File(['(⌐□_□)'], 'test-file.png', { type: 'image/png' });
-    fireEvent.change(fileInput, { target: { files: [file] } });
+  test('renders form with title, content and file input', () => {
+    render(<PostCreation />);
+    expect(screen.getByLabelText('Title:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Content:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Upload File:')).toBeInTheDocument();
+  });
 
-    // Mock the API call and submission
-    // For instance, you can mock the createPost function and check if it's called correctly
-    const createPostMock = jest.fn();
-    createPostMock.mockResolvedValue('Document written with ID: 12345'); // Mock the successful post creation
-    // Replace the actual function with the mocked one
-    PostCreation.prototype.createPost = createPostMock;
+  test('calls handleInputChange when title input changes', () => {
+    render(<PostCreation />);
+    fireEvent.change(screen.getByLabelText('Title:'), { target: { value: 'Test Title' } });
+    expect(screen.getByLabelText('Title:').value).toBe('Test Title');
+  });
 
-    // Trigger the button click to create the post
-    fireEvent.click(screen.getByRole('button', { name: 'Create Post' }));
+  test('calls handleInputChange when content input changes', () => {
+    render(<PostCreation />);
+    fireEvent.change(screen.getByLabelText('Content:'), { target: { value: 'Test Content' } });
+    expect(screen.getByLabelText('Content:').value).toBe('Test Content');
+  });
 
-    // Ensure the function is called
-    expect(createPostMock).toHaveBeenCalled();
+  test('calls createPost when Create Post button is clicked', async () => {
+    render(<PostCreation />);
+    fireEvent.change(screen.getByLabelText('Title:'), { target: { value: 'Test Title' } });
+    fireEvent.change(screen.getByLabelText('Content:'), { target: { value: 'Test Content' } });
+    fireEvent.change(screen.getByLabelText('Upload File:'), { target: { files: [new File(['file'], 'test.png', { type: 'image/png' })] } });
+    const button = screen.getByRole('button', { name: /Create Post/i });
+    fireEvent.click(button);
+    await waitFor(() => expect(useNavigate).toHaveBeenCalled());
+  });
+
+  test('shows alert when Create Post button is clicked with incomplete form', () => {
+    window.alert = jest.fn();
+    render(<PostCreation />);
+    const button = screen.getByRole('button', { name: /Create Post/i });
+    fireEvent.click(button);
+    expect(window.alert).toHaveBeenCalled();
+  });
+
+  test('matches snapshot', () => {
+    const { asFragment } = render(<PostCreation />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('renders form with a submit button', () => {
+    render(<PostCreation />);
+    const button = screen.getByRole('button', { name: /Create Post/i });
+    expect(button).toBeInTheDocument();
+  });
+
+  test('title input is initially empty', () => {
+    render(<PostCreation />);
+    expect(screen.getByLabelText('Title:').value).toBe('');
+  });
+
+  test('content textarea is initially empty', () => {
+    render(<PostCreation />);
+    expect(screen.getByLabelText('Content:').value).toBe('');
   });
 });
