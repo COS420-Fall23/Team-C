@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "./firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
-import "./Mainpage.css";
+import "./CSS/Mainpage.css";
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
 import { AiOutlineSearch } from "react-icons/ai";
+import Post from './Post';
+
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);
@@ -84,11 +86,13 @@ function Mainpage() {
       <div className="mainpage-sidebar">
         <header className="mainpage-sidebar-header">Communities</header>
       </div>
-      <div className="mainpage-main-body">
-        <div className="mainpage-postList">
+      <div className="main-body">
+        {(postId===null) ? 
+        <>
+        <div className="postList">
           {posts.map((post, index) => (
-            <div key={post.id} className="mainpage-post">
-              <h3>{post.title}</h3>
+            <div key={post.id} className="post">
+              <Link onClick={() => { setPostId(post); } }><h3>{post.title}</h3></Link>
               <p>{post.content}</p>
               {post.file && imageURLs[post.id] ? (
                 <img
@@ -122,6 +126,8 @@ function Mainpage() {
           </button>
           {/* Plus icon will be handled by the CSS styles */}
         </div>
+        </>
+        : <Post toChild={postId} sendToParent={setPostId}></Post>}
       </div>
     </div>
   );
