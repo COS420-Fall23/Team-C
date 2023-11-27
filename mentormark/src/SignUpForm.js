@@ -1,13 +1,19 @@
 import { useState } from "react";
-import "./SignUp.css";
-import { Link, useNavigate } from "react-router-dom";
+import "./CSS/SignUp.css";
+import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
-import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+
+/*
+Planned changes:
+-Have submit button send inputs to validation function
+	-If valid, user inputs are saved, user account is created and success message displayed
+	-If invalid, user directed back to signup page to fill out form again
+		-Maybe save user inputs for editing
+
+*/
 
 export default function SignUpForm() {
-  const history = useNavigate();
-
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -112,7 +118,6 @@ export default function SignUpForm() {
       handleDownload(data);
       setSubmitted(true);
       setError(false);
-      goToMainpage();
     }
   };
 
@@ -120,7 +125,7 @@ export default function SignUpForm() {
   const successMessage = () => {
     return (
       <div
-        className="SignUpsuccess"
+        className="success"
         style={{
           display: submitted ? "" : "none",
         }}
@@ -134,123 +139,91 @@ export default function SignUpForm() {
   const errorMessage = () => {
     return (
       <div
-        className="SignUperror"
+        className="error"
         style={{
           display: error ? "" : "none",
         }}
       >
-        <div>
-          <h1
-            style={{
-              backgroundColor: "#f4363f",
-              color: "white",
-              fontSize: "18px",
-              padding: "10px",
-              lineHeight: "1.2",
-            }}
-          >
-            Please enter all the fields
-          </h1>
-        </div>
+        <h1>Please enter all the fields</h1>
       </div>
     );
   };
 
-  const goToMainpage = () => {
-    // Navigate to mainpage
-    history("/mainpage");
-  };
-
   return (
-    <div className="signup-form">
-      <div className="signup-back-button">
+    <div className="form">
+      <button>
         <Link to="/">
-          <h3>Back</h3>
+          <h3>Home</h3>
         </Link>
+      </button>
+      <div>
+        <h1>Sign Up Form</h1>
       </div>
-      <div
-        className="signup-form-container"
-        style={{
-          maxWidth: "400px",
-          margin: "0 auto",
-          padding: "10px", // Reduced vertical padding
-          boxSizing: "border-box",
-          display: "block",
-          height: "1000px", // Directly set the height
-        }}
-      >
-        <img
-          src={MentorMarkLogo}
-          alt="MentorMark Logo"
-          className="signup-logo"
-          style={{
-            position: "relative",
-            top: "75px",
-            left: "-150px",
-            width: "34%",
-          }}
+
+      {/* Calling to the methods */}
+      <div className="messages">
+        {errorMessage()}
+        {successMessage()}
+      </div>
+
+      <form>
+        {/* Labels and inputs for form data */}
+        <label htmlFor="name" className="SignUplabel">
+          Name
+        </label>
+        <input
+          onChange={handleName}
+          className="SignUpinput"
+          value={name}
+          type="text"
+          id="name"
         />
-        <h1
-          className="signup-heading"
-          style={{ marginTop: "-25px", marginLeft: "20px" }}
+
+        <label htmlFor="email" className="SignUplabel">
+          Email
+        </label>
+        <input
+          onChange={handleEmail}
+          className="SignUpinput"
+          value={email}
+          type="email"
+          id="email"
+        />
+
+        <label htmlFor="password" className="signup-label">
+          Password
+        </label>
+        <input
+          onChange={handlePassword}
+          className="signup-input"
+          value={password}
+          type="password"
+          style={{ width: "335px" }}
+          id="password"
+        />
+
+        <label className="signup-label">Graduate Status</label>
+        <select
+          onChange={handleGStatus}
+          id="GradStatus"
+          className="signup-select"
         >
-          entorMark
-        </h1>
-        <div className="signup-messages">
-          {errorMessage()}
-          {successMessage()}
-        </div>
-        <form>
-          <label className="signup-label">Name</label>
-          <input
-            onChange={handleName}
-            className="signup-input"
-            value={name}
-            type="text"
-            style={{ width: "335px" }}
-          />
+          <option value="null">--</option>
+          <option value="Undergrad">Undergraduate</option>
+          <option value="Grad">Graduate</option>
+        </select>
 
-          <label className="signup-label">Email</label>
-          <input
-            onChange={handleEmail}
-            className="signup-input"
-            value={email}
-            type="email"
-            style={{ width: "335px" }}
-          />
+        <label className="signup-label">Major</label>
+        <select onChange={handleMajor} id="Major" className="signup-select">
+          <option value="null">--</option>
+          <option value="CompSci">Computer Science</option>
+          <option value="NMD">New Media Design</option>
+        </select>
 
-          <label className="signup-label">Password</label>
-          <input
-            onChange={handlePassword}
-            className="signup-input"
-            value={password}
-            type="password"
-            style={{ width: "335px" }}
-          />
-
-          <label className="signup-label">Graduate Status</label>
-          <select
-            onChange={handleGStatus}
-            id="GradStatus"
-            className="signup-select"
-          >
-            <option value="null">--</option>
-            <option value="Undergrad">Undergraduate</option>
-            <option value="Grad">Graduate</option>
-          </select>
-
-          <label className="signup-label">Major</label>
-          <select onChange={handleMajor} id="Major" className="signup-select">
-            <option value="null">--</option>
-            <option value="CompSci">Computer Science</option>
-            <option value="NMD">New Media Design</option>
-          </select>
-
-          <button onClick={handleSubmit} className="signup-btn" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
+        <button onClick={handleSubmit} className="signup-btn" type="submit">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

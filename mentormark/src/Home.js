@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./CSS/Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
 import { auth } from "./firebaseConfig";

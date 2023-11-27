@@ -59,7 +59,7 @@
 .mainpage-post {
   width: 200%;
   background-color: #ffffff;
-  border: 1px solid rgb(217, 146, 212);
+  border: 3px solid rgb(222, 201, 220);
   border-radius: 10px;
   margin-bottom: 15px;
   padding: 20px;
@@ -75,7 +75,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgb(91, 91, 231);
+  background-color: rgb(202, 131, 238);
   color: white;
   display: flex;
   align-items: center;
@@ -92,13 +92,8 @@
   width: 100%;
 }
 
-.mainpage-sidebar-header {
-  align-self: flex-start;
-  font-weight: bold;
-  font-size: 20px;
-  color: rgb(168, 153, 235);
-  margin: 0;
-  padding: 10px 0;
-  width: 100%;
-  font-family: "'Pacifico', cursive";
+.add-button-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }

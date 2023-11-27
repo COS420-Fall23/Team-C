@@ -11,6 +11,7 @@ function Mainpage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [imageURLs, setImageURLs] = useState({});
+  const [postId, setPostId] = useState(null);
 
   const fetchPosts = async () => {
     const postsCollection = collection(db, "posts");
@@ -23,7 +24,6 @@ function Mainpage() {
   };
 
   useEffect(() => {
-    // Fetch posts and their associated image URLs
     const fetchPosts = async () => {
       const postsCollection = collection(db, "posts");
       const snapshot = await getDocs(postsCollection);
@@ -50,14 +50,13 @@ function Mainpage() {
         }
       });
     };
-
     fetchPosts();
   }, []);
 
-  const formatTimestamp = (timestamp) => {
-    // Assuming timestamp is a Firebase timestamp object
-    return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
-  };
+  // const formatTimestamp = (timestamp) => {
+  //   // Assuming timestamp is a Firebase timestamp object
+  //   return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
+  // };
 
   return (
     <div className="mainpage-container">

@@ -1,10 +1,16 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import SignUpForm from './SignUpForm';
+import '@testing-library/jest-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import SignUpForm from '../SignUpForm';
 
 describe('SignUpForm component', () => {
   it('submits the form with valid input', () => {
-    render(<SignUpForm />);
+    render(
+    <Router>
+      <SignUpForm />
+    </Router>
+    );
     
     // Fill in the form inputs
     const nameInput = screen.getByLabelText('Name');
@@ -28,7 +34,11 @@ describe('SignUpForm component', () => {
   });
 
   it('displays error message for invalid input', () => {
-    render(<SignUpForm />);
+    render(
+      <Router>
+        <SignUpForm />
+      </Router>
+    );
     
     // Fill in the form with invalid input
     const nameInput = screen.getByLabelText('Name');
@@ -48,7 +58,10 @@ describe('SignUpForm component', () => {
     fireEvent.click(submitButton);
 
     // Verify error message
-    expect(screen.getByText('Please enter all the fields')).toBeInTheDocument();
+    expect(screen.getByText('Name can not contain numbers or special characters')).toBeInTheDocument();
+    expect(screen.getByText('Email Invalid')).toBeInTheDocument();
+    expect(screen.getByText('Password Invalid')).toBeInTheDocument();
+    expect(screen.getByText('Password must have at least 8 characters, an uppercase, one number, and a special character')).toBeInTheDocument();
   });
 
   // Add more test cases to cover other scenarios like edge cases, validation checks, etc.
