@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "./firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
-import "./CSS/Mainpage.css";
+import "./Mainpage.css";
 import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Post from './Post';
