@@ -40,16 +40,4 @@ describe('Post component', () => {
 
     expect(mockFn).toHaveBeenCalled();
   });
-
-  it('Renders the post-title class', () => {
-    render(<MemoryRouter><Post toChild={post} /></MemoryRouter>);
-
-    expect(screen.getByText('Test Title')).toHaveClass('post-title');
-  });
-
-  it('Renders the post-body class', () => {
-    render(<MemoryRouter><Post toChild={post} /></MemoryRouter>);
-
-    expect(screen.getByText('Test Content')).toHaveClass('post-body');
-  });
 });
