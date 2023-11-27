@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Comment from './components/Comment';
 import useNode from "./hooks/useNode";
-import './CSS/comment.css'
+import './CSS/comment.css';
 
 const comments = {
   id: 1,
@@ -37,6 +37,7 @@ const Post = (props) => {
       {post ? (
         <div>
           <header className="post-title">{post.title}</header>
+          <img className='post-image' src={post.file} alt={post.file} style={{ maxWidth: '200px' }} />
           <div className="post-body">{post.content}</div>
         </div>
       ) : (
