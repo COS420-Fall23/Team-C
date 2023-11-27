@@ -138,7 +138,7 @@ function Mainpage() {
         </>
         : <Post toChild={postId} sendToParent={setPostId}></Post>}
         </div>
-      </div>
+  </div>
   );
 }
 
