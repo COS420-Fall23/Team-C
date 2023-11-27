@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db, storage } from './firebaseConfig'; 
 import { getDownloadURL, ref } from 'firebase/storage';
-import './Mainpage.css'
+import './CSS/Mainpage.css'
+import Post from './Post';
+import { Link } from 'react-router-dom';
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [imageURLs, setImageURLs] = useState({});
+  const [postId, setPostId] = useState(null);
 
   const fetchPosts = async () => {
     const postsCollection = collection(db, 'posts');
@@ -17,32 +20,44 @@ function Mainpage() {
     setPosts(postsData);
   };
 
+  const setViewedPost = async (id) => {
+    setPostId(id);
+  }
+
   useEffect(() => {
-    // Fetch posts and their associated image URLs
     const fetchPosts = async () => {
-      const postsCollection = collection(db, 'posts');
-      const snapshot = await getDocs(postsCollection);
-      const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setPosts(postsData);
-
-      const urls = {}; // Object to hold image URLs associated with post IDs
-
-      postsData.forEach((post) => {
-        if (post.file) {
-          const imageRef = ref(storage, post.file); // Assuming post.file contains the path to the image in Firebase Storage
-          getDownloadURL(imageRef)
-            .then((url) => {
-              urls[post.id] = url; // Assign the URL to the corresponding post ID
-              setImageURLs(urls); // Update the state with the new URLs
-            })
-            .catch((error) => {
-              // Handle any potential errors in fetching the image URL
-              console.error("Error fetching image URL:", error);
-            });
-        }
-      });
+      try {
+        const postsCollection = collection(db, 'posts');
+        const snapshot = await getDocs(postsCollection);
+        const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  
+        const imageURLPromises = postsData.map((post) => {
+          if (post.file) {
+            const imageRef = ref(storage, post.file);
+            return getDownloadURL(imageRef)
+              .then((url) => ({ id: post.id, url })) // Return an object with post ID and image URL
+              .catch((error) => {
+                console.error("Error fetching image URL:", error);
+                return { id: post.id, url: null }; // Return null URL in case of an error
+              });
+          }
+          return Promise.resolve({ id: post.id, url: null }); // If there's no file, resolve the promise immediately with null URL
+        });
+  
+        // Wait for all promises to resolve
+        const resolvedImageURLs = await Promise.all(imageURLPromises);
+  
+        const urls = {};
+        resolvedImageURLs.forEach(({ id, url }) => {
+          urls[id] = url; // Assign the URL to the corresponding post ID
+        });
+  
+        setImageURLs(urls); // Update the state with the new URLs
+        setPosts(postsData); // Update the state with the posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
     };
-
     fetchPosts();
   }, []);
 
@@ -60,35 +75,37 @@ function Mainpage() {
         <header>Communities</header>
       </div>
       <div className="main-body">
+        {(postId===null) ? 
+        <>
         <div className="postList">
-          {posts.map((post, index) => (
-            <div key={post.id} className="post">
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            {post.file && imageURLs[post.id] ? (
-                <img src={imageURLs[post.id]} alt="Attached Image" style={{ maxWidth: '100px' }} />
-              ) : post.file ? (
-                <p>Error loading image</p>
-              ) : (
-                <p>No image attached</p>
-              )}
-              <div>
-                <p>File attached: 
-                  <a href={post.file} download>
+            {posts.map((post, index) => (
+              <div key={post.id} className="post">
+                <Link onClick={() => { setViewedPost(post); } }><h3>{post.title}</h3></Link>
+                <p>{post.content}</p>
+                {post.file && imageURLs[post.id] ? (
+                  <img src={imageURLs[post.id]} alt='' style={{ maxWidth: '100px' }} />
+                ) : post.file ? (
+                  <p>Error loading image</p>
+                ) : (
+                  <p>No image attached</p>
+                )}
+                <div>
+                  <p>File attached:
+                    <a href={post.file} download>
                       Download File
                     </a>
-                </p>
-                    
+                  </p>
+                </div>
+                <small>{post.timestamp}</small>
               </div>
-            <small>{post.timestamp}</small>
-          </div>
-          ))}
-        </div>
-        <div className="add-button-container">
-          <div className="addButton" onClick={() => navigate('/create-post')}>
-            {/* Plus icon will be handled by the CSS styles */}
-          </div>
-        </div>
+            ))}
+            </div><div className="add-button-container">
+              <div className="addButton" onClick={() => navigate('/create-post')}>
+                {/* Plus icon will be handled by the CSS styles */}
+              </div>
+            </div>
+        </>
+        : <Post toChild={postId} sendToParent={setPostId}></Post>}
       </div>
     </div>
   );

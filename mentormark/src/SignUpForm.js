@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './SignUp.css';
+import './CSS/SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from './firebaseConfig';
@@ -19,7 +19,9 @@ export default function SignUpForm() {
 
 	// States for checking the errors
 	const [submitted, setSubmitted] = useState(false);
-	const [error, setError] = useState(false);
+	const [Nerror, setNError] = useState(false);
+	const [Merror, setMError] = useState(false);
+	const [Perror, setPError] = useState(false);
 
 	// Data variable
 	let data = 
@@ -93,12 +95,33 @@ export default function SignUpForm() {
 	// Handling the form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (validateName(name) === true || validateEmail(email) === false || isStrongPassword(password) === false ) {
-			setError(true);
+		let hasError = false;
+		if (validateName(name)) {
+			setNError(true);
+			hasError = true;
+		} else {
+			setNError(false);
+		}
+	  
+		if (!validateEmail(email)) {
+			setMError(true);
+			hasError = true;
+		} else {
+			setMError(false);
+		}
+	  
+		if (!isStrongPassword(password)) {
+			setPError(true);
+			hasError = true;
+		} else {
+			setPError(false);
+		}
+	  
+		if (hasError) {
+			setSubmitted(false);
 		} else {
 			handleDownload(data);
 			setSubmitted(true);
-			setError(false);
 			goToMainpage();
 		}
 	};
@@ -117,15 +140,41 @@ export default function SignUpForm() {
 	};
 
 	// Showing error message if error is true
-	const errorMessage = () => {
+	const NameErrorMessage = () => {
 		return (
-			<div
+			<h1
+				htmlFor='name' 
 				className="SignUperror"
 				style={{
-					display: error ? '' : 'none',
+					display: Nerror ? '' : 'none',
 				}}>
-				<h1>Please enter all the fields</h1>
-			</div>
+				<li>Name can not contain numbers or special characters</li>
+			</h1>
+		);
+	};
+	const EmailErrorMessage = () => {
+		return (
+			<h1
+				htmlFor='email'
+				className="SignUperror"
+				style={{
+					display: Merror ? '' : 'none',
+				}}>
+				<li>Email Invalid</li>
+			</h1>
+		);
+	};
+	const PasswordErrorMessage = () => {
+		return (
+			<h1
+				htmlFor='password'
+				className="SignUperror"
+				style={{
+					display: Perror ? '' : 'none',
+				}}>
+				<li>Password Invalid</li>
+				<li>Password must have at least 8 characters, an uppercase, one number, and a special character</li>
+			</h1>
 		);
 	};
 
@@ -146,32 +195,34 @@ export default function SignUpForm() {
 
 			{/* Calling to the methods */}
 			<div className="SignUpmessages">
-				{errorMessage()}
+				{NameErrorMessage()}
+				{EmailErrorMessage()}
+				{PasswordErrorMessage()}
 				{successMessage()}
 			</div>
 
 			<form>
 				{/* Labels and inputs for form data */}
-				<label className="SignUplabel">Name</label>
+				<label htmlFor='name' className="SignUplabel">Name</label>
 				<input onChange={handleName} className="SignUpinput"
-					value={name} type="text" />
-
-				<label className="SignUplabel">Email</label>
+					value={name} type="text" id='name' />
+				
+				<label htmlFor='email' className="SignUplabel">Email</label>
 				<input onChange={handleEmail} className="SignUpinput"
-					value={email} type="email" />
+					value={email} type="email" id='email' />
 
-				<label className="SignUplabel">Password</label>
+				<label htmlFor='password' className="SignUplabel">Password</label>
 				<input onChange={handlePassword} className="SignUpinput"
-					value={password} type="password" />
+					value={password} type="password" id='password' />
 
-				<label className="SignUplabel">Graduate Status</label>
+				<label htmlFor='GradStatus' className="SignUplabel">Graduate Status</label>
 				<select onChange={handleGStatus} id="GradStatus">
 					<option value="null">--</option>
 					<option value="Undergrad">Undergraduate</option>
 					<option value="Grad">Graduate</option>
 				</select>
 				
-				<label className="SignUplabel">Major</label>
+				<label htmlFor='Major' className="SignUplabel">Major</label>
 				<select onChange={handleMajor} id="Major">
 					<option value="null">--</option>
 					<option value="CompSci">Computer Science</option>
