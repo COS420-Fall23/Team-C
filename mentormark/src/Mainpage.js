@@ -31,7 +31,7 @@ function Mainpage() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
