@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
-import { db, storage } from './firebaseConfig'; 
-import { getDownloadURL, ref } from 'firebase/storage';
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db, storage, auth } from "./firebaseConfig";
+import { getDownloadURL, ref } from "firebase/storage";
+import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
+// import { AiOutlineSearch } from "react-icons/ai";
 import './CSS/Mainpage.css'
 import Post from './Post';
-import { Link } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import pImage from './logo/pImage.png'
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [imageURLs, setImageURLs] = useState({});
   const [postId, setPostId] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // const fetchPosts = async () => {
   //   const postsCollection = collection(db, 'posts');
@@ -19,6 +23,20 @@ function Mainpage() {
   //   const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   //   setPosts(postsData);
   // };
+
+  const handleProfileClick = () => {
+    setShowDropdown(!showDropdown); // Toggle dropdown visibility
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
+
 
   const setViewedPost = async (id) => {
     setPostId(id);
@@ -62,7 +80,6 @@ function Mainpage() {
   }, []);
 
   // const formatTimestamp = (timestamp) => {
-  //   // Assuming timestamp is a Firebase timestamp object
   //   return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
   // };
 
@@ -70,6 +87,20 @@ function Mainpage() {
     <div className="container">
       <header className="top-bar">
         <h1 className="title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
+        <div className="profile-container">
+          <img
+            className="profile-icon"
+            src= {pImage} // Replace with the path to your profile image
+            alt="Profile"
+            onClick={handleProfileClick}
+          />
+          {showDropdown && (
+            <div className="dropdown-menu">
+              <button onClick={() => navigate('/account')}>Account</button>
+              <button onClick={handleSignOut}>Sign Out</button>
+            </div>
+          )}
+        </div>
       </header>
       <div className="sidebar">
         <header>Communities</header>
@@ -80,7 +111,7 @@ function Mainpage() {
         <div className="postList">
             {posts.map((post, index) => (
               <div key={post.id} className="post">
-                <Link onClick={() => { setViewedPost(post); } }><h3>{post.title}</h3></Link>
+                <h3><Link onClick={() => { setViewedPost(post); } } style={{ textDecoration: 'none' }}>{post.title}</Link></h3>
                 <p>{post.content}</p>
                 {post.file && imageURLs[post.id] ? (
                   <img src={imageURLs[post.id]} alt='' style={{ maxWidth: '100px' }} />
@@ -106,8 +137,8 @@ function Mainpage() {
             </div>
         </>
         : <Post toChild={postId} sendToParent={setPostId}></Post>}
+        </div>
       </div>
-    </div>
   );
 }
 

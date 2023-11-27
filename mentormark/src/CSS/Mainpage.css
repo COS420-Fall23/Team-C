@@ -43,13 +43,14 @@ transform: translate(-50%, -50%);
 }
 
 .postList {
-margin-top: 20px;
+margin-top: 0px;
 }
 
 .post {
 border: 1px solid #ccc;
 padding: 10px;
-margin-bottom: 10px;
+margin-bottom: 5px;
+border-radius: 10px;
 }
 
 .container {
@@ -64,6 +65,7 @@ background-color: #333;
 color: white;
 padding: 10px;
 grid-column: 1 / -1; /* Spans the whole width */
+position: relative;
 }
 
 .sidebar {
@@ -83,4 +85,54 @@ position: fixed;
 bottom: 20px;
 right: 20px;
 z-index: 2;
+}
+
+.profile-container {
+display: flex;
+align-items: center; /* Center items vertically */
+position: fixed; /* Fixed positioning to keep the profile icon fixed on the screen */
+top: 26px; /* Adjust the top position as needed */
+right: 20px; /* Adjust the right position as needed */
+z-index: 3; /* Ensure the profile icon is above the other elements */
+}
+
+.profile-icon {
+border-radius: 50%;
+width: 40px; /* Adjust the size to your preference */
+height: 40px; /* Adjust the size to your preference */
+cursor: pointer;
+margin-right: 10px; /* Add some spacing between the profile icon and the "Sign Out" button */
+}
+
+.sign-out-button {
+background-color: #ccc; /* Change to suit your design */
+border: none;
+color: white;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position the dropdown below the profile icon */
+  right: 0; /* Align the right edge of the dropdown with the right edge of the profile icon */
+  background-color: #fff; /* Background color of the dropdown */
+  border: 1px solid #ccc; /* Border color of the dropdown */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  z-index: 1000; /* Ensure the dropdown appears above other elements */
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0; /* Change to a lighter color on hover */
 }

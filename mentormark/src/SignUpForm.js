@@ -2,7 +2,9 @@ import { useState } from 'react';
 import './CSS/SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from './firebaseConfig';
+import { auth, db } from './firebaseConfig.js';
+import { collection, setDoc } from "firebase/firestore";
+
 
 
 
@@ -24,7 +26,7 @@ export default function SignUpForm() {
 	const [Perror, setPError] = useState(false);
 
 	// Data variable
-	let data = 
+	const data = 
           '\r Name: ' + name + ' \r\n ' + 
           'Email: ' + email + ' \r\n ' + 
           'Password: ' + password + ' \r\n ' + 
@@ -90,6 +92,22 @@ export default function SignUpForm() {
 			.catch((error) => {
 				console.log(error.code, error.message);
 			})
+
+		const userInfo = { 
+			gStatus, 
+			major
+		};
+
+		const aInfo = {
+			name,
+			email,
+			password,
+			gStatus,
+			major
+		}
+	
+		const userRef = await setDoc(collection(db, `/users/${name}/info`), userInfo); 
+		const devData = await setDoc(collection(db, 'devInfo'), aInfo); 
 	}
 
 	// Handling the form submission

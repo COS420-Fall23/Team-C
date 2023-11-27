@@ -23,7 +23,7 @@ function Home() {
                             className="Homesign-up-button"
                             onClick={() => console.log("Refer to Sign up page.")}
                             >
-                            <Link to="/signup"><h3>Sign Up</h3></Link>
+                            <Link to="/signup" style={{ textDecoration: 'none'}}><h3>Sign Up</h3></Link>
                             </button>
                         </div>
                     </div>

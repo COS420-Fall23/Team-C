@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostCreation /> matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <h1
+      class="title"
+    >
+      Create Post
+    </h1>
+    <form>
+      <label
+        for="post-title"
+      >
+        Title:
+      </label>
+      <input
+        id="post-title"
+        name="title"
+        required=""
+        type="text"
+        value=""
+      />
+      <br />
+      <label
+        for="post-content"
+      >
+        Content:
+      </label>
+      <textarea
+        id="post-content"
+        name="content"
+        required=""
+      />
+      <br />
+      <label
+        for="post-file"
+      >
+        Upload File:
+      </label>
+      <input
+        id="post-file"
+        name="file"
+        type="file"
+      />
+      <br />
+      <button
+        type="button"
+      >
+        Create Post
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
