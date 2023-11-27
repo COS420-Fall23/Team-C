@@ -1,25 +1,61 @@
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './CSS/Post.css';
+import Comment from './components/Comment';
+import useNode from "./hooks/useNode";
+import './CSS/comment.css'
 
-export default function Post(props) {
-    const post = props.toChild;
+const comments = {
+  id: 1,
+  items: [],
+};
 
-    return (
-        <div className='post'>
-            {(post) ? 
-            <div>
-                <header className='post-title'>
-                    {post.title}
-                    
-                </header>
-                <div className='post-body'>
-                    {post.content}
-                </div>
-            </div>
-            :
-            <span>Error loading post</span>
-            }
-            <Link onClick={() => {props.sendToParent(null)}}>Back to Post List</Link>
+const Post = (props) => {
+  const post = props.toChild;
+
+  const [commentsData, setCommentsData] = useState(comments);
+
+  const { insertNode, editNode, deleteNode } = useNode();
+
+  const handleInsertNode = (folderId, item) => {
+    const finalStructure = insertNode(commentsData, folderId, item);
+    setCommentsData(finalStructure);
+  };
+
+  const handleEditNode = (folderId, value) => {
+    const finalStructure = editNode(commentsData, folderId, value);
+    setCommentsData(finalStructure);
+  };
+
+  const handleDeleteNode = (folderId) => {
+    const finalStructure = deleteNode(commentsData, folderId);
+    const temp = { ...finalStructure };
+    setCommentsData(temp);
+  };
+
+  return (
+    <div className="post">
+      {post ? (
+        <div>
+          <header className="post-title">{post.title}</header>
+          <div className="post-body">{post.content}</div>
         </div>
-    )
-}
+      ) : (
+        <span>Error loading post</span>
+      )}
+
+      <Link onClick={() => props.sendToParent(null)}>Back to Post List</Link>
+
+      {/* Render comments using the Comment component */}
+      <div className="comments-section">
+          <Comment
+            handleInsertNode={handleInsertNode}
+            handleEditNode={handleEditNode}
+            handleDeleteNode={handleDeleteNode}
+            comment={commentsData}
+          />
+      </div>
+    </div>
+  );
+};
+
+export default Post;

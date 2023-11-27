@@ -1,5 +1,6 @@
 import './CSS/Login.css'
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { auth } from './firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -7,6 +8,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const history = useNavigate();
 
     const errorMessage = e => {
         return <div style= {{display: error ? '' : "none"}}>
@@ -29,7 +31,7 @@ export default function Login() {
             setError(false);
             const user = userCredential.user;
             console.log(user);
-            window.location.href('/mainpage')
+            history("/mainpage")
         })
         .catch((logError) => {
             console.log(logError.code, logError.message);
