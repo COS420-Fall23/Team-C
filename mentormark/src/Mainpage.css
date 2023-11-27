@@ -1,85 +1,104 @@
-/* styles.css */
-.container {
-text-align: center;
+.mainpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #edede8;
 }
 
-.title {
-font-size: 2em;
+.mainpage-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
 }
 
-.addButton {
-background-color: blue;
-border: none;
-border-radius: 50%;
-width: 60px;
-height: 60px;
-color: white;
-font-size: 2em;
-cursor: pointer;
-position: relative;
+.mainpage-title {
+  font-size: 24px;
+  color: rgb(91, 91, 231);
+  margin: 0;
+  margin-right: 20px;
 }
 
-.addButton::before,
-.addButton::after {
-content: '';
-position: absolute;
-background-color: white;
+.mainpage-search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
 }
 
-.addButton::before {
-width: 2px;
-height: 30px;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+.mainpage-search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  flex-grow: 1;
+  max-width: 600px;
 }
 
-.addButton::after {
-height: 2px;
-width: 30px;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+.mainpage-search-icon {
+  color: rgb(91, 91, 231);
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
-.postList {
-margin-top: 20px;
+.mainpage-postList {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.post {
-border: 1px solid #ccc;
-padding: 10px;
-margin-bottom: 10px;
+.mainpage-post {
+  width: 200%;
+  background-color: #ffffff;
+  border: 3px solid rgb(222, 201, 220);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-display: grid;
-grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
-grid-template-columns: 200px 1fr; /* Sidebar and main body */
-height: 100vh;
+.mainpage-addButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(202, 131, 238);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.top-bar {
-background-color: #333;
-color: white;
-padding: 10px;
-grid-column: 1 / -1; /* Spans the whole width */
+.mainpage-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+  width: 100%;
 }
 
-.sidebar {
-background-color: #f4f4f4; /* Change to suit your design */
-border-right: 1px solid #ccc;
-}
-
-.main-body {
-position: relative;
-display: flex;
-flex-direction: column;
-overflow: auto;
-}
-
-.add-button-container {
-position: absolute;
-bottom: 20px;
-right: 20px;
+.mainpage-sidebar-header {
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(168, 153, 235);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  font-family: "'Pacifico', cursive";
 }

@@ -4,8 +4,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { db, storage } from "./firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
 import "./Mainpage.css";
-import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
-import { AiOutlineSearch } from "react-icons/ai";
 
 function Mainpage() {
   const [posts, setPosts] = useState([]);
@@ -60,35 +58,19 @@ function Mainpage() {
   };
 
   return (
-    <div className="mainpage-container">
-      <header className="mainpage-top-bar">
-        <h1
-          className="mainpage-title"
-          onClick={() => navigate("/mainpage")}
-          style={{
-            fontSize: "28px", // Makes the text slightly bigger
-            marginLeft: "20px", // Moves the text more to the right
-            marginTop: "-10px",
-          }}
-        >
+    <div className="container">
+      <header className="top-bar">
+        <h1 className="title" onClick={() => navigate("/mainpage")}>
           MentorMark
         </h1>
-        <div className="mainpage-search-container">
-          <input
-            className="mainpage-search-input"
-            type="text"
-            placeholder="Search"
-          />
-          <AiOutlineSearch className="mainpage-search-icon" />
-        </div>
       </header>
-      <div className="mainpage-sidebar">
-        <header className="mainpage-sidebar-header">Communities</header>
+      <div className="sidebar">
+        <header>Communities</header>
       </div>
-      <div className="mainpage-main-body">
-        <div className="mainpage-postList">
+      <div className="main-body">
+        <div className="postList">
           {posts.map((post, index) => (
-            <div key={post.id} className="mainpage-post">
+            <div key={post.id} className="post">
               <h3>{post.title}</h3>
               <p>{post.content}</p>
               {post.file && imageURLs[post.id] ? (
@@ -114,14 +96,10 @@ function Mainpage() {
             </div>
           ))}
         </div>
-        <div className="mainpage-add-button-container">
-          <button
-            className="mainpage-addButton"
-            onClick={() => navigate("/create-post")}
-          >
-            +
-          </button>
-          {/* Plus icon will be handled by the CSS styles */}
+        <div className="add-button-container">
+          <div className="addButton" onClick={() => navigate("/create-post")}>
+            {/* Plus icon will be handled by the CSS styles */}
+          </div>
         </div>
       </div>
     </div>

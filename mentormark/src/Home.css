@@ -67,19 +67,24 @@
 .Homelog-in-button {
   background-color: rgb(77, 109, 238);
   width: 100%;
-  margin-top: 20px;
 }
 
 /* Style specific to the Sign Up button */
 .Homesign-up-button {
   background-color: rgb(229, 137, 246);
-  width: 70%;
-  align-self: center; /* Center the "Sign Up" button vertically */
+  width: auto;
+  align-self: center;
   margin-top: 20px;
   margin-bottom: 20px;
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 10px;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 20px;
 }
 .Homeleft-section {
   width: 90%;

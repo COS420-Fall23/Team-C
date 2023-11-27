@@ -1,65 +1,121 @@
-.Signup {
-  text-align: center;
-  background-color: #edede8;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Signup-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* General Styles for SignUp Form */
+.signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background-color: #edede8;
 }
 
-.SignUplabel {
-    display: block;
-    font-size: larger;
-    color: black;
-    padding: 5px;
-  }
-  
-.SignUpinput {
-  font-size: larger;
-  padding: 5px;
-  margin: 2px;
-}
-  
-.SignUpbtn {
-  color: white;
-  background-color: red;
-  border-radius: 5px;
-  font-size: larger;
-  display: block;
-  padding: 5px;
-  margin: 10px auto;
-}
-
-.SignUpmessages {
+/* Styles for the form container within SignUp Form */
+.signup-form-container {
+  width: 30%;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 0px 10px;
+  box-shadow: 0px 0px 10px rgba(178, 110, 218, 0.1);
+  border: 2px solid #c6c6f4;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.SignUperror {
+/* Styles for the MentorMark heading within SignUp Form */
+.signup-heading {
+  font-size: 50px;
+  color: rgb(97, 97, 220);
+  text-align: center;
+}
+
+/* Styles for sign-up logo within SignUp Form */
+.signup-logo {
+  width: 100px;
   display: block;
-  background-color: red;
+  margin: 20px auto;
+}
+
+/* Style for back button within SignUp Form */
+.signup-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #9fadeb;
+  padding: 10px 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* Styles for error and success messages within SignUp Form */
+.signup-messages {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-success,
+.signup-error {
+  font-size: 18px;
   color: white;
+  padding: 10px;
+  border-radius: 5px;
   width: fit-content;
-  height: 50px;
-  padding: 5px;
+  margin: 0 auto;
 }
 
-.SignUpsuccess {
-  display: block;
-  background-color: lightblue;
-  color: black;
-  width: fit-content;
-  height: 50px;
-  padding: 5px;
+.signup-success {
+  background-color: #4caf50;
+}
+
+.signup-error {
+  background-color: #f4363f;
+}
+
+/* Styles for labels within SignUp Form */
+.signup-label {
+  font-size: 20px;
+  color: rgb(91, 91, 231);
+  margin-top: 10px;
+  display: block; /* Changed from float to block for better alignment */
+}
+
+/* Styles for inputs within SignUp Form */
+.signup-input {
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%; /* Ensuring it fills the width of the form-container */
+}
+
+/* Styles for select dropdowns within SignUp Form */
+.signup-select {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Styles for the submit button within SignUp Form */
+.signup-btn {
+  background-color: rgb(202, 131, 238);
+  color: white;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 50px;
+  display: block; /* Make sure the button is a block-level element */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hover effect for the submit button within SignUp Form */
+.signup-btn:hover {
+  background-color: #3558f4;
+  transition: background-color 0.3s ease-in-out;
 }
