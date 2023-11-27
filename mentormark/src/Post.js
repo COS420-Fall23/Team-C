@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './CSS/Post.css';
 
 export default function Post(props) {
     const post = props.toChild;
@@ -9,6 +10,7 @@ export default function Post(props) {
             <div>
                 <header className='post-title'>
                     {post.title}
+                    
                 </header>
                 <div className='post-body'>
                     {post.content}
