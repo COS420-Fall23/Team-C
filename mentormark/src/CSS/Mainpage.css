@@ -30,19 +30,20 @@ transform: translate(-50%, -50%);
 margin-top: 10px;
 background-color: #dddddd;
 margin-left: 10px;
+align-self: center;
+width: 50%;
 }
 
 
 .mainpage-container {
 display: grid;
 grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
-grid-template-columns: 200px 1fr; /* Sidebar and main body */
+grid-template-columns: 200px 1fr 200px; /* Sidebar and main body */
 height: 100vh;
 text-align: center;
 }
 
 .mainpage-post {
-  width: 75%;
   background-color: #ffffff;
   border: 1px solid rgb(217, 146, 212);
   border-radius: 10px;
@@ -91,7 +92,14 @@ display: flex;
 flex-direction: column;
 overflow: auto;
 background-color: #dddddd;
-width: 80%;
+width: 100%;
+scrollbar-width: 100px;
+}
+
+::-webkit-scrollbar {display:none;}
+
+.mainpage-image{
+  align-self: center;
 }
 
 .mainpage-add-button-container {

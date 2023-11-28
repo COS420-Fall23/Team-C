@@ -74,6 +74,7 @@ function PostCreation() {
   };
   
   return (
+    <div className="page-center">
       <div className="creation-container">
         <button className="create-home" onClick={() => navigate('/mainpage')}>Home</button>
         <h1 className="create-title">Create Post</h1>
@@ -113,6 +114,7 @@ function PostCreation() {
           </button>
         </form>
       </div>
+    </div>
   );
 };
 

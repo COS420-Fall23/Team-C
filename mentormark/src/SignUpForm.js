@@ -148,7 +148,7 @@ export default function SignUpForm() {
 	const successMessage = () => {
 		return (
 			<div
-				className="SignUpsuccess"
+				className="signup-success"
 				style={{
 					display: submitted ? '' : 'none',
 				}}>
@@ -162,7 +162,7 @@ export default function SignUpForm() {
 		return (
 			<h1
 				htmlFor='name' 
-				className="SignUperror"
+				className="signup-error"
 				style={{
 					display: Nerror ? '' : 'none',
 				}}>
@@ -174,7 +174,7 @@ export default function SignUpForm() {
 		return (
 			<h1
 				htmlFor='email'
-				className="SignUperror"
+				className="signup-error"
 				style={{
 					display: Merror ? '' : 'none',
 				}}>
@@ -186,7 +186,7 @@ export default function SignUpForm() {
 		return (
 			<h1
 				htmlFor='password'
-				className="SignUperror"
+				className="signup-error"
 				style={{
 					display: Perror ? '' : 'none',
 				}}>
@@ -202,52 +202,52 @@ export default function SignUpForm() {
 	};
 
 	return (
-		<div className='Signup'>
-			<div className="Form">
-			<button>
-                <Link to="/"><h3>Home</h3></Link>
+		<div className='signup-form'>
+			<div className="signup-form">
+			<button className='signup-back-button'>
+                <Link to="/"><h3>Back</h3></Link>
             </button>
-			<div>
+			<div className='signup-heading'>
 				<h1>Sign Up Form</h1>
 			</div>
 
 			{/* Calling to the methods */}
-			<div className="SignUpmessages">
+			<div className="signup-messages">
 				{NameErrorMessage()}
 				{EmailErrorMessage()}
 				{PasswordErrorMessage()}
 				{successMessage()}
 			</div>
 
-			<form>
+			<form className='signup-form-container'>
 				{/* Labels and inputs for form data */}
-				<label htmlFor='name' className="SignUplabel">Name</label>
-				<input onChange={handleName} className="SignUpinput"
+				<label htmlFor='name' className="signup-label">Name</label>
+				<input onChange={handleName} className="signup-input"
 					value={name} type="text" id='name' />
 				
-				<label htmlFor='email' className="SignUplabel">Email</label>
-				<input onChange={handleEmail} className="SignUpinput"
+				<label htmlFor='email' className="signup-label">Email</label>
+				<input onChange={handleEmail} className="signup-input"
 					value={email} type="email" id='email' />
 
-				<label htmlFor='password' className="SignUplabel">Password</label>
-				<input onChange={handlePassword} className="SignUpinput"
+				<label htmlFor='password' className="signup-label">Password</label>
+				<input onChange={handlePassword} className="signup-input"
 					value={password} type="password" id='password' />
 
-				<label htmlFor='GradStatus' className="SignUplabel">Graduate Status</label>
-				<select onChange={handleGStatus} id="GradStatus">
+				<label htmlFor='GradStatus' className="signup-label">Graduate Status</label>
+				<select className='signup-select' onChange={handleGStatus} id="GradStatus">
 					<option value="null">--</option>
 					<option value="Undergrad">Undergraduate</option>
 					<option value="Grad">Graduate</option>
 				</select>
 				
-				<label htmlFor='Major' className="SignUplabel">Major</label>
-				<select onChange={handleMajor} id="Major">
+				<label htmlFor='Major' className="signup-label">Major</label>
+				<select className='signup-select' onChange={handleMajor} id="Major">
 					<option value="null">--</option>
 					<option value="CompSci">Computer Science</option>
 					<option value="NMD">New Media Design</option>
 				</select>
 
-				<button onClick={handleSubmit} className="SignUpbtn"
+				<button onClick={handleSubmit} className="signup-btn"
 						type="submit">
 					Submit
 				</button>

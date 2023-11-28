@@ -10,9 +10,9 @@
 
 /* Styles for the form container within SignUp Form */
 .signup-form-container {
-  width: 30%;
+  width: 100%;
   background-color: white;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border-radius: 10px;
   margin-top: 0px 10px;
   box-shadow: 0px 0px 10px rgba(178, 110, 218, 0.1);
@@ -24,7 +24,7 @@
 
 /* Styles for the MentorMark heading within SignUp Form */
 .signup-heading {
-  font-size: 50px;
+  font-size: 30px;
   color: rgb(97, 97, 220);
   text-align: center;
 }

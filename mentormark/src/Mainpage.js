@@ -95,7 +95,7 @@ function Mainpage() {
         </div>
       </header>
       <div className="mainpage-sidebar">
-        <header>Communities</header>
+        <header style={{margin: '10px', fontStyle: 'bold'}}>Communities</header>
       </div>
       <div className="mainpage-body">
         {(postId===null) ? 
@@ -106,7 +106,7 @@ function Mainpage() {
                 <h3><Link onClick={() => { setViewedPost(post); } } style={{ textDecoration: 'none' }}>{post.title}</Link></h3>
                 <p>{post.content}</p>
                 {post.file && imageURLs[post.id] ? (
-                  <img src={imageURLs[post.id]} alt='' style={{ maxWidth: '100px' }} />
+                  <img className="mainpage-image" src={imageURLs[post.id]} alt='' style={{ maxWidth: '100px' }} />
                 ) : post.file ? (
                   <p>Error loading image</p>
                 ) : (
