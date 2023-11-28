@@ -4,12 +4,15 @@
 }
 
 .post-title {
-    text-align: left;
-    font-size: 30px;
+    text-align: center;
+    font-size: 40px;
 }
 
 .post-body {
     font-size: 20px;
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    text-align: center;
 }
 
 .post-image {
@@ -18,4 +21,8 @@
 
 .post-return{
     text-align: left;
+}
+
+.comments-section{
+    align-content: center;
 }
