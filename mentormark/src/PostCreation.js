@@ -76,9 +76,10 @@ function PostCreation() {
   return (
       <div className="creation-container">
         <h1 className="title">Create Post</h1>
-        <form>
-          <label htmlFor="post-title">Title:</label>
+        <form className="create-form">
+          <label className="create-label" htmlFor="post-title">Title:</label>
           <input
+            className="create-input"
             type="text"
             id="post-title"
             name="title"
@@ -87,8 +88,9 @@ function PostCreation() {
             required
           />
           <br />
-          <label htmlFor="post-content">Content:</label>
+          <label className="create-label" htmlFor="post-content">Content:</label>
           <textarea
+            className="create-textarea"
             id="post-content"
             name="content"
             value={formData.content}
@@ -96,15 +98,16 @@ function PostCreation() {
             required
           ></textarea>
           <br />
-          <label htmlFor="post-file">Upload File:</label>
+          <label className="create-label" htmlFor="post-file">Upload File:</label>
           <input
+            className="create-input"
             type="file"
             id="post-file"
             name="file"
             onChange={handleInputChange}
           />
           <br />
-          <button type="button" onClick={createPost}>
+          <button className="create-button" type="button" onClick={createPost}>
             Create Post
           </button>
         </form>
