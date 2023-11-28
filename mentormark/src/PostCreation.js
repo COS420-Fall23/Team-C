@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./CSS/PostCreation.css";
+import { useNavigate } from "react-router-dom";
 import { storage } from "./firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
@@ -28,78 +29,90 @@ function PostCreation() {
 
   const createPost = async () => {
     const { title, content, file } = formData;
-
-    if (title && content && file) {
-      const storageRef = ref(storage, `/files/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const percent = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  
+    if (title && content) {
+      const newPost = {
+        title,
+        content,
+        timestamp: new Date().toLocaleString(),
+      };
+  
+      try {
+        if (file) {
+          const storageRef = ref(storage, `/files/${file.name}`);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+  
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const percent = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              );
+              setPercent(percent);
+            },
+            async (err) => console.log(err),
+            async () => {
+              const url = await getDownloadURL(uploadTask.snapshot.ref);
+              newPost.file = url;
+  
+              const docRef = await addDoc(collection(db, 'posts'), newPost);
+              console.log('Document written with ID: ', docRef.id);
+              navigate('/mainpage'); // Redirect back to the main page
+            }
           );
-          setPercent(percent);
-        },
-        async (err) => console.log(err),
-        async () => {
-          const url = await getDownloadURL(uploadTask.snapshot.ref);
-          const newPost = {
-            title,
-            content,
-            file: url,
-            timestamp: new Date().toLocaleString(),
-          };
-          try {
-            const docRef = await addDoc(collection(db, 'posts'), newPost);
-            console.log('Document written with ID: ', docRef.id);
-            navigate('/mainpage'); // Redirect back to the main page
-          } catch (e) {
-            console.error('Error adding document: ', e);
-          }
+        } else {
+          const docRef = await addDoc(collection(db, 'posts'), newPost);
+          console.log('Document written with ID: ', docRef.id);
+          navigate('/mainpage'); // Redirect back to the main page
         }
-      );
+      } catch (e) {
+        console.error('Error adding document: ', e);
+      }
     } else {
-      alert('Please provide both title, content, and upload a file for the post.');
+      alert('Please provide both title and content for the post.');
     }
   };
-
+  
   return (
-    <div className="container">
-      <h1 className="title">Create Post</h1>
-      <form>
-        <label htmlFor="post-title">Title:</label>
-        <input
-          type="text"
-          id="post-title"
-          name="title"
-          value={formData.title}
-          onChange={handleInputChange}
-          required
-        />
-        <br />
-        <label htmlFor="post-content">Content:</label>
-        <textarea
-          id="post-content"
-          name="content"
-          value={formData.content}
-          onChange={handleInputChange}
-          required
-        ></textarea>
-        <br />
-        <label htmlFor="post-file">Upload File:</label>
-        <input
-          type="file"
-          id="post-file"
-          name="file"
-          onChange={handleInputChange}
-        />
-        <br />
-        <button type="button" onClick={createPost}>
-          Create Post
-        </button>
-      </form>
-    </div>
+      <div className="creation-container">
+        <button className="create-home" onClick={() => navigate('/mainpage')}>Home</button>
+        <h1 className="create-title">Create Post</h1>
+        <form className="create-form">
+          <label className="create-label" htmlFor="post-title">Title:</label>
+          <input
+            className="create-input"
+            type="text"
+            id="post-title"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            required
+          />
+          <br />
+          <label className="create-label" htmlFor="post-content">Content:</label>
+          <textarea
+            className="create-textarea"
+            id="post-content"
+            name="content"
+            value={formData.content}
+            onChange={handleInputChange}
+            required
+          ></textarea>
+          <br />
+          <label className="create-label" htmlFor="post-file">Upload File:</label>
+          <input
+            className="create-input"
+            type="file"
+            id="post-file"
+            name="file"
+            onChange={handleInputChange}
+          />
+          <br />
+          <button className="create-button" type="button" onClick={createPost}>
+            Create Post
+          </button>
+        </form>
+      </div>
   );
 };
 

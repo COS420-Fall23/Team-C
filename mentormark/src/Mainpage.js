@@ -3,8 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db, storage, auth } from "./firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
-import MentorMarkLogo from "./logo/MentorMarkLogoFinals-12.png";
-// import { AiOutlineSearch } from "react-icons/ai";
 import './CSS/Mainpage.css'
 import Post from './Post';
 import { signOut } from 'firebase/auth';
@@ -16,13 +14,6 @@ function Mainpage() {
   const [imageURLs, setImageURLs] = useState({});
   const [postId, setPostId] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
-
-  // const fetchPosts = async () => {
-  //   const postsCollection = collection(db, 'posts');
-  //   const snapshot = await getDocs(postsCollection);
-  //   const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  //   setPosts(postsData);
-  // };
 
   const handleProfileClick = () => {
     setShowDropdown(!showDropdown); // Toggle dropdown visibility
@@ -79,38 +70,39 @@ function Mainpage() {
     fetchPosts();
   }, []);
 
-  // const formatTimestamp = (timestamp) => {
-  //   return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
-  // };
+  const sortedPosts = posts.sort((a, b) => {
+    return new Date(b.timestamp) - new Date(a.timestamp);
+  });
+
 
   return (
-    <div className="container">
-      <header className="top-bar">
-        <h1 className="title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
-        <div className="profile-container">
+    <div className="mainpage-container">
+      <header className="mainpage-top-bar">
+        <h1 className="mainpage-title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
+        <div className="mainpage-profile-container">
           <img
-            className="profile-icon"
+            className="mainpage-profile-icon"
             src= {pImage} // Replace with the path to your profile image
             alt="Profile"
             onClick={handleProfileClick}
           />
           {showDropdown && (
-            <div className="dropdown-menu">
+            <div className="mainpage-dropdown-menu">
               <button onClick={() => navigate('/account')}>Account</button>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}
         </div>
       </header>
-      <div className="sidebar">
+      <div className="mainpage-sidebar">
         <header>Communities</header>
       </div>
-      <div className="main-body">
+      <div className="mainpage-body">
         {(postId===null) ? 
         <>
-        <div className="postList">
-            {posts.map((post, index) => (
-              <div key={post.id} className="post">
+        <div className="mainpage-postList">
+            {sortedPosts.map((post, index) => (
+              <div key={post.id} className="mainpage-post">
                 <h3><Link onClick={() => { setViewedPost(post); } } style={{ textDecoration: 'none' }}>{post.title}</Link></h3>
                 <p>{post.content}</p>
                 {post.file && imageURLs[post.id] ? (
@@ -130,15 +122,15 @@ function Mainpage() {
                 <small>{post.timestamp}</small>
               </div>
             ))}
-            </div><div className="add-button-container">
-              <div className="addButton" onClick={() => navigate('/create-post')}>
+            </div><div className="mainpage-add-button-container">
+              <div className="mainpage-addButton" onClick={() => navigate('/create-post')}>
                 {/* Plus icon will be handled by the CSS styles */}
               </div>
             </div>
         </>
         : <Post toChild={postId} sendToParent={setPostId}></Post>}
         </div>
-      </div>
+  </div>
   );
 }
 

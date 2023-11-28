@@ -8,33 +8,31 @@
   background-color: #edede8;
 }
 
-.container {
+.creation-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   padding: 40px;
-  background-color: #ffffff;
-  width: 100%;
   max-width: 500px;
+  background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  overflow: hidden;
-  max-height: 80vh;
 }
 
-.title {
+.create-title {
   color: rgb(97, 97, 220);
   font-size: 40px;
   margin-bottom: 70px;
+  align-self: center;
 }
 
-form {
+.create-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-label {
+.create-label {
   color: rgb(134, 134, 216);
   margin-bottom: 11px;
   font-size: 20px;
@@ -42,9 +40,9 @@ label {
   text-align: left;
 }
 
-input[type="text"],
-textarea,
-input[type="file"] {
+.create-input[type="text"],
+.create-textarea,
+.create-input[type="file"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -52,12 +50,12 @@ input[type="file"] {
   width: 100%;
 }
 
-textarea {
+.create-textarea {
   resize: vertical;
   min-height: 100px;
 }
 
-button {
+.create-button {
   background-color: rgb(202, 131, 238);
   color: white;
   padding: 10px 15px;
@@ -67,6 +65,23 @@ button {
   font-weight: bold;
 }
 
-button:hover {
+.create-button:hover {
   background-color: rgb(134, 134, 216);
 }
+
+.create-home {
+  background-color: rgb(150, 12, 214);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  max-width: 100px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: center;
+}
+
+.create-home:hover {
+  background-color: rgb(134, 134, 216);
+}
+
