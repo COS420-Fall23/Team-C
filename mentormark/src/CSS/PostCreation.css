@@ -1,0 +1,91 @@
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  background-color: #edede8;
+}
+
+.creation-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 80vh;
+}
+
+.create-title {
+  color: rgb(97, 97, 220);
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  align-self: center;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.create-label {
+  color: rgb(134, 134, 216);
+  margin-bottom: 11px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.create-input[type="text"],
+.create-textarea,
+.create-input[type="file"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.create-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-button {
+  background-color: rgb(202, 131, 238);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.create-button:hover {
+  background-color: rgb(134, 134, 216);
+}
+
+.create-home {
+  background-color: rgb(150, 12, 214);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  max-width: 100px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: center;
+}
+
+.create-home:hover {
+  background-color: rgb(134, 134, 216);
+}
+

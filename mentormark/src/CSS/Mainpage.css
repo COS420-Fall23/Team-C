@@ -1,0 +1,171 @@
+/* styles.css */
+.mainpage-title {
+font-size: 2em;
+}
+
+.mainpage-addButton::before,
+.mainpage-addButton::after {
+content: '';
+position: absolute;
+background-color: white;
+}
+
+.mainpage-addButton::before {
+width: 2px;
+height: 30px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.mainpage-addButton::after {
+height: 2px;
+width: 30px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.mainpage-postList {
+margin-top: 10px;
+background-color: #dddddd;
+margin-left: 10px;
+align-self: center;
+width: 50%;
+}
+
+
+.mainpage-container {
+display: grid;
+grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
+grid-template-columns: 200px 1fr 200px; /* Sidebar and main body */
+height: 100vh;
+text-align: center;
+}
+
+.mainpage-post {
+  background-color: #ffffff;
+  border: 1px solid rgb(217, 146, 212);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainpage-addButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(91, 91, 231);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mainpage-top-bar {
+background-color: #333;
+color: white;
+padding: 10px;
+grid-column: 1 / -1; /* Spans the whole width */
+position: relative;
+}
+
+.mainpage-sidebar {
+background-color: #f4f4f4; /* Change to suit your design */
+border-right: 1px solid #ccc;
+width: 200px;
+}
+
+
+.mainpage-body {
+position: relative;
+display: flex;
+flex-direction: column;
+overflow: auto;
+background-color: #dddddd;
+width: 100%;
+scrollbar-width: 100px;
+}
+
+::-webkit-scrollbar {display:none;}
+
+.mainpage-image{
+  align-self: center;
+}
+
+.mainpage-add-button-container {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 2;
+}
+
+.mainpage-profile-container {
+display: flex;
+align-items: center; /* Center items vertically */
+position: fixed; /* Fixed positioning to keep the profile icon fixed on the screen */
+top: 26px; /* Adjust the top position as needed */
+right: 20px; /* Adjust the right position as needed */
+z-index: 3; /* Ensure the profile icon is above the other elements */
+}
+
+.mainpage-profile-icon {
+border-radius: 50%;
+width: 40px; /* Adjust the size to your preference */
+height: 40px; /* Adjust the size to your preference */
+cursor: pointer;
+margin-right: 10px; /* Add some spacing between the profile icon and the "Sign Out" button */
+}
+
+.mainpage-sign-out-button {
+background-color: #ccc; /* Change to suit your design */
+border: none;
+color: white;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.mainpage-dropdown-menu {
+position: absolute;
+top: 100%; /* Position the dropdown below the profile icon */
+right: 0; /* Align the right edge of the dropdown with the right edge of the profile icon */
+background-color: #fff; /* Background color of the dropdown */
+border: 1px solid #ccc; /* Border color of the dropdown */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+z-index: 1000; /* Ensure the dropdown appears above other elements */
+}
+
+.mainpage-dropdown-menu button {
+display: block;
+width: 100%;
+padding: 10px;
+text-align: left;
+border: none;
+background: none;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.mainpage-dropdown-menu button:hover {
+background-color: #f0f0f0; /* Change to a lighter color on hover */
+}
+
+.mainpage-sidebar-header {
+align-self: flex-start;
+font-weight: bold;
+font-size: 20px;
+color: rgb(168, 153, 235);
+margin: 0;
+padding: 10px 0;
+width: 100%;
+font-family: "'Pacifico', cursive";
+}
