@@ -1,76 +1,0 @@
-
- Name: john 
- Email: John@gmaill.com 
- Password: John12345@ 
- GradStatus: option1
- Major: option1
- Name: Caleb 
- Email: Leb@gmaill.com 
- Password: CornHusk123@ 
- GradStatus: option2
- Major: option2
- Name: Travis 
- Email: Scott@gmaill.com 
- Password: Rapper4Lyfe# 
- GradStatus: option1
- Major: option1
- Name: Travis 
- Email: Scott@gmaill.com 
- Password: Rapper4Lyfe# 
- GradStatus: option1
- Major: option1
- Name: Traviss 
- Email: Scott@gmaill.com 
- Password: Rapper4Lyfe# 
- GradStatus: option1
- Major: option1
- Name: Traviss 
- Email: Scott@gmaill.com 
- Password: Rapper4Lyfe# 
- GradStatus: Grad
- Major: NMD
- Name: John 
- Email: John@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: John@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: John@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: John@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: j@gmail.com 
- Password: Jonny123@@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: J@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: J@gmail.com 
- Password: Johnny123@ 
- GradStatus: Undergrad
- Major: CompSci
- Name: John 
- Email: John@gmail.com 
- Password: Johnny123@ 
- GradStatus: Grad
- Major: NMD
- Name: Joe 
- Email: Joe@gmail.com 
- Password: JoeJoe123@ 
- GradStatus: Grad
- Major: NMD
