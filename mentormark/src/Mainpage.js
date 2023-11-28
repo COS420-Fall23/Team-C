@@ -79,12 +79,13 @@ function Mainpage() {
     fetchPosts();
   }, []);
 
-  // const formatTimestamp = (timestamp) => {
-  //   return timestamp.toDate().toLocaleString(); // Convert Firebase timestamp to a readable date string
-  // };
+  const sortedPosts = posts.sort((a, b) => {
+    return new Date(b.timestamp) - new Date(a.timestamp);
+  });
+
 
   return (
-    <div className="container">
+    <div className="mainpage-container">
       <header className="top-bar">
         <h1 className="title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
         <div className="profile-container">
@@ -109,7 +110,7 @@ function Mainpage() {
         {(postId===null) ? 
         <>
         <div className="postList">
-            {posts.map((post, index) => (
+            {sortedPosts.map((post, index) => (
               <div key={post.id} className="post">
                 <h3><Link onClick={() => { setViewedPost(post); } } style={{ textDecoration: 'none' }}>{post.title}</Link></h3>
                 <p>{post.content}</p>

@@ -8,18 +8,14 @@
   background-color: #edede8;
 }
 
-.container {
+.creation-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-self: center;
   padding: 40px;
   background-color: #ffffff;
-  width: 100%;
-  max-width: 500px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  overflow: hidden;
-  max-height: 80vh;
 }
 
 .title {

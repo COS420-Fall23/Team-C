@@ -1,8 +1,4 @@
 /* styles.css */
-.container {
-text-align: center;
-}
-
 .title {
 font-size: 2em;
 }
@@ -53,11 +49,12 @@ margin-bottom: 5px;
 border-radius: 10px;
 }
 
-.container {
+.mainpage-container {
 display: grid;
 grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
 grid-template-columns: 200px 1fr; /* Sidebar and main body */
 height: 100vh;
+text-align: center;
 }
 
 .mainpage-post {
