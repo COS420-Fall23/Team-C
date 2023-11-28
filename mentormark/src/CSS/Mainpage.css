@@ -30,6 +30,8 @@ transform: translate(-50%, -50%);
 margin-top: 10px;
 background-color: #dddddd;
 margin-left: 10px;
+align-self: center;
+width: 50%;
 }
 
 
@@ -91,7 +93,11 @@ flex-direction: column;
 overflow: auto;
 background-color: #dddddd;
 width: 100%;
+scrollbar-width: 100px;
 }
+
+::-webkit-scrollbar {display:none;}
+
 .mainpage-image{
   align-self: center;
 }
