@@ -113,26 +113,26 @@ cursor: pointer;
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%; /* Position the dropdown below the profile icon */
-  right: 0; /* Align the right edge of the dropdown with the right edge of the profile icon */
-  background-color: #fff; /* Background color of the dropdown */
-  border: 1px solid #ccc; /* Border color of the dropdown */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-  z-index: 1000; /* Ensure the dropdown appears above other elements */
+position: absolute;
+top: 100%; /* Position the dropdown below the profile icon */
+right: 0; /* Align the right edge of the dropdown with the right edge of the profile icon */
+background-color: #fff; /* Background color of the dropdown */
+border: 1px solid #ccc; /* Border color of the dropdown */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+z-index: 1000; /* Ensure the dropdown appears above other elements */
 }
 
 .dropdown-menu button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  text-align: left;
-  border: none;
-  background: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+display: block;
+width: 100%;
+padding: 10px;
+text-align: left;
+border: none;
+background: none;
+cursor: pointer;
+transition: background-color 0.3s;
 }
 
 .dropdown-menu button:hover {
-  background-color: #f0f0f0; /* Change to a lighter color on hover */
+background-color: #f0f0f0; /* Change to a lighter color on hover */
 }
