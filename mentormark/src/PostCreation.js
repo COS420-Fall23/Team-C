@@ -75,7 +75,8 @@ function PostCreation() {
   
   return (
       <div className="creation-container">
-        <h1 className="title">Create Post</h1>
+        <button className="create-home" onClick={() => navigate('/mainpage')}>Home</button>
+        <h1 className="create-title">Create Post</h1>
         <form className="create-form">
           <label className="create-label" htmlFor="post-title">Title:</label>
           <input

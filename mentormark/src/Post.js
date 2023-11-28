@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Comment from './components/Comment';
 import useNode from "./hooks/useNode";
 import './CSS/comment.css';
+import './CSS/Post.css'
 
 const comments = {
   id: 1,
@@ -34,17 +35,16 @@ const Post = (props) => {
 
   return (
     <div className="post">
+      <h3 className='post-return'><Link onClick={() => props.sendToParent(null)}>Back to Post List</Link></h3>
       {post ? (
         <div>
           <header className="post-title">{post.title}</header>
-          <img className='post-image' src={post.file} alt={post.file} style={{ maxWidth: '200px' }} />
+          <img className='post-image' src={post.file} alt={post.file} />
           <div className="post-body">{post.content}</div>
         </div>
       ) : (
         <span>Error loading post</span>
       )}
-
-      <Link onClick={() => props.sendToParent(null)}>Back to Post List</Link>
 
       {/* Render comments using the Comment component */}
       <div className="comments-section">

@@ -1,11 +1,21 @@
 .post {
     text-align: center;
+    margin: 20px;
 }
 
 .post-title {
-    font-size: large;
+    text-align: left;
+    font-size: 30px;
 }
 
 .post-body {
-    font-size: medium;
+    font-size: 20px;
+}
+
+.post-image {
+    max-width: 500px;
+}
+
+.post-return{
+    text-align: left;
 }
