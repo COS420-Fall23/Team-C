@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Comment from './components/Comment';
 import useNode from "./hooks/useNode";
 import './CSS/comment.css';
-import './CSS/Post.css'
+import './CSS/Post.css';
 
 const comments = {
   id: 1,
