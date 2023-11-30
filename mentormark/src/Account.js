@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth, db, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc } from './firebaseConfig';
+import { useNavigate, Link } from 'react-router-dom';
+import { auth, db, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc, updateProfile } from './firebaseConfig';
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -10,26 +10,38 @@ export default function AccountPage() {
   const [newEmail, setNewEmail] = useState('');
   const [newGradStatus, setNewGradStatus] = useState('');
   const [newMajor, setNewMajor] = useState('');
+  const [newName, setNewName] = useState('');
 
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [isChangingEmail, setIsChangingEmail] = useState(false);
   const [isChangingGradStatus, setIsChangingGradStatus] = useState(false);
   const [isChangingMajor, setIsChangingMajor] = useState(false);
+  const [isChangingName, setIsChangingName] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
-        if (userDoc.exists()) {
-          setUser(userDoc.data());
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        const fetchUserData = async () => {
+          try {
+            const userDoc = await getDoc(doc(db, 'users', userAuth.displayName));
+            if (userDoc.exists()) {
+              setUser(userDoc.data());
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error.message);
+          }
+        };
+  
+        fetchUserData();
+      } else {
+        // User is not logged in, you may want to handle this case
+        setUser(null);
       }
-    };
-
-    fetchUserData();
-  }, [auth.currentUser]);
+    });
+  
+    // Cleanup the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const handleChangePassword = async () => {
     try {
@@ -44,6 +56,9 @@ export default function AccountPage() {
   const handleChangeEmail = async () => {
     try {
       await updateEmail(auth.currentUser, newEmail);
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
+        email: newEmail,
+      });
       alert('Email changed successfully!');
       setIsChangingEmail(false);
     } catch (error) {
@@ -54,8 +69,8 @@ export default function AccountPage() {
   const handleChangeGradStatus = async () => {
     try {
       // Update grad status in Firestore
-      await updateDoc(doc(db, 'users', auth.currentUser.uid), {
-        gradStatus: newGradStatus,
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
+        gStatus: newGradStatus,
       });
 
       alert('Grad status changed successfully!');
@@ -68,7 +83,7 @@ export default function AccountPage() {
   const handleChangeMajor = async () => {
     try {
       // Update major in Firestore
-      await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
         major: newMajor,
       });
 
@@ -98,9 +113,12 @@ export default function AccountPage() {
 
   return (
     <div className="AccountPage">
+      <button className='account-back-button'>
+          <Link to="/mainpage"><h3>Back</h3></Link>
+      </button>
       <h1>Welcome, {user.name}!</h1>
       <p>Email: {user.email}</p>
-      <p>Grad Status: {user.gradStatus}</p>
+      <p>Grad Status: {user.gStatus}</p>
       <p>Major: {user.major}</p>
 
       {isChangingPassword ? (
