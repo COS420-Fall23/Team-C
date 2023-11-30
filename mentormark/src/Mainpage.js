@@ -15,6 +15,17 @@ function Mainpage() {
   const [postId, setPostId] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const [searchText, setSearchText] = useState(); //Search textbox state
+  const [searchParams, setSearchParams] = useState(null);
+
+  const handleSearchText = (e) => {
+    setSearchText(e.target.value);
+  }
+
+  const handleSearch = () => {
+    setSearchParams(searchText);
+  }
+
   const handleProfileClick = () => {
     setShowDropdown(!showDropdown); // Toggle dropdown visibility
   };
@@ -27,7 +38,6 @@ function Mainpage() {
       console.error('Error signing out:', error.message);
     }
   };
-
 
   const setViewedPost = async (id) => {
     setPostId(id);
@@ -79,6 +89,12 @@ function Mainpage() {
     <div className="mainpage-container">
       <header className="mainpage-top-bar">
         <h1 className="mainpage-title" onClick={() => navigate('/mainpage')}>MentorMark</h1>
+
+        <div className="search-bar">
+        <input type="textbox" onChange={handleSearchText}/>
+        <button onClick={handleSearch}>Search</button>
+        </div>
+
         <div className="mainpage-profile-container">
           <img
             className="mainpage-profile-icon"
@@ -94,6 +110,7 @@ function Mainpage() {
           )}
         </div>
       </header>
+
       <div className="mainpage-sidebar">
         <header style={{margin: '10px', fontStyle: 'bold'}}>Communities</header>
       </div>
@@ -101,7 +118,10 @@ function Mainpage() {
         {(postId===null) ? 
         <>
         <div className="mainpage-postList">
-            {sortedPosts.map((post, index) => (
+            {sortedPosts.filter((post) => ( (searchParams !== null)? //filters posts that include search parameters
+              (post.title.includes(searchParams) || post.content.includes(searchParams))
+              : post //if no parameters, displays full list
+            )).map((post, index) => (
               <div key={post.id} className="mainpage-post">
                 <h3><Link onClick={() => { setViewedPost(post); } } style={{ textDecoration: 'none' }}>{post.title}</Link></h3>
                 <p>{post.content}</p>
