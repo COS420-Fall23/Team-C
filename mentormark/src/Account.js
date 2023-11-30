@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { auth, db, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc } from './firebaseConfig';
+import './CSS/account.css'
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -118,70 +119,71 @@ export default function AccountPage() {
       <button className='account-back-button'>
         <Link to="/mainpage"><h3>Back</h3></Link>
       </button>
-      <h1>Welcome, {user.name}!</h1>
-      <p>Email: {user.email}</p>
-      <p>Grad Status: {user.gStatus}</p>
-      <p>Major: {user.major}</p>
-
+      <h1 className="account-welcome">Welcome, {user.name}!</h1>
+      <p className="account-info">Email: <span className='account-actual-info'>{user.email}</span></p>
+      <p className="account-info">Grad Status: <span className='account-actual-info'>{user.gStatus}</span></p>
+      <p className="account-info">Major: <span className='account-actual-info'>{user.major}</span></p>
+  
       {isChangingPassword ? (
-        <div>
+        <div className="account-action">
           <input
             type="password"
             placeholder="Enter new password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <button onClick={handleChangePassword}>Save Password</button>
-          <button onClick={() => setIsChangingPassword(false)}>Cancel</button>
+          <button className="account-save-button" onClick={handleChangePassword}>Save Password</button>
+          <button className="account-cancel-button" onClick={() => setIsChangingPassword(false)}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsChangingPassword(true)}>Change Password</button>
+        <button className="account-action-button" onClick={() => setIsChangingPassword(true)}>Change Password</button>
       )}
-
+  
       {isChangingEmail ? (
-        <div>
+        <div className="account-action">
           <input
             type="email"
             placeholder="Enter new email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
           />
-          <button onClick={handleChangeEmail}>Save Email</button>
-          <button onClick={() => setIsChangingEmail(false)}>Cancel</button>
+          <button className="account-save-button" onClick={handleChangeEmail}>Save Email</button>
+          <button className="account-cancel-button" onClick={() => setIsChangingEmail(false)}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsChangingEmail(true)}>Change Email</button>
+        <button className="account-action-button" onClick={() => setIsChangingEmail(true)}>Change Email</button>
       )}
-
+  
       {isChangingGradStatus ? (
-        <div>
-          <select value={newGradStatus} onChange={(e) => setNewGradStatus(e.target.value)}>
+        <div className="account-action">
+          <select className="account-select" value={newGradStatus} onChange={(e) => setNewGradStatus(e.target.value)}>
             <option value="None">--</option>
             <option value="Undergraduate">Undergraduate</option>
             <option value="Graduate">Graduate</option>
           </select>
-          <button onClick={handleChangeGradStatus}>Save Grad Status</button>
-          <button onClick={() => setIsChangingGradStatus(false)}>Cancel</button>
+          <button className="account-save-button" onClick={handleChangeGradStatus}>Save Grad Status</button>
+          <button className="account-cancel-button" onClick={() => setIsChangingGradStatus(false)}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsChangingGradStatus(true)}>Change Grad Status</button>
+        <button className="account-action-button" onClick={() => setIsChangingGradStatus(true)}>Change Grad Status</button>
       )}
-
+  
       {isChangingMajor ? (
-        <div>
-          <select value={newMajor} onChange={(e) => setNewMajor(e.target.value)}>
+        <div className="account-action">
+          <select className="account-select" value={newMajor} onChange={(e) => setNewMajor(e.target.value)}>
             <option value="None">--</option>
             <option value="Computer Science">Computer Science</option>
             <option value="New Media Design">New Media Design</option>
           </select>
-          <button onClick={handleChangeMajor}>Save Major</button>
-          <button onClick={() => setIsChangingMajor(false)}>Cancel</button>
+          <button className="account-save-button" onClick={handleChangeMajor}>Save Major</button>
+          <button className="account-cancel-button" onClick={() => setIsChangingMajor(false)}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsChangingMajor(true)}>Change Major</button>
+        <button className="account-action-button" onClick={() => setIsChangingMajor(true)}>Change Major</button>
       )}
-
-      <button onClick={handleDeleteAccount}>Delete Account</button>
+  
+      <button className="account-delete-button" onClick={handleDeleteAccount}>Delete Account</button>
     </div>
   );
+  
 }
