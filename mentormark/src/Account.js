@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { auth, db, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc } from './firebaseConfig';
 
 export default function AccountPage() {
@@ -17,19 +17,29 @@ export default function AccountPage() {
   const [isChangingMajor, setIsChangingMajor] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
-        if (userDoc.exists()) {
-          setUser(userDoc.data());
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        const fetchUserData = async () => {
+          try {
+            const userDoc = await getDoc(doc(db, 'users', userAuth.displayName));
+            if (userDoc.exists()) {
+              setUser(userDoc.data());
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error.message);
+          }
+        };
+  
+        fetchUserData();
+      } else {
+        // User is not logged in, you may want to handle this case
+        setUser(null);
       }
-    };
-
-    fetchUserData();
-  }, [auth.currentUser]);
+    });
+  
+    // Cleanup the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const handleChangePassword = async () => {
     try {
@@ -44,6 +54,9 @@ export default function AccountPage() {
   const handleChangeEmail = async () => {
     try {
       await updateEmail(auth.currentUser, newEmail);
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
+        email: newEmail,
+      });
       alert('Email changed successfully!');
       setIsChangingEmail(false);
     } catch (error) {
@@ -53,10 +66,12 @@ export default function AccountPage() {
 
   const handleChangeGradStatus = async () => {
     try {
+      console.log('Before state update:', auth.currentUser.gStatus);
       // Update grad status in Firestore
-      await updateDoc(doc(db, 'users', auth.currentUser.uid), {
-        gradStatus: newGradStatus,
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
+        gStatus: newGradStatus,
       });
+      console.log('After state update:', auth.currentUser.gStatus);
 
       alert('Grad status changed successfully!');
       setIsChangingGradStatus(false);
@@ -67,10 +82,12 @@ export default function AccountPage() {
 
   const handleChangeMajor = async () => {
     try {
+      console.log('Before state update:', auth.currentUser.major);
       // Update major in Firestore
-      await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      await updateDoc(doc(db, 'users', auth.currentUser.displayName), {
         major: newMajor,
       });
+      console.log('After state update:', auth.currentUser.major);
 
       alert('Major changed successfully!');
       setIsChangingMajor(false);
@@ -98,9 +115,12 @@ export default function AccountPage() {
 
   return (
     <div className="AccountPage">
+      <button className='account-back-button'>
+        <Link to="/mainpage"><h3>Back</h3></Link>
+      </button>
       <h1>Welcome, {user.name}!</h1>
       <p>Email: {user.email}</p>
-      <p>Grad Status: {user.gradStatus}</p>
+      <p>Grad Status: {user.gStatus}</p>
       <p>Major: {user.major}</p>
 
       {isChangingPassword ? (
@@ -136,8 +156,9 @@ export default function AccountPage() {
       {isChangingGradStatus ? (
         <div>
           <select value={newGradStatus} onChange={(e) => setNewGradStatus(e.target.value)}>
-            <option value="Undergrad">Undergraduate</option>
-            <option value="Grad">Graduate</option>
+            <option value="None">--</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Graduate">Graduate</option>
           </select>
           <button onClick={handleChangeGradStatus}>Save Grad Status</button>
           <button onClick={() => setIsChangingGradStatus(false)}>Cancel</button>
@@ -149,8 +170,9 @@ export default function AccountPage() {
       {isChangingMajor ? (
         <div>
           <select value={newMajor} onChange={(e) => setNewMajor(e.target.value)}>
-            <option value="CompSci">Computer Science</option>
-            <option value="NMD">New Media Design</option>
+            <option value="None">--</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="New Media Design">New Media Design</option>
           </select>
           <button onClick={handleChangeMajor}>Save Major</button>
           <button onClick={() => setIsChangingMajor(false)}>Cancel</button>
