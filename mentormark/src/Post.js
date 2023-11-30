@@ -40,14 +40,18 @@ const Post = (props) => {
         <div>
           <header className="post-title">{post.title}</header>
           <img className='post-image' src={post.file} alt={post.file} />
-          <div className="post-body">{post.content}</div>
+          <div className='post-body'>
+            <div>{/*Empty div for spacing purposes*/}</div>
+            <div>{post.content}</div>
+            <div>{/*Empty div for spacing purposes*/}</div>
+          </div>
         </div>
       ) : (
         <span>Error loading post</span>
       )}
 
       {/* Render comments using the Comment component */}
-      <div className="comments-section">
+      <div>
           <Comment
             handleInsertNode={handleInsertNode}
             handleEditNode={handleEditNode}
