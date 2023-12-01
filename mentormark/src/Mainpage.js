@@ -130,8 +130,17 @@ function Mainpage() {
         </>
         : <Post toChild={postId} sendToParent={setPostId}></Post>}
         </div>
+      <div className="mainpage-sidebar">
+        <header style={{margin: '10px', fontStyle: 'bold'}}>TBD</header>
+      </div>
   </div>
   );
 }
 
 export default Mainpage;
+
+/*
+Communities:
+-Subscribed at top of list
+-Unsubscribed appear on bottom, maybe seperated by thin line
+*/
