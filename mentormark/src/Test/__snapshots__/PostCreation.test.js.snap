@@ -3,55 +3,73 @@
 exports[`<PostCreation /> matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="container"
+    class="page-center"
   >
-    <h1
-      class="title"
+    <div
+      class="creation-container"
     >
-      Create Post
-    </h1>
-    <form>
-      <label
-        for="post-title"
-      >
-        Title:
-      </label>
-      <input
-        id="post-title"
-        name="title"
-        required=""
-        type="text"
-        value=""
-      />
-      <br />
-      <label
-        for="post-content"
-      >
-        Content:
-      </label>
-      <textarea
-        id="post-content"
-        name="content"
-        required=""
-      />
-      <br />
-      <label
-        for="post-file"
-      >
-        Upload File:
-      </label>
-      <input
-        id="post-file"
-        name="file"
-        type="file"
-      />
-      <br />
       <button
-        type="button"
+        class="create-home"
+      >
+        Home
+      </button>
+      <h1
+        class="create-title"
       >
         Create Post
-      </button>
-    </form>
+      </h1>
+      <form
+        class="create-form"
+      >
+        <label
+          class="create-label"
+          for="post-title"
+        >
+          Title:
+        </label>
+        <input
+          class="create-input"
+          id="post-title"
+          name="title"
+          required=""
+          type="text"
+          value=""
+        />
+        <br />
+        <label
+          class="create-label"
+          for="post-content"
+        >
+          Content:
+        </label>
+        <textarea
+          class="create-textarea"
+          id="post-content"
+          name="content"
+          required=""
+        />
+        <br />
+        <label
+          class="create-label"
+          for="post-file"
+        >
+          Upload File:
+        </label>
+        <input
+          class="create-input"
+          id="post-file"
+          name="file"
+          type="file"
+        />
+        <br />
+        <button
+          class="create-button"
+          type="button"
+        >
+          Create Post
+        </button>
+      </form>
+    </div>
   </div>
 </DocumentFragment>
 `;

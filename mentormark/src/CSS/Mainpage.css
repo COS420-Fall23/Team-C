@@ -38,7 +38,7 @@ width: 50%;
 .mainpage-container {
 display: grid;
 grid-template-rows: auto 1fr; /* Top bar takes the necessary height, rest for the body */
-grid-template-columns: 200px 1fr 200px; /* Sidebar and main body */
+grid-template-columns: 300px 1fr 300px; /* Sidebar and main body */
 height: 100vh;
 text-align: center;
 }
@@ -53,6 +53,12 @@ text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*height: 400px*/
+  /*
+  potentially make each post box larger,
+  Maybe make it depend on image size
+  Refer to the reddit style
+  */
 }
 
 .mainpage-addButton {
@@ -82,7 +88,7 @@ position: relative;
 .mainpage-sidebar {
 background-color: #f4f4f4; /* Change to suit your design */
 border-right: 1px solid #ccc;
-width: 200px;
+width: 300px;
 }
 
 

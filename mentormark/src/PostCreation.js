@@ -119,3 +119,6 @@ function PostCreation() {
 };
 
 export default PostCreation;
+
+
+// Post must be created in a community

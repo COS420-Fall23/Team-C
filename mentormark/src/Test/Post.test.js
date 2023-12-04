@@ -1,5 +1,5 @@
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom'
 import Post from '../Post';
 import { MemoryRouter } from 'react-router-dom';
 import testImg from '../logo/MentorMarkLogoFinals-12.png';

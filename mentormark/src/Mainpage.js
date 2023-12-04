@@ -15,6 +15,17 @@ function Mainpage() {
   const [postId, setPostId] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const [searchText, setSearchText] = useState(); //Search textbox state
+  const [searchParams, setSearchParams] = useState(null);
+
+  const handleSearchText = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearch = () => {
+    setSearchParams(searchText);
+  };
+
   const handleProfileClick = () => {
     setShowDropdown(!showDropdown); // Toggle dropdown visibility
   };
@@ -97,6 +108,7 @@ function Mainpage() {
           )}
         </div>
       </header>
+
       <div className="mainpage-sidebar">
         <header style={{ margin: "10px", fontStyle: "bold" }}>
           Communities
@@ -161,3 +173,9 @@ function Mainpage() {
 }
 
 export default Mainpage;
+
+/*
+Communities:
+-Subscribed at top of list
+-Unsubscribed appear on bottom, maybe seperated by thin line
+*/
