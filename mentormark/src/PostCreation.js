@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CSS/PostCreation.css";
 import { useNavigate } from "react-router-dom";
 import { storage } from "./firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "./firebaseConfig.js";
 import "./components/Comment.js"
 
@@ -14,11 +15,13 @@ function PostCreation() {
     title: '',
     content: '',
     community: '',
+    userID: '',
     file: null,
   });
   const [percent, setPercent] = useState(0);
 
   const navigate = useNavigate();
+  
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -28,6 +31,19 @@ function PostCreation() {
     });
   };
 
+  const auth = getAuth();
+  const [user, setUser] = useState(null);
+
+  // Listen for changes in authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    // Cleanup function
+    return () => unsubscribe();
+  }, [auth]);
+
   const createPost = async () => {
     const { title, content, community, file } = formData;
   
@@ -36,8 +52,10 @@ function PostCreation() {
         title,
         content,
         community,
+        userID: user.uid,
         timestamp: new Date().toLocaleString(),
       };
+      console.log(user.uid);
   
       try {
         if (file) {

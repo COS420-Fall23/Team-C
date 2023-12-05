@@ -1,5 +1,6 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Comment from './components/Comment';
 import useNode from "./hooks/useNode";
 import './CSS/comment.css';
@@ -33,12 +34,15 @@ const Post = (props) => {
     setCommentsData(temp);
   };
 
+  
+
   return (
     <div className="post">
       <h3 className='post-return'><Link onClick={() => props.sendToParent(null)}>Back to Post List</Link></h3>
       {post ? (
         <div>
           <div className='post-community'>{post.community}</div>
+          <div className='post-user-id'>Posted By: {post.userID}</div>
           <header className="post-title">{post.title}</header>
           <img className='post-image' src={post.file} alt={post.file} />
           <div className='post-body'>
