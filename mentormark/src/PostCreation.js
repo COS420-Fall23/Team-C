@@ -13,6 +13,7 @@ function PostCreation() {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
+    community: '',
     file: null,
   });
   const [percent, setPercent] = useState(0);
@@ -28,12 +29,13 @@ function PostCreation() {
   };
 
   const createPost = async () => {
-    const { title, content, file } = formData;
+    const { title, content, community, file } = formData;
   
-    if (title && content) {
+    if (title && content && community) {
       const newPost = {
         title,
         content,
+        community,
         timestamp: new Date().toLocaleString(),
       };
   
@@ -69,7 +71,7 @@ function PostCreation() {
         console.error('Error adding document: ', e);
       }
     } else {
-      alert('Please provide both title and content for the post.');
+      alert('Please provide the title, content, and community for the post.');
     }
   };
   
@@ -100,6 +102,18 @@ function PostCreation() {
             required
           ></textarea>
           <br />
+          <label className="create-label" htmlFor="post-community">Community:</label>
+          <select 
+            className="create-select"
+            name="community"
+            id="post-community"
+            value={formData.community} 
+            onChange={handleInputChange} 
+            required>
+            <option value="null">--</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="New Media Design">New Media Design</option>
+          </select>
           <label className="create-label" htmlFor="post-file">Upload File:</label>
           <input
             className="create-input"

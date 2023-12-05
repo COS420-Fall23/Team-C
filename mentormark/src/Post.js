@@ -38,6 +38,7 @@ const Post = (props) => {
       <h3 className='post-return'><Link onClick={() => props.sendToParent(null)}>Back to Post List</Link></h3>
       {post ? (
         <div>
+          <div className='post-community'>{post.community}</div>
           <header className="post-title">{post.title}</header>
           <img className='post-image' src={post.file} alt={post.file} />
           <div className='post-body'>
