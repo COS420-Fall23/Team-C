@@ -19,11 +19,11 @@ function Mainpage() {
   const [searchParams, setSearchParams] = useState(null);
 
   const communities = [
-    { name: "COS", path: "/cos" },
-    { name: "ECO", path: "/eco" },
+    { name: "Computer Science", path: "/cos" },
+    { name: "Economics", path: "/eco" },
     { name: "Business", path: "/business" },
     { name: "Finance", path: "/finance" },
-    { name: "Design", path: "/design" },
+    { name: "New Media Design", path: "/design" },
   ];
 
   function Community({ name, path, index }) {
@@ -41,6 +41,17 @@ function Mainpage() {
       </button>
     );
   }
+
+  const mapDropdownToCommunityName = (selectedValue) => {
+    switch (selectedValue) {
+      case "Computer Science":
+        return "/cos"; // This should match the community route
+      case "New Media Design":
+        return "/design"; // This should match the community route
+      default:
+        return ""; // Handle the default case or return an empty string
+    }
+  };
 
   const handleSearchText = (e) => {
     setSearchText(e.target.value);
@@ -169,6 +180,7 @@ function Mainpage() {
                 )
                 .map((post, index) => (
                   <div key={post.id} className="mainpage-post">
+                    <div><Link to={mapDropdownToCommunityName(post.community)}>{post.community}</Link></div>
                     <h3>
                       <Link
                         onClick={() => {
