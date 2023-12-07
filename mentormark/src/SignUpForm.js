@@ -87,10 +87,10 @@ export default function SignUpForm() {
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				console.log(user);
+				//console.log(user);
 			})
 			.catch((error) => {
-				console.log(error.code, error.message);
+				//console.log(error.code, error.message);
 			})
 
 		const userInfo = { 
