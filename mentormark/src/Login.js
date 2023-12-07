@@ -35,7 +35,7 @@ export default function Login() {
         })
         .catch((logError) => {
             setError(true);
-            console.log(logError.code, logError.message);
+            // console.log(logError.code, logError.message);
         })
     }
 
