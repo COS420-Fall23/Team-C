@@ -21,10 +21,10 @@ function Mainpage() {
 
   const communities = [
     { name: "COS", path: "/cos", tag: "Computer Science" },
-    { name: "ECO", path: "/eco" },
-    { name: "Business", path: "/business" },
-    { name: "Finance", path: "/finance" },
-    { name: "New Media Design", path: "/design" },
+    { name: "ECO", path: "/eco", tag: "Eco"},
+    { name: "Business", path: "/business", tag: "Business"},
+    { name: "Finance", path: "/finance", tag: "Finance"},
+    { name: "New Media Design", path: "/design", tag: "New Media Design"},
   ];
 
   function Community({ name, path, index }) {
