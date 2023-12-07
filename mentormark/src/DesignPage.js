@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { db, storage, auth } from "./firebaseConfig";
 import pImage from "./logo/pImage.png";
+import { collection, getDocs } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import Post from "./Post";
 import "./CSS/Mainpage.css";
 import "./CSS/DesignPage.css";
 
 function DesignPage() {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [imageURLs, setImageURLs] = useState({});
+  const [postId, setPostId] = useState(null);
+
+  const [searchParams, setSearchParams] = useState(null);
+
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchText, setSearchText] = useState(""); //Search textbox state
@@ -37,6 +46,17 @@ function DesignPage() {
     );
   }
 
+  const mapDropdownToCommunityName = (selectedValue) => {
+    switch (selectedValue) {
+      case "Computer Science":
+        return "/cos"; // This should match the community route
+      case "New Media Design":
+        return "/design"; // This should match the community route
+      default:
+        return ""; // Handle the default case or return an empty string
+    }
+  };
+
   const handleSearchText = (e) => {
     setSearchText(e.target.value);
   };
@@ -57,6 +77,54 @@ function DesignPage() {
       console.error("Error signing out:", error.message);
     }
   };
+
+  const setViewedPost = async (id) => {
+    setPostId(id);
+  };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const postsCollection = collection(db, "posts");
+        const snapshot = await getDocs(postsCollection);
+        const postsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const imageURLPromises = postsData.map((post) => {
+          if (post.file) {
+            const imageRef = ref(storage, post.file);
+            return getDownloadURL(imageRef)
+              .then((url) => ({ id: post.id, url })) // Return an object with post ID and image URL
+              .catch((error) => {
+                console.error("Error fetching image URL:", error);
+                return { id: post.id, url: null }; // Return null URL in case of an error
+              });
+          }
+          return Promise.resolve({ id: post.id, url: null }); // If there's no file, resolve the promise immediately with null URL
+        });
+
+        // Wait for all promises to resolve
+        const resolvedImageURLs = await Promise.all(imageURLPromises);
+
+        const urls = {};
+        resolvedImageURLs.forEach(({ id, url }) => {
+          urls[id] = url; // Assign the URL to the corresponding post ID
+        });
+
+        setImageURLs(urls); // Update the state with the new URLs
+        setPosts(postsData); // Update the state with the posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  const sortedPosts = posts.sort((a, b) => {
+    return new Date(b.timestamp) - new Date(a.timestamp);
+  });
 
   return (
     <div className="design-container">
@@ -94,11 +162,79 @@ function DesignPage() {
               key={community.name}
               name={community.name}
               path={community.path}
-              index={index}
+              index={index} // Pass index for unique color
             />
           ))}
         </div>
       </div>
+      <div className="mainpage-body">
+        {postId === null ? (
+          <>
+            <div className="mainpage-postList">
+              {sortedPosts
+                .filter((post) => post.community === "New Media Design")
+                .filter(
+                  (post) =>
+                    
+                    searchParams !== null //filters posts that include search parameters
+                      ? post.title.includes(searchParams) ||
+                        post.content.includes(searchParams)
+                      : post //if no parameters, displays full list
+                )
+                .map((post, index) => (
+                  <div key={post.id} className="mainpage-post">
+                    <div><Link to={mapDropdownToCommunityName(post.community)}>{post.community}</Link></div>
+                    <h3>
+                      <Link
+                        onClick={() => {
+                          setViewedPost(post);
+                        }}
+                        style={{ textDecoration: "none" }}
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p>{post.content}</p>
+                    {post.file && imageURLs[post.id] ? (
+                      <img
+                        className="mainpage-image"
+                        src={imageURLs[post.id]}
+                        alt=""
+                        style={{ maxWidth: "100px" }}
+                      />
+                    ) : post.file ? (
+                      <p>Error loading image</p>
+                    ) : (
+                      <p>No image attached</p>
+                    )}
+                    <div>
+                      <p>
+                        File attached:
+                        <a href={post.file} download>
+                          Download File
+                        </a>
+                      </p>
+                    </div>
+                    <small>{post.timestamp}</small>
+                  </div>
+                ))}
+            </div>
+            <div className="mainpage-add-button-container">
+              <div
+                className="mainpage-addButton"
+                onClick={() => navigate("/create-post")}
+              >
+                {/* Plus icon will be handled by the CSS styles */}
+              </div>
+            </div>
+          </>
+        ) : (
+          <Post toChild={postId} sendToParent={setPostId}></Post>
+        )}
+      </div>
+      {/* <div className="cos-sidebar">
+        <header style={{ margin: "10px", fontStyle: "bold" }}>TBD</header>
+      </div> */}
     </div>
   );
 }
