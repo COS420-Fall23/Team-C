@@ -16,10 +16,11 @@ function Mainpage() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const [searchText, setSearchText] = useState(); //Search textbox state
-  const [searchParams, setSearchParams] = useState(null);
+  const [searchParams, setSearchParams] = useState("");
+  const [communityParams, setCommunityParams] = useState([]);
 
   const communities = [
-    { name: "COS", path: "/cos" },
+    { name: "COS", path: "/cos", tag: "Computer Science" },
     { name: "ECO", path: "/eco" },
     { name: "Business", path: "/business" },
     { name: "Finance", path: "/finance" },
@@ -42,12 +43,18 @@ function Mainpage() {
     );
   }
 
-  const handleSearchText = (e) => {
-    setSearchText(e.target.value);
-  };
-
   const handleSearch = () => {
-    setSearchParams(searchText);
+    setSearchParams(searchText)
+  }
+
+  //updates community filter parameters
+  const updateCommunityParams = (e) => {
+    const comm = e.target.value;
+    if(communityParams.includes(comm)){
+      setCommunityParams(communityParams.filter((e) => e !== comm));
+    } else {
+      setCommunityParams([...communityParams, comm])
+    }
   };
 
   const handleProfileClick = () => {
@@ -119,11 +126,24 @@ function Mainpage() {
             MentorMark
           </h1>
         </div>
+
         <div className="search-bar-container">
           <div className="search-bar">
-            <input type="textbox" onChange={handleSearchText} />
+            <input type="textbox" onChange={(e) => setSearchText(e.target.value)} />
             <button onClick={handleSearch}>Search</button>
           </div>
+          {communities.map((community) => (
+            <label className="box-label">
+              <input
+                type="checkbox"
+                id={community.name}
+                value={community.tag}
+                onChange={updateCommunityParams}
+                checked={communityParams.includes(community.tag)}
+              />
+              {community.name}
+            </label>
+          ))}
         </div>
 
         <div className="mainpage-profile-container">
@@ -162,10 +182,11 @@ function Mainpage() {
               {sortedPosts
                 .filter(
                   (post) =>
-                    searchParams !== null //filters posts that include search parameters
-                      ? post.title.includes(searchParams) ||
-                        post.content.includes(searchParams)
-                      : post //if no parameters, displays full list
+                    ( //filters posts that include search parameters
+                        (post.title.includes(searchParams)
+                      || post.content.includes(searchParams))
+                      &&  (post.community ? communityParams.every(v => post.community.includes(v)) : true)   //Once posts have their own list of communities, update and add this
+                      ) //if no parameters, displays full list
                 )
                 .map((post, index) => (
                   <div key={post.id} className="mainpage-post">
