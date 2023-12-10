@@ -1,7 +1,7 @@
 .cos-container {
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px 1fr 300px; /* Adjusted to accommodate the right sidebar */
   height: 100vh;
   text-align: center;
 }
@@ -10,19 +10,38 @@
   background-color: #e57373;
   color: white;
   padding: 10px;
-  grid-column: 1 / -1;
+  grid-column: 1 / -1; /* Span the top bar across all columns */
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.cos-center-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  padding: 0 10px;
+  max-width: 600px; /* Prevent the center group from getting too wide */
 }
 
 .cos-title {
-  font-size: 2em;
-  margin-left: 30px;
+  margin-bottom: 10px; /* Space between title and search bar */
+}
+
+.cos-back-to-mainpage-btn {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .cos-profile-container {
   position: relative;
+  padding: 10px 0;
 }
 
 .cos-profile-icon {
@@ -54,9 +73,6 @@
 }
 
 .cos-search-bar-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,6 +118,32 @@
   font-family: "'Pacifico', cursive";
 }
 
+/* Right sidebar styles */
+.cos-right-sidebar {
+  grid-column: 3; /* Place it in the third column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background-color: #f5f5f5; /* Set a background color or leave it transparent */
+}
+
+.cos-right-sidebar-header {
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(168, 153, 235);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center; /* Center the text */
+}
+
+/* Individual items in the right sidebar */
+.cos-right-sidebar-item {
+  padding: 10px;
+  margin: 10px 0; /* Space them out vertically */
+}
+
 .eco {
   background-color: #81c784;
 }
@@ -128,5 +170,20 @@
 
   .cos-sidebar-header {
     font-size: 18px;
+  }
+
+  .cos-top-bar {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .cos-profile-container {
+    order: 3; /* Ensure profile is at the bottom */
+    width: 100%; /* Take full width */
+    position: static; /* Remove absolute positioning */
+  }
+
+  .cos-back-to-mainpage-btn {
+    order: 1;
   }
 }

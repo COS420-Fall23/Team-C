@@ -61,15 +61,21 @@ function ECOPage() {
   return (
     <div className="eco-container">
       <header className="eco-top-bar">
-        <h1 className="eco-title">ECO Community</h1>
-
-        <div className="eco-search-bar-container">
-          <div className="eco-search-bar">
-            <input type="textbox" onChange={handleSearchText} />
-            <button onClick={handleSearch}>Search</button>
+        <button
+          className="eco-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
+        <div className="eco-center-group">
+          <h1 className="eco-title">ECO Community</h1>
+          <div className="eco-search-bar-container">
+            <div className="eco-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
         </div>
-
         <div className="eco-profile-container">
           <img
             className="eco-profile-icon"

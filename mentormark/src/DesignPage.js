@@ -17,7 +17,6 @@ function DesignPage() {
 
   const [searchParams, setSearchParams] = useState(null);
 
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchText, setSearchText] = useState(""); //Search textbox state
 
@@ -129,12 +128,19 @@ function DesignPage() {
   return (
     <div className="design-container">
       <header className="design-top-bar">
-        <h1 className="design-title">Design Community</h1>
-
-        <div className="design-search-bar-container">
-          <div className="design-search-bar">
-            <input type="textbox" onChange={handleSearchText} />
-            <button onClick={handleSearch}>Search</button>
+        <button
+          className="design-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
+        <div className="design-center-group">
+          <h1 className="design-title">Design Community</h1>
+          <div className="design-search-bar-container">
+            <div className="design-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
         </div>
 
@@ -175,7 +181,6 @@ function DesignPage() {
                 .filter((post) => post.community === "New Media Design")
                 .filter(
                   (post) =>
-                    
                     searchParams !== null //filters posts that include search parameters
                       ? post.title.includes(searchParams) ||
                         post.content.includes(searchParams)
@@ -183,7 +188,11 @@ function DesignPage() {
                 )
                 .map((post, index) => (
                   <div key={post.id} className="mainpage-post">
-                    <div><Link to={mapDropdownToCommunityName(post.community)}>{post.community}</Link></div>
+                    <div>
+                      <Link to={mapDropdownToCommunityName(post.community)}>
+                        {post.community}
+                      </Link>
+                    </div>
                     <h3>
                       <Link
                         onClick={() => {
