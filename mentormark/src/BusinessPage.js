@@ -61,12 +61,19 @@ function BusinessPage() {
   return (
     <div className="business-container">
       <header className="business-top-bar">
-        <h1 className="business-title">Business Community</h1>
-
-        <div className="business-search-bar-container">
-          <div className="business-search-bar">
-            <input type="textbox" onChange={handleSearchText} />
-            <button onClick={handleSearch}>Search</button>
+        <button
+          className="cos-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
+        <div className="business-center-group">
+          <h1 className="business-title">Business Community</h1>
+          <div className="business-search-bar-container">
+            <div className="business-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
         </div>
 

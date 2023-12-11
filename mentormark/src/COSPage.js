@@ -25,7 +25,7 @@ function COSPage() {
     // cos is omitted since we're on the cos page
     { name: "Business", path: "/business" },
     { name: "Finance", path: "/finance" },
-    { name: "Design", path: "/design" },
+    { name: "New Media Design", path: "/design" },
   ];
 
   // Reusing the Community component from the Mainpage.js
@@ -128,12 +128,22 @@ function COSPage() {
   return (
     <div className="cos-container">
       <header className="cos-top-bar">
-        <h1 className="cos-title">COS Community</h1>
+        <button
+          className="cos-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
 
-        <div className="cos-search-bar-container">
-          <div className="cos-search-bar">
-            <input type="textbox" onChange={handleSearchText} />
-            <button onClick={handleSearch}>Search</button>
+        {/* Center group for title and search bar */}
+
+        <div className="cos-center-group">
+          <h1 className="cos-title">COS Community</h1>
+          <div className="cos-search-bar-container">
+            <div className="cos-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
         </div>
 
@@ -174,7 +184,6 @@ function COSPage() {
                 .filter((post) => post.community === "Computer Science")
                 .filter(
                   (post) =>
-                    
                     searchParams !== null //filters posts that include search parameters
                       ? post.title.includes(searchParams) ||
                         post.content.includes(searchParams)
@@ -182,7 +191,11 @@ function COSPage() {
                 )
                 .map((post, index) => (
                   <div key={post.id} className="mainpage-post">
-                    <div><Link to={mapDropdownToCommunityName(post.community)}>{post.community}</Link></div>
+                    <div>
+                      <Link to={mapDropdownToCommunityName(post.community)}>
+                        {post.community}
+                      </Link>
+                    </div>
                     <h3>
                       <Link
                         onClick={() => {
@@ -231,9 +244,10 @@ function COSPage() {
           <Post toChild={postId} sendToParent={setPostId}></Post>
         )}
       </div>
-      {/* <div className="cos-sidebar">
-        <header style={{ margin: "10px", fontStyle: "bold" }}>TBD</header>
-      </div> */}
+
+      <div className="cos-right-sidebar">
+        <header className="cos-right-sidebar-header"></header>
+      </div>
     </div>
   );
 }

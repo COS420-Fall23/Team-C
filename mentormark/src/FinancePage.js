@@ -61,12 +61,19 @@ function FinancePage() {
   return (
     <div className="finance-container">
       <header className="finance-top-bar">
-        <h1 className="finance-title">Finance Community</h1>
-
-        <div className="finance-search-bar-container">
-          <div className="finance-search-bar">
-            <input type="textbox" onChange={handleSearchText} />
-            <button onClick={handleSearch}>Search</button>
+        <button
+          className="cos-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
+        <div className="finance-center-group">
+          <h1 className="finance-title">Finance Community</h1>
+          <div className="finance-search-bar-container">
+            <div className="finance-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
         </div>
 
