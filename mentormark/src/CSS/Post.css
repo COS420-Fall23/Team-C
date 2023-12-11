@@ -1,26 +1,41 @@
+.post-return{
+    float: left;
+    padding: 15px;
+    background-color: #ffd3fe;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Verdana;
+    color: black;
+}
 .post {
     text-align: center;
     margin: 20px;
 }
 
 .post-title {
-    text-align: center;
+    display: center;
+    font-family: Verdana;
+    margin-top: 10%;
+    margin-bottom: 5%;
     font-size: 40px;
 }
 
 .post-body {
     font-size: 20px;
     display: grid;
+    margin-top: 5%;
     grid-template-columns: 20% 1fr 20%;
     text-align: center;
 }
-
+.post-profile-icon{
+    margin-right: 3%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    float: right;
+}
 .post-image {
     max-width: 500px;
-}
-
-.post-return{
-    text-align: left;
 }
 
 .comments-section{
