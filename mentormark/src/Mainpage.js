@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
-import { db, storage, auth } from "./firebaseConfig";
+import { db, storage, auth, getDoc, doc } from "./firebaseConfig";
 import { getDownloadURL, ref } from "firebase/storage";
 import "./CSS/Mainpage.css";
 import Post from "./Post";
@@ -9,6 +9,8 @@ import { signOut } from "firebase/auth";
 import pImage from "./logo/pImage.png";
 
 function Mainpage() {
+  const [profilePicture, setProfilePicture] = useState(pImage); // Default profile picture
+
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [imageURLs, setImageURLs] = useState({});
@@ -86,14 +88,36 @@ function Mainpage() {
   };
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Check if there's a logged-in user
+        if (auth.currentUser) {
+          // Replace 'currentUserId' with the actual identifier for the logged-in user
+          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.displayName));
+          
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Update 'profilePicture' state with the fetched profile picture URL
+            // Use the profile picture from Firestore or default image if not available
+            setProfilePicture(userData.profilePicture || pImage);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+  
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const postsCollection = collection(db, "posts");
         const snapshot = await getDocs(postsCollection);
-        const postsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        
+        // Fetch user information for each post
 
         const imageURLPromises = postsData.map((post) => {
           if (post.file) {
@@ -158,15 +182,12 @@ function Mainpage() {
         </div>
 
         <div className="mainpage-profile-container">
+        {/*Use the profilePicture prop here*/}
           <img
-            className="mainpage-profile-icon"
-            src={pImage} // Replace with the path to your profile image
-            alt="Profile"
-            onClick={handleProfileClick}
-          />
+            className="mainpage-profile-icon" src={profilePicture} alt="Profile" onClick={handleProfileClick}/>
           {showDropdown && (
             <div className="mainpage-dropdown-menu">
-              <button onClick={() => navigate("/account")}>Account</button>
+              <Link to={{ pathname: '/account', state: { profilePicture: profilePicture } }} style={{textDecoration: 'none'}}><button >Account</button></Link>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}
@@ -245,10 +266,13 @@ function Mainpage() {
                 {/* Plus icon will be handled by the CSS styles */}
               </div>
             </div>
-          </>
-        ) : (
-          <Post toChild={postId} sendToParent={setPostId}></Post>
-        )}
+        </>
+      ):( 
+        <Post toChild={postId} sendToParent={setPostId} profilePicture={profilePicture}></Post>
+      )};
+      </div>
+      <div className="mainpage-sidebar">
+        <header style={{margin: '10px', fontStyle: 'bold'}}>TBD</header>
       </div>
       <div className="mainpage-sidebar">
         <header style={{ margin: "10px", fontStyle: "bold" }}>TBD</header>

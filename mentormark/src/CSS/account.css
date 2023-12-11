@@ -1,63 +1,253 @@
-.AccountPage {
-max-width: 600px;
-margin: 0 auto;
-padding: 20px;
-background-color: #f8f8f8;
-border: 1px solid #ddd;
-border-radius: 5px;
+body{
+    background-color: ghostwhite;
 }
 
-.account-back-button {
-background-color: #3498db;
-color: #fff;
-padding: 8px 12px;
-border: none;
-border-radius: 5px;
-text-decoration: none;
-cursor: pointer;
+.body-section{
+    background-color: #f1e6ff;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: auto;
+    width: auto;
 }
 
-.account-welcome {
-font-size: 24px;
-margin-bottom: 10px;
+/* header section with back button & logo home button*/
+.header-section{
+    background-color: #c193fe;
+    padding: 0;
+    margin: 0;
+    height: 85px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.account-info {
-margin-bottom: 8px;
-font-weight: bold;
-}
-.account-actual-info {
-font-weight: 500;
+.logo {
+    float: right;
+    width: 35%;
+    height: 35%;
 }
 
-.account-action {
-margin-bottom: 10px;
+.back-btn {
+    background-color: #380F6E;
+    color: white;
+    font-size: large;
+    font-family: Verdana;
+    text-decoration: none;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
 }
 
-.account-select,
-input[type="password"],
-input[type="email"] {
-width: 100%;
-padding: 8px;
-margin-bottom: 8px;
+.back-btn:hover{
+    cursor: pointer;
+    background-color:#d2c3e7;
+    color:#380F6E;
 }
 
-.account-action-button,
-.account-save-button,
-.account-cancel-button,
-.account-delete-button {
-background-color: #3498db;
-color: #fff;
-padding: 8px 12px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-margin-right: 8px;
+.btn-a{
+    color:white;
+    margin-left: 5%;
 }
 
-.account-action-button:hover,
-.account-save-button:hover,
-.account-cancel-button:hover,
-.account-delete-button:hover {
-background-color: #2980b9;
+
+/*follow down the page*/
+
+
+/* profile with welcome to the user and their full
+    name display, including how many they are following*/
+.profile-pic-and-welcome{
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*profile picture to make it more circular, adjust if needed*/
+.profile{
+    position: relative;
+    max-width: 15%;
+    max-height: 15%;
+    margin-top: 7em;
+    margin-left: 6.5em;
+    width: 150px; /* Adjust the width and height to your preference */
+    height: 150px;
+    border-radius: 45%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the entire circular area */
+}
+
+.account-welcome{
+    float: right;
+    font-size: 50px; /*ajust if needed*/
+    margin-right:1em;
+    margin-top: 2.5em;
+}
+
+/*profile with info and card to edit profile*/
+.profile-with-card{
+    display: flex;
+}
+
+.profile-bio{
+    flex: 1;
+    width: auto;
+    height: auto;
+    margin-left: 7.5%;
+    background-color: none;
+    padding: 30px;
+}
+
+.profile-full-name{
+    text-align: left;
+    font-size: 2.5em;
+}
+
+.following-num{
+    color:#380F6E;
+    text-align: left;
+    font-size: 1.6em;
+}
+
+.card{
+    flex: 1;
+    float: right;
+    margin-right: 5%;
+    background-color: lightgrey;
+    border-radius: 8px;
+    max-width: 800px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.profile-info{
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    max-width: 450px;
+    max-height: 650px;
+    border-radius: 8px;
+}
+
+.header-account-info{
+    font-size: 30px;
+    color:#380F6E;
+    padding: 15px;
+    margin-left: 25%;
+    margin-right: 15%;
+}
+.account-info{
+    padding: 15px;
+    margin-left: auto;
+    margin-top: auto;
+    font-size: x-large;
+}
+
+/*fixing the changing types button with input box*/
+.change-info{
+    display: block;
+    margin: auto;
+    margin-bottom: 1em;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF10F1;
+    color: white;
+    font-family: Verdana;
+    font-size: large;
+    padding: 15px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+.change-info:hover{
+    cursor: pointer;
+    background-color: #800a78;
+    justify-content: center;
+}
+
+/*fixing inputs for password and email*/
+.pass-input{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+.pass-input-box{
+    display: center;
+    border-radius: 10px;
+    margin-right: 6px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.save-input-btn{
+    background-color: #5515FF;
+    color: white;
+    margin: auto;
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px
+}
+.save-input-btn:hover{
+    background-color: #442692;
+    cursor: pointer;
+}
+
+.cancel-input-btn{
+    background-color: #5515FF;
+    color: white;
+    margin: auto;
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px
+}
+.cancel-input-btn:hover{
+    background-color: #442692;
+    cursor: pointer;
+}
+
+/*Signing out button css*/
+.sign-out-sec{
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-bottom: 5%;
+}
+
+.sign-out-btn{
+    background-color: #f9f9f9;
+    color: black;
+    font-size: 40px;
+    font-family: Verdana;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 22px 200px;
+    margin-bottom: 15%;
+}
+
+.sign-out-btn:hover{
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+/*deleting the account css*/
+.delete-account-sec{
+    justify-content: center;
+    margin-left: 20%;
+    margin-top: 5%;
+    margin-bottom: 25%;
+}
+.delete-btn{
+    background-color: red;
+    color: white;
+    font-family: Verdana;
+    font-size: 40px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 22px 200px;
+    margin-bottom: 15%;
+}
+
+.delete-btn:hover{
+    cursor: pointer;
+    background-color: darkred;
+    color: white;
 }

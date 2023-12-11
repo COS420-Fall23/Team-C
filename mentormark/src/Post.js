@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from 'react';
+
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Comment from './components/Comment';
@@ -12,6 +13,7 @@ const comments = {
 };
 
 const Post = (props) => {
+  const { toChild, sendToParent, profilePicture } = props;
   const post = props.toChild;
 
   const [commentsData, setCommentsData] = useState(comments);
@@ -38,16 +40,17 @@ const Post = (props) => {
 
   return (
     <div className="post">
-      <h3 className='post-return'><Link onClick={() => props.sendToParent(null)}>Back to Post List</Link></h3>
-      {post ? (
+      <h3 className='post-return'><Link onClick={() => props.sendToParent(null)} color='black' style={{textDecoration: 'none'}}>Back</Link></h3>
+      {toChild ? (
         <div>
-          <div className='post-community'>{post.community}</div>
-          <div className='post-user-id'>Posted By: {post.userID}</div>
-          <header className="post-title">{post.title}</header>
-          <img className='post-image' src={post.file} alt={post.file} />
+          <header className="post-title">{toChild.title}</header>
+          {/* Displaying the user's profile picture */}
+          <img className='post-profile-icon' src={profilePicture} alt='Profile' />
+          <img className='post-image' src={toChild.file} alt={toChild.file} />
+
           <div className='post-body'>
             <div>{/*Empty div for spacing purposes*/}</div>
-            <div>{post.content}</div>
+            <div>{toChild.content}</div>
             <div>{/*Empty div for spacing purposes*/}</div>
           </div>
         </div>

@@ -162,11 +162,12 @@
 }
 
 .mainpage-profile-icon {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  margin-right: 10px;
+border-radius: 50%;
+float:right;
+width: 65px; /* Adjust the size to your preference */
+height: 65px; /* Adjust the size to your preference */
+cursor: pointer;
+margin-right: 2em; /* Add some spacing between the profile icon and the "Sign Out" button */
 }
 
 .mainpage-sign-out-button {

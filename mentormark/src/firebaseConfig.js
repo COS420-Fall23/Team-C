@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 
 import { getAuth, updateProfile, updateEmail, updatePassword, deleteUser, setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { doc, getDoc, getFirestore, updateDoc, deleteDoc } from 'firebase/firestore';
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,5 +26,5 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 setPersistence(auth, browserSessionPersistence);
-export { updateProfile, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc, deleteDoc };
+export { updateProfile, updateEmail, updatePassword, deleteUser, doc, getDoc, updateDoc, deleteDoc, ref, uploadBytesResumable, getDownloadURL };
 
