@@ -25,7 +25,7 @@ function COSPage() {
     // cos is omitted since we're on the cos page
     { name: "Business", path: "/business" },
     { name: "Finance", path: "/finance" },
-    { name: "Design", path: "/design" },
+    { name: "New Media Design", path: "/design" },
   ];
 
   // Reusing the Community component from the Mainpage.js
