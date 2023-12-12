@@ -41,23 +41,23 @@ export default function Login() {
 
     return (
         <>
-            <div className="form">
-                <form className='input-container'>
-                    <label className="label" htmlFor="email">
+            <div className="login-form">
+                <form className='login-input-container'>
+                    <label className="login-label" htmlFor="email">
                         Email:
                     </label>
                     <input
-                        className='email-input'
+                        className='login-email-input'
                         onChange={handleEmail}
                         id="email"
                         type="email" 
                         placeholder="Enter your email">
                     </input>
-                    <label className="label" htmlFor="password">
+                    <label className="login-label" htmlFor="password">
                         Password:
                     </label>
                     <input
-                        className='password-input'
+                        className='login-password-input'
                         onChange={handlePassword}
                         id="password"
                         type="password"

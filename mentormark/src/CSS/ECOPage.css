@@ -1,0 +1,144 @@
+.eco-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 300px 1fr 300px; /* Adjust for right sidebar as well */
+  height: 100vh;
+  text-align: center;
+}
+
+.eco-top-bar {
+  background-color: #45c44a;
+  color: white;
+  padding: 10px;
+  grid-column: 1 / -1; /* Span the top bar across all columns */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.eco-center-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  max-width: 600px; /* Prevent the center group from getting too wide */
+}
+
+.eco-title {
+  margin-bottom: 10px; /* Space between title and search bar */
+}
+
+.eco-back-to-mainpage-btn {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eco-profile-container {
+  position: relative;
+  padding: 10px 0;
+}
+
+.eco-profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.eco-dropdown-menu {
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.eco-dropdown-menu button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.eco-search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eco-search-bar {
+  display: flex;
+}
+
+.eco-search-bar input[type="textbox"] {
+  padding: 10px 15px;
+  font-size: 1em;
+  border: 2px solid #ddd;
+  border-radius: 25px 0 0 25px;
+  margin-right: -1px;
+}
+
+.eco-search-bar button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+}
+
+.eco-community-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.eco-sidebar-header {
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(168, 153, 235);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  font-family: "'Pacifico', cursive";
+}
+
+.cos {
+  background-color: #e57373;
+}
+.business {
+  background-color: #64b5f6;
+}
+.finance {
+  background-color: #ffb74d;
+}
+.design {
+  background-color: #ba68c8;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  .eco-container {
+    grid-template-columns: 1fr; /* Stack sidebar below main content on smaller screens */
+  }
+
+  .eco-search-bar input[type="textbox"],
+  .eco-search-bar button {
+    font-size: 0.8em; /* Smaller font size for smaller screens */
+  }
+}

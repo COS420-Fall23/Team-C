@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CSS/PostCreation.css";
 import { useNavigate } from "react-router-dom";
 import { storage } from "./firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "./firebaseConfig.js";
 import "./components/Comment.js"
 
@@ -13,11 +14,14 @@ function PostCreation() {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
+    community: '',
+    userID: '',
     file: null,
   });
   const [percent, setPercent] = useState(0);
 
   const navigate = useNavigate();
+  
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -27,15 +31,31 @@ function PostCreation() {
     });
   };
 
+  const auth = getAuth();
+  const [user, setUser] = useState(null);
+
+  // Listen for changes in authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    // Cleanup function
+    return () => unsubscribe();
+  }, [auth]);
+
   const createPost = async () => {
-    const { title, content, file } = formData;
+    const { title, content, community, file } = formData;
   
-    if (title && content) {
+    if (title && content && community) {
       const newPost = {
         title,
         content,
+        community,
+        userID: user.uid,
         timestamp: new Date().toLocaleString(),
       };
+      console.log(user.uid);
   
       try {
         if (file) {
@@ -69,7 +89,7 @@ function PostCreation() {
         console.error('Error adding document: ', e);
       }
     } else {
-      alert('Please provide both title and content for the post.');
+      alert('Please provide the title, content, and community for the post.');
     }
   };
   
@@ -100,6 +120,18 @@ function PostCreation() {
             required
           ></textarea>
           <br />
+          <label className="create-label" htmlFor="post-community">Community:</label>
+          <select 
+            className="create-select"
+            name="community"
+            id="post-community"
+            value={formData.community} 
+            onChange={handleInputChange} 
+            required>
+            <option value="null">--</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="New Media Design">New Media Design</option>
+          </select>
           <label className="create-label" htmlFor="post-file">Upload File:</label>
           <input
             className="create-input"
@@ -119,3 +151,6 @@ function PostCreation() {
 };
 
 export default PostCreation;
+
+
+// Post must be created in a community

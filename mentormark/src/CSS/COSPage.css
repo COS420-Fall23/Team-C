@@ -1,0 +1,189 @@
+.cos-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 300px 1fr 300px; /* Adjusted to accommodate the right sidebar */
+  height: 100vh;
+  text-align: center;
+}
+
+.cos-top-bar {
+  background-color: #e57373;
+  color: white;
+  padding: 10px;
+  grid-column: 1 / -1; /* Span the top bar across all columns */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.cos-center-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  max-width: 600px; /* Prevent the center group from getting too wide */
+}
+
+.cos-title {
+  margin-bottom: 10px; /* Space between title and search bar */
+}
+
+.cos-back-to-mainpage-btn {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cos-profile-container {
+  position: relative;
+  padding: 10px 0;
+}
+
+.cos-profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cos-dropdown-menu {
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.cos-dropdown-menu button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.cos-search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cos-search-bar {
+  display: flex;
+}
+
+.cos-search-bar input[type="textbox"] {
+  padding: 10px 15px;
+  font-size: 1em;
+  border: 2px solid #ddd;
+  border-radius: 25px 0 0 25px;
+  margin-right: -1px;
+}
+
+.cos-search-bar button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+}
+
+.cos-community-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.cos-sidebar-header {
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(168, 153, 235);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  font-family: "'Pacifico', cursive";
+}
+
+/* Right sidebar styles */
+.cos-right-sidebar {
+  grid-column: 3; /* Place it in the third column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background-color: #f5f5f5; /* Set a background color or leave it transparent */
+}
+
+.cos-right-sidebar-header {
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(168, 153, 235);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center; /* Center the text */
+}
+
+/* Individual items in the right sidebar */
+.cos-right-sidebar-item {
+  padding: 10px;
+  margin: 10px 0; /* Space them out vertically */
+}
+
+.eco {
+  background-color: #81c784;
+}
+.business {
+  background-color: #64b5f6;
+}
+.finance {
+  background-color: #ffb74d;
+}
+.design {
+  background-color: #ba68c8;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  .cos-container {
+    grid-template-columns: 1fr; /* Stack sidebar below main content on smaller screens */
+  }
+
+  .cos-search-bar input[type="textbox"],
+  .cos-search-bar button {
+    font-size: 0.8em; /* Smaller font size for smaller screens */
+  }
+
+  .cos-sidebar-header {
+    font-size: 18px;
+  }
+
+  .cos-top-bar {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .cos-profile-container {
+    order: 3; /* Ensure profile is at the bottom */
+    width: 100%; /* Take full width */
+    position: static; /* Remove absolute positioning */
+  }
+
+  .cos-back-to-mainpage-btn {
+    order: 1;
+  }
+}

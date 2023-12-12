@@ -1,6 +1,6 @@
 .log-in-button {
   background-color: rgb(77, 109, 238);
-  width: 150%;
+  width: 100%;
   margin-top: 30px;
   color: white;
   font-size: 25px;
@@ -13,25 +13,30 @@
   font-weight: bold;
 }
 
-.email-input,
-.password-input {
+.login-email-input,
+.login-password-input {
   font-size: larger;
   padding: 15px;
-  width: 160%;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
-.label {
+.login-label {
   font-size: larger;
   color: rgb(91, 91, 231);
   margin-bottom: 10px;
+  text-align: left;
 }
 
-.input-container {
+.login-input-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   font-weight: bold;
   font-size: 20px;
+}
+
+.login-form {
+  width: 105%;
 }

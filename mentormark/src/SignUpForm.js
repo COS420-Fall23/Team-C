@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './CSS/SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db } from './firebaseConfig.js';
-import { collection, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 
 
@@ -87,13 +87,18 @@ export default function SignUpForm() {
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				//console.log(user);
+				updateProfile(auth.currentUser, {
+					displayName: name
+				  })
+				console.log(user);
 			})
 			.catch((error) => {
 				//console.log(error.code, error.message);
 			})
 
 		const userInfo = { 
+			name,
+			email,
 			gStatus, 
 			major
 		};
@@ -106,8 +111,8 @@ export default function SignUpForm() {
 			major
 		}
 	
-		const userRef = await setDoc(collection(db, `/users/${name}/info`), userInfo); 
-		const devData = await setDoc(collection(db, 'devInfo'), aInfo); 
+		const userRef = await setDoc(doc(db, `users/${name}`), userInfo); 
+		const devData = await setDoc(doc(db, `devInfo/${name}`), aInfo); 
 	}
 
 	// Handling the form submission
@@ -236,15 +241,15 @@ export default function SignUpForm() {
 				<label htmlFor='GradStatus' className="signup-label">Graduate Status</label>
 				<select className='signup-select' onChange={handleGStatus} id="GradStatus">
 					<option value="null">--</option>
-					<option value="Undergrad">Undergraduate</option>
-					<option value="Grad">Graduate</option>
+					<option value="Undergraduate">Undergraduate</option>
+					<option value="Graduate">Graduate</option>
 				</select>
 				
 				<label htmlFor='Major' className="signup-label">Major</label>
 				<select className='signup-select' onChange={handleMajor} id="Major">
 					<option value="null">--</option>
-					<option value="CompSci">Computer Science</option>
-					<option value="NMD">New Media Design</option>
+					<option value="Computer Science">Computer Science</option>
+					<option value="New Media Design">New Media Design</option>
 				</select>
 
 				<button onClick={handleSubmit} className="signup-btn"

@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import { db, storage, auth, getDoc, doc } from "./firebaseConfig";
-import { getDownloadURL, ref } from "firebase/storage";
-import "./CSS/Mainpage.css";
-import Post from "./Post";
 import { signOut } from "firebase/auth";
+import { db, storage, auth } from "./firebaseConfig";
 import pImage from "./logo/pImage.png";
+import "./CSS/Mainpage.css";
+import "./CSS/COSPage.css";
+import { collection, getDocs } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import Post from "./Post";
 
-function Mainpage() {
-  const [profilePicture, setProfilePicture] = useState(pImage); // Default profile picture
-
-  const [posts, setPosts] = useState([]);
+function COSPage() {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
   const [imageURLs, setImageURLs] = useState({});
   const [postId, setPostId] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
 
-  const [searchText, setSearchText] = useState(); //Search textbox state
-  const [searchParams, setSearchParams] = useState("");
-  const [communityParams, setCommunityParams] = useState([]);
+  const [searchParams, setSearchParams] = useState(null);
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchText, setSearchText] = useState(""); //Search textbox state
 
   const communities = [
-    { name: "COS", path: "/cos", tag: "Computer Science" },
-    { name: "ECO", path: "/eco", tag: "Eco"},
-    { name: "Business", path: "/business", tag: "Business"},
-    { name: "Finance", path: "/finance", tag: "Finance"},
-    { name: "New Media Design", path: "/design", tag: "New Media Design"},
+    { name: "ECO", path: "/eco" },
+    // cos is omitted since we're on the cos page
+    { name: "Business", path: "/business" },
+    { name: "Finance", path: "/finance" },
+    { name: "New Media Design", path: "/design" },
   ];
 
+  // Reusing the Community component from the Mainpage.js
   function Community({ name, path, index }) {
     const navigate = useNavigate();
-    const colorClasses = ["cos", "eco", "business", "finance", "design"];
+    const colorClasses = ["eco", "business", "finance", "design"];
 
     return (
       <button
@@ -56,18 +56,12 @@ function Mainpage() {
     }
   };
 
-  const handleSearch = () => {
-    setSearchParams(searchText)
-  }
+  const handleSearchText = (e) => {
+    setSearchText(e.target.value);
+  };
 
-  //updates community filter parameters
-  const updateCommunityParams = (e) => {
-    const comm = e.target.value;
-    if(communityParams.includes(comm)){
-      setCommunityParams(communityParams.filter((e) => e !== comm));
-    } else {
-      setCommunityParams([...communityParams, comm])
-    }
+  const handleSearch = () => {
+    //implement search functionality
   };
 
   const handleProfileClick = () => {
@@ -88,36 +82,14 @@ function Mainpage() {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // Check if there's a logged-in user
-        if (auth.currentUser) {
-          // Replace 'currentUserId' with the actual identifier for the logged-in user
-          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.displayName));
-          
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
-            // Update 'profilePicture' state with the fetched profile picture URL
-            // Use the profile picture from Firestore or default image if not available
-            setProfilePicture(userData.profilePicture || pImage);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-  
-  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const postsCollection = collection(db, "posts");
         const snapshot = await getDocs(postsCollection);
-        const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        
-        // Fetch user information for each post
+        const postsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
         const imageURLPromises = postsData.map((post) => {
           if (post.file) {
@@ -154,49 +126,46 @@ function Mainpage() {
   });
 
   return (
-    <div className="mainpage-container">
-      <header className="mainpage-top-bar">
-        <div className="mainpage-title-container">
-          <h1 className="mainpage-title" onClick={() => navigate("/mainpage")}>
-            MentorMark
-          </h1>
-        </div>
+    <div className="cos-container">
+      <header className="cos-top-bar">
+        <button
+          className="cos-back-to-mainpage-btn"
+          onClick={() => navigate("/mainpage")}
+        >
+          Back
+        </button>
 
-        <div className="search-bar-container">
-          <div className="search-bar">
-            <input type="textbox" onChange={(e) => setSearchText(e.target.value)} />
-            <button onClick={handleSearch}>Search</button>
+        {/* Center group for title and search bar */}
+
+        <div className="cos-center-group">
+          <h1 className="cos-title">COS Community</h1>
+          <div className="cos-search-bar-container">
+            <div className="cos-search-bar">
+              <input type="textbox" onChange={handleSearchText} />
+              <button onClick={handleSearch}>Search</button>
+            </div>
           </div>
-          {communities.map((community) => (
-            <label className="box-label">
-              <input
-                type="checkbox"
-                id={community.name}
-                value={community.tag}
-                onChange={updateCommunityParams}
-                checked={communityParams.includes(community.tag)}
-              />
-              {community.name}
-            </label>
-          ))}
         </div>
 
-        <div className="mainpage-profile-container">
-        {/*Use the profilePicture prop here*/}
+        <div className="cos-profile-container">
           <img
-            className="mainpage-profile-icon" src={profilePicture} alt="Profile" onClick={handleProfileClick}/>
+            className="cos-profile-icon"
+            src={pImage}
+            alt="Profile"
+            onClick={handleProfileClick}
+          />
           {showDropdown && (
-            <div className="mainpage-dropdown-menu">
-              <Link to={{ pathname: '/account', state: { profilePicture: profilePicture } }} style={{textDecoration: 'none'}}><button >Account</button></Link>
+            <div className="cos-dropdown-menu">
+              <button onClick={() => navigate("/account")}>Account</button>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}
         </div>
       </header>
 
-      <div className="mainpage-sidebar">
-        <header className="mainpage-sidebar-header">Communities</header>
-        <div className="community-list">
+      <div className="cos-sidebar">
+        <header className="cos-sidebar-header">Communities</header>
+        <div className="cos-community-list">
           {communities.map((community, index) => (
             <Community
               key={community.name}
@@ -212,17 +181,21 @@ function Mainpage() {
           <>
             <div className="mainpage-postList">
               {sortedPosts
+                .filter((post) => post.community === "Computer Science")
                 .filter(
                   (post) =>
-                    ( //filters posts that include search parameters
-                        (post.title.includes(searchParams)
-                      || post.content.includes(searchParams))
-                      &&  (post.community ? communityParams.every(v => post.community.includes(v)) : true)   //Once posts have their own list of communities, update and add this
-                      ) //if no parameters, displays full list
+                    searchParams !== null //filters posts that include search parameters
+                      ? post.title.includes(searchParams) ||
+                        post.content.includes(searchParams)
+                      : post //if no parameters, displays full list
                 )
                 .map((post, index) => (
                   <div key={post.id} className="mainpage-post">
-                    <div><Link to={mapDropdownToCommunityName(post.community)}>{post.community}</Link></div>
+                    <div>
+                      <Link to={mapDropdownToCommunityName(post.community)}>
+                        {post.community}
+                      </Link>
+                    </div>
                     <h3>
                       <Link
                         onClick={() => {
@@ -266,25 +239,17 @@ function Mainpage() {
                 {/* Plus icon will be handled by the CSS styles */}
               </div>
             </div>
-        </>
-      ):( 
-        <Post toChild={postId} sendToParent={setPostId} profilePicture={profilePicture}></Post>
-      )};
+          </>
+        ) : (
+          <Post toChild={postId} sendToParent={setPostId}></Post>
+        )}
       </div>
-      <div className="mainpage-sidebar">
-        <header style={{margin: '10px', fontStyle: 'bold'}}>TBD</header>
-      </div>
-      <div className="mainpage-sidebar">
-        <header style={{ margin: "10px", fontStyle: "bold" }}>TBD</header>
+
+      <div className="cos-right-sidebar">
+        <header className="cos-right-sidebar-header"></header>
       </div>
     </div>
   );
 }
 
-export default Mainpage;
-
-/*
-Communities:
--Subscribed at top of list
--Unsubscribed appear on bottom, maybe seperated by thin line
-*/
+export default COSPage;
