@@ -1,15 +1,25 @@
 .post-return{
     float: left;
     padding: 15px;
-    background-color: #ffd3fe;
+    background-color: #C8A6FB;
     border-radius: 10px;
     font-size: 20px;
     font-family: Verdana;
-    color: black;
+    color: white;
+}
+.post-return:hover{
+    background-color: #8f48f8;
+    color: white;
+    cursor: pointer;
 }
 .post {
     text-align: center;
     margin: 20px;
+}
+.post-main-body{
+    background-color: ghostwhite;
+    padding: auto;
+    border-radius: 10px;
 }
 
 .post-title {
@@ -20,7 +30,7 @@
     font-size: 40px;
 }
 
-.post-body {
+.post-second-body {
     font-size: 20px;
     display: grid;
     margin-top: 5%;
@@ -30,12 +40,13 @@
 .post-profile-icon{
     margin-right: 3%;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     float: right;
 }
 .post-image {
     max-width: 500px;
+    border-radius: 15px;
 }
 
 .comments-section{

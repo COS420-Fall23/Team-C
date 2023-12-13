@@ -56,7 +56,7 @@ const Comment = ({
             />
 
             <Action
-              className="reply comment"
+              className="reply-comment"
               type="COMMENT"
               handleClick={onAddComment}
             />
@@ -114,7 +114,7 @@ const Comment = ({
                     }}
                   />
                   <Action
-                    className="reply"
+                    className="delete-font"
                     type="DELETE"
                     handleClick={handleDelete}
                   />
