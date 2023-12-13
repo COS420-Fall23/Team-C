@@ -28,12 +28,22 @@
 }
 
 .design-back-to-mainpage-btn {
-  padding: 10px 15px;
-  background-color: #f5f5f5;
-  border: 2px solid #ddd;
-  border-radius: 5px;
+  background-color: #8723ab;
+  color: white;
+  border-style: none;
+  border-radius: 8px;
+  padding: 15px 35px;
+  font-family: Verdana;
+  font-size: medium;
+  margin-left: 2em;
   cursor: pointer;
 }
+.design-back-to-mainpage-btn:hover{
+  color: white;
+  background-color:#4f1a62;
+  cursor: pointer;
+}
+
 .design-title {
   margin-bottom: 10px; /* Space between title and search bar */
 }
@@ -44,10 +54,12 @@
 }
 
 .design-profile-icon {
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
+  float:right;
+  width: 65px; /* Adjust the size to your preference */
+  height: 65px; /* Adjust the size to your preference */
   cursor: pointer;
+  margin-right: 2em; /* Add some spacing between the profile icon and the "Sign Out" button */
 }
 
 .design-dropdown-menu {

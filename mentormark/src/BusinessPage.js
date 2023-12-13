@@ -1,13 +1,38 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth, getDoc, doc, db } from "./firebaseConfig";
 import pImage from "./logo/pImage.png";
 import "./CSS/Mainpage.css";
 import "./CSS/BusinessPage.css";
 
 function BusinessPage() {
   const navigate = useNavigate();
+
+  const [profilePicture, setProfilePicture] = useState(pImage); // Default profile picture
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Check if there's a logged-in user
+        if (auth.currentUser) {
+          // Replace 'currentUserId' with the actual identifier for the logged-in user
+          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.displayName));
+          
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Update 'profilePicture' state with the fetched profile picture URL
+            // Use the profile picture from Firestore or default image if not available
+            setProfilePicture(userData.profilePicture || pImage);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchText, setSearchText] = useState(""); //Search textbox state
@@ -62,7 +87,7 @@ function BusinessPage() {
     <div className="business-container">
       <header className="business-top-bar">
         <button
-          className="cos-back-to-mainpage-btn"
+          className="business-back-to-mainpage-btn"
           onClick={() => navigate("/mainpage")}
         >
           Back
@@ -78,15 +103,12 @@ function BusinessPage() {
         </div>
 
         <div className="business-profile-container">
+          {/*Use the profilePicture prop here*/}
           <img
-            className="business-profile-icon"
-            src={pImage}
-            alt="Profile"
-            onClick={handleProfileClick}
-          />
+            className="business-profile-icon" src={profilePicture} alt="Profile" onClick={handleProfileClick}/>
           {showDropdown && (
             <div className="business-dropdown-menu">
-              <button onClick={() => navigate("/account")}>Account</button>
+              <Link to={{ pathname: '/account', state: { profilePicture: profilePicture } }} style={{textDecoration: 'none'}}><button >Account</button></Link>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}

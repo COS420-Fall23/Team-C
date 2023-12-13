@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { db, storage, auth } from "./firebaseConfig";
+import { db, storage, auth, getDoc, doc } from "./firebaseConfig";
 import pImage from "./logo/pImage.png";
 import { collection, getDocs } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
@@ -19,6 +19,31 @@ function DesignPage() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchText, setSearchText] = useState(""); //Search textbox state
+
+  const [profilePicture, setProfilePicture] = useState(pImage); // Default profile picture
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Check if there's a logged-in user
+        if (auth.currentUser) {
+          // Replace 'currentUserId' with the actual identifier for the logged-in user
+          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.displayName));
+          
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Update 'profilePicture' state with the fetched profile picture URL
+            // Use the profile picture from Firestore or default image if not available
+            setProfilePicture(userData.profilePicture || pImage);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const communities = [
     { name: "COS", path: "/cos" },
@@ -145,15 +170,12 @@ function DesignPage() {
         </div>
 
         <div className="design-profile-container">
+          {/*Use the profilePicture prop here*/}
           <img
-            className="design-profile-icon"
-            src={pImage}
-            alt="Profile"
-            onClick={handleProfileClick}
-          />
+            className="design-profile-icon" src={profilePicture} alt="Profile" onClick={handleProfileClick}/>
           {showDropdown && (
             <div className="design-dropdown-menu">
-              <button onClick={() => navigate("/account")}>Account</button>
+              <Link to={{ pathname: '/account', state: { profilePicture: profilePicture } }} style={{textDecoration: 'none'}}><button >Account</button></Link>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}

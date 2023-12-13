@@ -1,13 +1,38 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth, db, getDoc, doc } from "./firebaseConfig";
 import pImage from "./logo/pImage.png";
 import "./CSS/Mainpage.css";
 import "./CSS/ECOPage.css";
 
 function ECOPage() {
   const navigate = useNavigate();
+
+  const [profilePicture, setProfilePicture] = useState(pImage); // Default profile picture
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Check if there's a logged-in user
+        if (auth.currentUser) {
+          // Replace 'currentUserId' with the actual identifier for the logged-in user
+          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.displayName));
+          
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Update 'profilePicture' state with the fetched profile picture URL
+            // Use the profile picture from Firestore or default image if not available
+            setProfilePicture(userData.profilePicture || pImage);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchText, setSearchText] = useState(""); //Search textbox state
@@ -77,15 +102,12 @@ function ECOPage() {
           </div>
         </div>
         <div className="eco-profile-container">
+          {/*Use the profilePicture prop here*/}
           <img
-            className="eco-profile-icon"
-            src={pImage}
-            alt="Profile"
-            onClick={handleProfileClick}
-          />
+            className="eco-profile-icon" src={profilePicture} alt="Profile" onClick={handleProfileClick}/>
           {showDropdown && (
             <div className="eco-dropdown-menu">
-              <button onClick={() => navigate("/account")}>Account</button>
+              <Link to={{ pathname: '/account', state: { profilePicture: profilePicture } }} style={{textDecoration: 'none'}}><button >Account</button></Link>
               <button onClick={handleSignOut}>Sign Out</button>
             </div>
           )}
