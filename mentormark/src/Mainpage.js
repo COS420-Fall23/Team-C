@@ -274,9 +274,6 @@ function Mainpage() {
       <div className="mainpage-sidebar">
         <header style={{margin: '10px', fontStyle: 'bold'}}>TBD</header>
       </div>
-      <div className="mainpage-sidebar">
-        <header style={{ margin: "10px", fontStyle: "bold" }}>TBD</header>
-      </div>
     </div>
   );
 }
